@@ -19,14 +19,14 @@ public class AuthService {
             currentUser = user;
             return user;
         }
-        return null; // login failed
+        return null;
     }
 
     public boolean register(String type, String name, String email,
-                            String password, String departmentId, String idNumber) {
+            String password, String departmentId, String idNumber) {
 
         // check password strength
-        if (!PasswordValidator.isValid(password)) {
+        if (!validatePassword(password)) {
             return false;
         }
 
@@ -77,5 +77,15 @@ public class AuthService {
 
     private boolean requiresCertification(String type) {
         return type.equalsIgnoreCase("RESEARCHER");
+    }
+
+    public static boolean validatePassword(String password) {
+        if (password.length() < 8)
+            return false;
+        boolean hasUpper = password.chars().anyMatch(Character::isUpperCase);
+        boolean hasLower = password.chars().anyMatch(Character::isLowerCase);
+        boolean hasDigit = password.chars().anyMatch(Character::isDigit);
+        boolean hasSymbol = password.chars().anyMatch(c -> !Character.isLetterOrDigit(c));
+        return hasUpper && hasLower && hasDigit && hasSymbol;
     }
 }
