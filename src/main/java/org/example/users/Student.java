@@ -7,8 +7,7 @@ public class Student extends User {
     }
 
     @Override
-    public double getHourlyRate() { return 10.0; }
-
-    @Override
-    public String getUserType() { return "STUDENT"; }
+    public String getUserType() {
+        return "STUDENT";
+    }
 }

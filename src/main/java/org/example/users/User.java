@@ -10,7 +10,7 @@ public abstract class User {
     protected String idNumber; // student/staff ID or certification number
 
     public User(String userId, String name, String email, String password,
-                String userType, String departmentId, String idNumber) {
+            String userType, String departmentId, String idNumber) {
         this.userId = userId;
         this.name = name;
         this.email = email;
@@ -19,25 +19,29 @@ public abstract class User {
         this.departmentId = departmentId;
         this.idNumber = idNumber;
     }
-    public abstract double getHourlyRate();
-    public abstract String getUserType();
 
+    public abstract String getUserType();
 
     public String getUserId() {
         return userId;
     }
-    public String getName()
-    { return name;
+
+    public String getName() {
+        return name;
     }
+
     public String getEmail() {
         return email;
     }
+
     public String getPassword() {
         return password;
     }
+
     public String getDepartmentId() {
         return departmentId;
     }
+
     public String getIdNumber() {
         return idNumber;
     }

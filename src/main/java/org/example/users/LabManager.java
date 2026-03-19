@@ -1,6 +1,6 @@
 package org.example.users;
 
-public class LabManager extends User{
+public class LabManager extends User {
 
     private String managerId;
 
@@ -10,10 +10,11 @@ public class LabManager extends User{
     }
 
     @Override
-    public double getHourlyRate() { return 0.0; } // managers don't pay
+    public String getUserType() {
+        return "MANAGER";
+    }
 
-    @Override
-    public String getUserType() { return "MANAGER"; }
-
-    public String getManagerId() { return managerId; }
+    public String getManagerId() {
+        return managerId;
+    }
 }
