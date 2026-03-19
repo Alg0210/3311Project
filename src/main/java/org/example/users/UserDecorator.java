@@ -1,6 +1,6 @@
 package org.example.users;
 
-public class UserDecorator extends User{
+public class UserDecorator extends User {
 
     private User wrappedUser;
     private String decorationType; // "APPROVAL", "CERTIFICATION"
@@ -16,14 +16,25 @@ public class UserDecorator extends User{
         this.approved = false;
     }
 
-    public boolean isApproved() { return approved; }
-    public void setApproved(boolean approved) { this.approved = approved; }
-    public String getDecorationType() { return decorationType; }
+    public boolean isApproved() {
+        return approved;
+    }
+
+    public void setApproved(boolean approved) {
+        this.approved = approved;
+    }
+
+    public String getDecorationType() {
+        return decorationType;
+    }
+
+    public String getCertificationNumber() {
+        return certificationNumber;
+    }
 
     @Override
-    public double getHourlyRate() { return wrappedUser.getHourlyRate(); }
-
-    @Override
-    public String getUserType() { return wrappedUser.getUserType(); }
+    public String getUserType() {
+        return wrappedUser.getUserType();
+    }
 
 }

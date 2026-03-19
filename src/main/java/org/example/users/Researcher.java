@@ -7,8 +7,7 @@ public class Researcher extends User {
     }
 
     @Override
-    public double getHourlyRate() { return 20.0; }
-
-    @Override
-    public String getUserType() { return "RESEARCHER"; }
+    public String getUserType() {
+        return "RESEARCHER";
+    }
 }
