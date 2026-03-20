@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.gui.panels.ReservationController"
+            styleClass="outer-background">
+
+    <!-- ─── TOP BAR ─────────────────────────── -->
+    <top>
+        <HBox styleClass="top-bar" alignment="CENTER_LEFT" spacing="10">
+            <Label text="Reservation" styleClass="top-bar-name"/>
+            <Region HBox.hgrow="ALWAYS"/>
+        </HBox>
+    </top>
+
+    <center>
+        <HBox spacing="20" styleClass="reservation-content" alignment="TOP_CENTER">
+
+            <!-- Left: Payment + Time Slot -->
+            <VBox spacing="15" styleClass="payment-left">
+
+                <!-- Time Slot Selection -->
+                <VBox styleClass="payment-section" spacing="12">
+                    <Label text="Select Time Slot" styleClass="section-title"/>
+
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <Label text="Date:" styleClass="field-label"/>
+                        <DatePicker fx:id="datePicker"
+                                    styleClass="input-field"/>
+                    </HBox>
+
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <Label text="Start Time:" styleClass="field-label"/>
+                        <ComboBox fx:id="startTimeCombo"
+                                  promptText="HH:MM"
+                                  styleClass="input-field"/>
+                    </HBox>
+
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <Label text="End Time:" styleClass="field-label"/>
+                        <ComboBox fx:id="endTimeCombo"
+                                  promptText="HH:MM"
+                                  styleClass="input-field"/>
+                    </HBox>
+
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <Label text="ID / Cert Number:" styleClass="field-label"/>
+                        <TextField fx:id="idNumberField"
+                                   promptText="Enter your ID or cert number"
+                                   styleClass="input-field"/>
+                    </HBox>
+
+                    <Label fx:id="timeErrorLabel" text="" styleClass="error-label"/>
+
+                </VBox>
+
+                <!-- Credit / Debit -->
+                <VBox styleClass="payment-section" spacing="12">
+                    <Label text="Credit / Debit" styleClass="section-title"/>
+
+                    <TextField fx:id="cardNumberField"
+                               promptText="Card Number"
+                               styleClass="input-field"/>
+
+                    <HBox spacing="10">
+                        <TextField fx:id="expiryField"
+                                   promptText="MM / YY"
+                                   styleClass="input-field"
+                                   HBox.hgrow="ALWAYS"/>
+                        <TextField fx:id="cvcField"
+                                   promptText="CVC"
+                                   styleClass="input-field"
+                                   HBox.hgrow="ALWAYS"/>
+                    </HBox>
+
+                    <TextField fx:id="cardholderField"
+                               promptText="Cardholder Name"
+                               styleClass="input-field"/>
+
+                    <Button text="Select"
+                            styleClass="select-button"
+                            onAction="#handleSelectCard"/>
+                </VBox>
+
+                <!-- Grants -->
+                <VBox styleClass="payment-section" spacing="12">
+                    <Label text="Grants" styleClass="section-title"/>
+
+                    <TextField fx:id="grantIdField"
+                               promptText="Grant ID"
+                               styleClass="input-field"/>
+
+                    <Button text="Select"
+                            styleClass="select-button"
+                            onAction="#handleSelectGrant"/>
+                </VBox>
+
+                <Label fx:id="paymentErrorLabel" text="" styleClass="error-label"/>
+
+            </VBox>
+
+            <!-- Right: Order Summary -->
+            <VBox styleClass="order-summary" spacing="12">
+                <Label text="Order Summary" styleClass="section-title"/>
+
+                <ListView fx:id="orderListView"
+                          styleClass="order-list"
+                          VBox.vgrow="ALWAYS"/>
+
+                <Separator/>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label text="Subtotal" styleClass="field-label"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="subtotalLabel" text="0" styleClass="field-label"/>
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label text="Taxes (13%)" styleClass="field-label"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="taxLabel" text="0" styleClass="field-label"/>
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label text="Total" styleClass="summary-total-label"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="totalLabel" text="0" styleClass="summary-total-label"/>
+                </HBox>
+
+                <Button text="Complete Purchase"
+                        styleClass="signup-button"
+                        onAction="#handleCompletePurchase"/>
+
+            </VBox>
+        </HBox>
+    </center>
+
+</BorderPane>

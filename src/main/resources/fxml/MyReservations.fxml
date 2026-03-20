@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.gui.panels.MyReservationsController"
+            styleClass="outer-background">
+
+    <!-- ─── TOP BAR ─────────────────────────── -->
+    <top>
+        <HBox styleClass="top-bar" alignment="CENTER_LEFT" spacing="10">
+            <Button text="Home"
+                    styleClass="home-button"
+                    onAction="#handleHome"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="userNameLabel"
+                   text="FirstName LastName"
+                   styleClass="top-bar-name"/>
+        </HBox>
+    </top>
+
+    <!-- ─── MAIN CONTENT ────────────────────── -->
+    <center>
+        <ScrollPane fitToWidth="true"
+                    styleClass="scroll-pane">
+            <content>
+                <FlowPane fx:id="reservationsGrid"
+                          styleClass="equipment-grid"
+                          hgap="20"
+                          vgap="20"/>
+            </content>
+        </ScrollPane>
+    </center>
+
+</BorderPane>

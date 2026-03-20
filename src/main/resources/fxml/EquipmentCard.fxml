@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      styleClass="equipment-card"
+      spacing="8">
+
+    <!-- Placeholder Image -->
+    <Pane styleClass="card-image-placeholder"/>
+
+    <!-- Equipment Name -->
+    <Label fx:id="equipmentNameLabel"
+           text="PRODUCT NAME"
+           styleClass="card-name"/>
+
+    <!-- Buttons -->
+    <HBox spacing="8" alignment="CENTER">
+        <Button fx:id="moreButton"
+                text="More"
+                styleClass="more-button"
+                onAction="#handleMore"/>
+        <Button fx:id="reserveButton"
+                text="Reserve"
+                styleClass="reserve-button"
+                onAction="#handleReserve"/>
+    </HBox>
+
+</VBox>

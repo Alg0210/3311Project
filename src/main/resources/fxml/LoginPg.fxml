@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="org.example.gui.panels.LoginController"
+           styleClass="outer-background">
+
+    <VBox alignment="CENTER">
+
+        <!-- White Card -->
+        <VBox styleClass="login-card"
+              spacing="20">
+
+            <!-- Top Row: Title left, Logo right -->
+            <HBox alignment="CENTER_LEFT">
+                <Label text="Lab Equipment&#10;Reservation Platform"
+                       styleClass="login-title"
+                       wrapText="true"
+                       HBox.hgrow="ALWAYS"/>
+                <!-- Logo placeholder, add ImageView here later -->
+            </HBox>
+
+            <!-- Input Fields -->
+            <VBox spacing="15">
+                <TextField fx:id="emailField"
+                           promptText="Email Address"
+                           styleClass="dark-input"/>
+
+                <PasswordField fx:id="passwordField"
+                               promptText="Password"
+                               styleClass="dark-input"/>
+            </VBox>
+
+            <Label fx:id="errorLabel"
+                   styleClass="error-label"
+                   text=""
+                   wrapText="true"/>
+
+            <!-- Buttons Row -->
+            <HBox spacing="10" alignment="CENTER">
+                <Button text="Sign Up"
+                        styleClass="cancel-button"
+                        onAction="#handleRegister"/>
+                <Button text="Log In"
+                        styleClass="signup-button"
+                        onAction="#handleLogin"/>
+            </HBox>
+
+        </VBox>
+    </VBox>
+</StackPane>

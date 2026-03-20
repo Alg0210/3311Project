@@ -1,0 +1,480 @@
+.root {
+    -fx-font-family: "Segoe UI";
+    -fx-background-color: #f5f5f5;
+}
+
+.loginButton {      /*This button can be used for "Home" in the user view as well*/
+    -fx-display: flex;
+   -fx-width: 142px;
+    -fx-height: 56px;
+    -fx-flex-direction: column;
+    -fx-justify-content: center;
+    -fx-cursor: pointer;
+
+    -fx-color: #FFF;
+    -fx-background-color: #E51535;
+    -fx-text-align: center;
+
+    -fx-font-size: 20px;
+    -fx-font-style: normal;
+    -fx-font-weight: 400;
+    -fx-line-height: normal;
+
+}
+
+.secondaryButton {
+    -fx-display: flex;
+    -fx-width: 142px;
+    -fx-height: 56px;
+    -fx-flex-direction: column;
+    -fx-justify-content: center;
+    -fx-cursor: pointer;
+
+    -fx-color: #FFF;
+    -fx-background-color: #97A5C5;
+    -fx-text-align: center;
+
+    -fx-font-size: 20px;
+    -fx-font-style: normal;
+    -fx-font-weight: 400;
+    -fx-line-height: normal;
+
+}
+
+.inputParam{
+
+    -fx-display: flex;
+    -fx-width: 368px;
+    -fx-height: 45px;
+    -fx-flex-direction: column;
+    -fx-justify-content: center;
+    -fx-cursor: pointer;
+    -fx-color: #FFF;
+    -fx-background-color: #242731;
+
+    -fx-font-size: 20px;
+  -fx-font-style: normal;
+    -fx-font-weight: 400;
+    -fx-line-height: normal;
+}
+
+.login-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12px;
+    -fx-padding: 40px;
+    -fx-pref-width: 420px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 4);
+}
+
+/* ─── OUTER BACKGROUND ──────────────────────── */
+.outer-background {
+    -fx-background-color: #2b2b2b;
+}
+
+/* ─── REGISTER CARD ─────────────────────────── */
+.register-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12px;
+    -fx-padding: 35px;
+    -fx-pref-width: 380px;
+}
+
+/* ─── DARK INPUTS ───────────────────────────── */
+.dark-input {
+    -fx-pref-width: 230px;
+    -fx-pref-height: 42px;
+    -fx-background-color: #3a3a3a;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #aaaaaa;
+    -fx-background-radius: 6px;
+    -fx-border-width: 0;
+    -fx-font-size: 13px;
+    -fx-padding: 0 12px;
+}
+
+.dark-input:focused {
+    -fx-background-color: #444444;
+}
+
+/* ComboBox dark styling */
+.combo-box.dark-input {
+    -fx-pref-width: 310px;
+    -fx-pref-height: 42px;
+    -fx-background-color: #3a3a3a;
+}
+
+.combo-box.dark-input .list-cell {
+    -fx-text-fill: white;
+    -fx-background-color: #3a3a3a;
+    -fx-font-size: 13px;
+}
+
+.combo-box.dark-input .arrow-button {
+    -fx-background-color: #3a3a3a;
+}
+
+.combo-box.dark-input .arrow {
+    -fx-background-color: #aaaaaa;
+}
+
+/* ─── HINT TEXT ─────────────────────────────── */
+.hint-label {
+    -fx-font-size: 11px;
+    -fx-text-fill: #e31837;
+    -fx-pref-width: 310px;
+    -fx-wrap-text: true;
+}
+
+/* ─── BUTTONS ───────────────────────────────── */
+.cancel-button {
+    -fx-pref-width: 145px;
+    -fx-pref-height: 42px;
+    -fx-background-color: #d0d0d0;
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 14px;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+}
+
+.cancel-button:hover {
+    -fx-background-color: #b0b0b0;
+}
+
+.signup-button {
+    -fx-pref-width: 145px;
+    -fx-pref-height: 42px;
+    -fx-background-color: #e31837;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+}
+
+.signup-button:hover {
+    -fx-background-color: #c0142e;
+}
+
+.login-card {
+    -fx-background-color: #f0f0f0;
+    -fx-background-radius: 12px;
+    -fx-padding: 35px;
+    -fx-pref-width: 300px;
+}
+
+/* ─── LOGIN TITLE ────────────────────────────── */
+.login-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-wrap-text: true;
+}
+
+/* ─── DASHBOARD ─────────────────────────────── */
+.dashboard-root {
+    -fx-background-color: #2b2b2b;
+}
+
+/* ─── TOP BAR ───────────────────────────────── */
+.top-bar {
+    -fx-background-color: #1a1a1a;
+    -fx-padding: 10px 15px;
+    -fx-pref-height: 50px;
+}
+
+.home-button {
+    -fx-background-color: #e31837;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+}
+
+.home-button:hover {
+    -fx-background-color: #c0142e;
+}
+
+.user-menu-button {
+    -fx-background-color: #e31837;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+}
+
+/* ─── SIDEBAR ───────────────────────────────── */
+.sidebar {
+    -fx-background-color: #f0f0f0;
+    -fx-padding: 15px;
+    -fx-pref-width: 160px;
+}
+
+.cart-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.cart-list {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-pref-height: 300px;
+}
+
+.subtotal-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.checkout-button {
+    -fx-background-color: #e31837;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 4px;
+    -fx-pref-width: 130px;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+}
+
+/* ─── MAIN CONTENT ──────────────────────────── */
+.main-content {
+    -fx-background-color: #2b2b2b;
+    -fx-padding: 15px;
+}
+
+.sort-bar {
+    -fx-padding: 5px 0;
+}
+
+.sort-combo {
+    -fx-background-color: #f0f0f0;
+    -fx-background-radius: 4px;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.equipment-grid {
+    -fx-background-color: transparent;
+    -fx-padding: 10px;
+}
+
+/* ─── EQUIPMENT CARD ────────────────────────── */
+.equipment-card {
+    -fx-background-color: #3a3a3a;
+    -fx-background-radius: 8px;
+    -fx-padding: 10px;
+    -fx-pref-width: 160px;
+    -fx-cursor: hand;
+}
+
+.card-image-placeholder {
+    -fx-background-color: black;
+    -fx-pref-width: 140px;
+    -fx-pref-height: 120px;
+    -fx-background-radius: 4px;
+}
+
+.card-name {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-wrap-text: true;
+}
+
+.card-price {
+    -fx-font-size: 11px;
+    -fx-text-fill: #aaaaaa;
+}
+
+.more-button {
+    -fx-background-color: #555555;
+    -fx-text-fill: white;
+    -fx-font-size: 11px;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+    -fx-pref-width: 60px;
+}
+
+.more-button:hover {
+    -fx-background-color: #666666;
+}
+
+.reserve-button {
+    -fx-background-color: #e31837;
+    -fx-text-fill: white;
+    -fx-font-size: 11px;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+    -fx-pref-width: 60px;
+}
+
+.reserve-button:hover {
+    -fx-background-color: #c0142e;
+}
+
+/* ─── ACCOUNT PAGE ──────────────────────────── */
+.account-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12px;
+    -fx-padding: 40px;
+}
+
+.account-name {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.balance-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.balance-list {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-pref-height: 150px;
+    -fx-pref-width: 250px;
+}
+
+.payment-button {
+    -fx-background-color: #e31837;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+    -fx-pref-height: 40px;
+}
+
+.payment-button:hover {
+    -fx-background-color: #c0142e;
+}
+
+.top-bar-name {
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+}
+
+/* ─── RESERVATION PAGE ──────────────────────── */
+.reservation-content {
+    -fx-padding: 20px;
+}
+
+.payment-left {
+    -fx-pref-width: 380px;
+}
+
+.payment-section {
+    -fx-background-color: white;
+    -fx-background-radius: 8px;
+    -fx-padding: 20px;
+}
+
+.section-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.select-button {
+    -fx-background-color: #2c3e50;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+    -fx-pref-width: 80px;
+    -fx-alignment: CENTER_RIGHT;
+}
+
+.select-button:hover {
+    -fx-background-color: #1a252f;
+}
+
+.order-summary {
+    -fx-background-color: white;
+    -fx-background-radius: 8px;
+    -fx-padding: 20px;
+    -fx-pref-width: 280px;
+}
+
+.order-list {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-pref-height: 180px;
+}
+
+.summary-total-label {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+/* ─── MY RESERVATIONS PAGE ──────────────────── */
+.reservation-card {
+    -fx-background-color: #3a3a3a;
+    -fx-background-radius: 8px;
+    -fx-padding: 12px;
+    -fx-pref-width: 280px;
+}
+
+.card-image-placeholder-small {
+    -fx-background-color: black;
+    -fx-pref-width: 80px;
+    -fx-pref-height: 80px;
+    -fx-background-radius: 4px;
+    -fx-min-width: 80px;
+}
+
+.reservation-detail-label {
+    -fx-font-size: 11px;
+    -fx-text-fill: #cccccc;
+    -fx-wrap-text: true;
+}
+
+.cancel-res-button {
+    -fx-background-color: #555555;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+    -fx-pref-width: 100px;
+    -fx-pref-height: 35px;
+}
+
+.cancel-res-button:hover {
+    -fx-background-color: #666666;
+}
+
+.extend-button {
+    -fx-background-color: #e31837;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+    -fx-pref-width: 100px;
+    -fx-pref-height: 35px;
+}
+
+.extend-button:hover {
+    -fx-background-color: #c0142e;
+}
+
