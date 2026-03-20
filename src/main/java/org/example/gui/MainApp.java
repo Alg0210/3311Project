@@ -17,7 +17,7 @@ public class MainApp extends Application {
         primaryStage.setWidth(1000);
         primaryStage.setHeight(700);
         primaryStage.setResizable(false);
-        switchScene("Login");
+        switchScene("LoginPg");
     }
 
     public static void switchScene(String fxmlName) {

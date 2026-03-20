@@ -2,3 +2,173 @@
     -fx-font-family: "Segoe UI";
     -fx-background-color: #f5f5f5;
 }
+
+.loginButton {      /*This button can be used for "Home" in the user view as well*/
+    -fx-display: flex;
+   -fx-width: 142px;
+    -fx-height: 56px;
+    -fx-flex-direction: column;
+    -fx-justify-content: center;
+    -fx-cursor: pointer;
+
+    -fx-color: #FFF;
+    -fx-background-color: #E51535;
+    -fx-text-align: center;
+
+    -fx-font-size: 20px;
+    -fx-font-style: normal;
+    -fx-font-weight: 400;
+    -fx-line-height: normal;
+
+}
+
+.secondaryButton {
+    -fx-display: flex;
+    -fx-width: 142px;
+    -fx-height: 56px;
+    -fx-flex-direction: column;
+    -fx-justify-content: center;
+    -fx-cursor: pointer;
+
+    -fx-color: #FFF;
+    -fx-background-color: #97A5C5;
+    -fx-text-align: center;
+
+    -fx-font-size: 20px;
+    -fx-font-style: normal;
+    -fx-font-weight: 400;
+    -fx-line-height: normal;
+
+}
+
+.inputParam{
+
+    -fx-display: flex;
+    -fx-width: 368px;
+    -fx-height: 45px;
+    -fx-flex-direction: column;
+    -fx-justify-content: center;
+    -fx-cursor: pointer;
+    -fx-color: #FFF;
+    -fx-background-color: #242731;
+
+    -fx-font-size: 20px;
+  -fx-font-style: normal;
+    -fx-font-weight: 400;
+    -fx-line-height: normal;
+}
+
+.login-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12px;
+    -fx-padding: 40px;
+    -fx-pref-width: 420px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 4);
+}
+
+/* ─── OUTER BACKGROUND ──────────────────────── */
+.outer-background {
+    -fx-background-color: #2b2b2b;
+}
+
+/* ─── REGISTER CARD ─────────────────────────── */
+.register-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12px;
+    -fx-padding: 35px;
+    -fx-pref-width: 380px;
+}
+
+/* ─── DARK INPUTS ───────────────────────────── */
+.dark-input {
+    -fx-pref-width: 230px;
+    -fx-pref-height: 42px;
+    -fx-background-color: #3a3a3a;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #aaaaaa;
+    -fx-background-radius: 6px;
+    -fx-border-width: 0;
+    -fx-font-size: 13px;
+    -fx-padding: 0 12px;
+}
+
+.dark-input:focused {
+    -fx-background-color: #444444;
+}
+
+/* ComboBox dark styling */
+.combo-box.dark-input {
+    -fx-pref-width: 310px;
+    -fx-pref-height: 42px;
+    -fx-background-color: #3a3a3a;
+}
+
+.combo-box.dark-input .list-cell {
+    -fx-text-fill: white;
+    -fx-background-color: #3a3a3a;
+    -fx-font-size: 13px;
+}
+
+.combo-box.dark-input .arrow-button {
+    -fx-background-color: #3a3a3a;
+}
+
+.combo-box.dark-input .arrow {
+    -fx-background-color: #aaaaaa;
+}
+
+/* ─── HINT TEXT ─────────────────────────────── */
+.hint-label {
+    -fx-font-size: 11px;
+    -fx-text-fill: #e31837;
+    -fx-pref-width: 310px;
+    -fx-wrap-text: true;
+}
+
+/* ─── BUTTONS ───────────────────────────────── */
+.cancel-button {
+    -fx-pref-width: 145px;
+    -fx-pref-height: 42px;
+    -fx-background-color: #d0d0d0;
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 14px;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+}
+
+.cancel-button:hover {
+    -fx-background-color: #b0b0b0;
+}
+
+.signup-button {
+    -fx-pref-width: 145px;
+    -fx-pref-height: 42px;
+    -fx-background-color: #e31837;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+}
+
+.signup-button:hover {
+    -fx-background-color: #c0142e;
+}
+
+.login-card {
+    -fx-background-color: #f0f0f0;
+    -fx-background-radius: 12px;
+    -fx-padding: 35px;
+    -fx-pref-width: 300px;
+}
+
+/* ─── LOGIN TITLE ────────────────────────────── */
+.login-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-wrap-text: true;
+}
+
