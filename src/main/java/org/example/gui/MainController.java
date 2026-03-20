@@ -33,7 +33,7 @@ public class MainController {
     public static void logout() {
         AuthService.logout();
         currentUser = null;
-        MainApp.switchScene("Login");
+        MainApp.switchScene("LoginPg");
     }
 
     public static User getCurrentUser() {
