@@ -11,6 +11,9 @@
         <HBox styleClass="top-bar" alignment="CENTER_LEFT" spacing="10">
             <Label text="Reservation" styleClass="top-bar-name"/>
             <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Cancel"
+                    styleClass="cancel-button"
+                    onAction="#handleCancel"/>
         </HBox>
     </top>
 

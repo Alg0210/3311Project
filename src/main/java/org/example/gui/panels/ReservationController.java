@@ -201,4 +201,11 @@ public class ReservationController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+    @FXML
+    private void handleCancel() {
+        // clear the cart and go back to dashboard
+        MainController.setCart(new ArrayList<>());
+        MainApp.switchScene("Dashboard");
+    }
 }
