@@ -11,10 +11,10 @@ public class RegisterController {
     @FXML private TextField nameField;
     @FXML private TextField emailField;
     @FXML private PasswordField passwordField;
+    @FXML private PasswordField confirmPasswordField;
     @FXML private ComboBox<String> userTypeCombo;
     @FXML private TextField departmentField;
     @FXML private TextField idNumberField;
-    @FXML private Label idNumberLabel;
     @FXML private Label errorLabel;
 
     private final AuthService authService = new AuthService();
@@ -23,30 +23,25 @@ public class RegisterController {
     public void initialize() {
         errorLabel.setText("");
 
-        // populate user type dropdown
         userTypeCombo.setItems(FXCollections.observableArrayList(
                 "STUDENT", "FACULTY", "RESEARCHER", "GUEST"
         ));
 
-        // dynamically change the ID number label based on user type selected
         userTypeCombo.setOnAction(e -> {
             String selected = userTypeCombo.getValue();
             if (selected == null) return;
             switch (selected) {
                 case "RESEARCHER":
-                    idNumberLabel.setText("Certification Number");
-                    idNumberField.setPromptText("Enter your certification number");
+                    idNumberField.setPromptText("Certification Number");
                     departmentField.setDisable(false);
                     break;
                 case "GUEST":
-                    idNumberLabel.setText("ID Number");
-                    idNumberField.setPromptText("Enter your ID number");
+                    idNumberField.setPromptText("ID Number");
                     departmentField.setDisable(true);
                     departmentField.clear();
                     break;
                 default:
-                    idNumberLabel.setText("Student/Staff ID");
-                    idNumberField.setPromptText("Enter your student/staff ID");
+                    idNumberField.setPromptText("Student/Staff ID");
                     departmentField.setDisable(false);
                     break;
             }
@@ -58,13 +53,19 @@ public class RegisterController {
         String name         = nameField.getText().trim();
         String email        = emailField.getText().trim();
         String password     = passwordField.getText().trim();
+        String confirmPass  = confirmPasswordField.getText().trim();
         String userType     = userTypeCombo.getValue();
         String departmentId = departmentField.getText().trim();
         String idNumber     = idNumberField.getText().trim();
 
-        // basic validation
+        // validation
         if (name.isEmpty() || email.isEmpty() || password.isEmpty() || userType == null) {
             errorLabel.setText("Please fill in all required fields.");
+            return;
+        }
+
+        if (!password.equals(confirmPass)) {
+            errorLabel.setText("Passwords do not match.");
             return;
         }
 
@@ -78,11 +79,10 @@ public class RegisterController {
         );
 
         if (!success) {
-            errorLabel.setText("Registration failed. Check your password strength or email is already taken.");
+            errorLabel.setText("Registration failed. Check password strength or email already exists.");
             return;
         }
 
-        // go back to login after successful registration
         MainApp.switchScene("LoginPg");
     }
 
