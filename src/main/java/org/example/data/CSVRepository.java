@@ -60,6 +60,16 @@ public class CSVRepository {
         return null;
     }
 
+    public User findUserById(String userId) {
+        List<String[]> rows = handler.readCSV(USERS_FILE);
+        for (String[] row : rows) {
+            if (row[0].equals(userId)) {
+                return mapRowToUser(row);
+            }
+        }
+        return null;
+    }
+
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
         for (String[] row : handler.readCSV(USERS_FILE)) {

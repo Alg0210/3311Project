@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.gui.panels.AccountController"
+            styleClass="outer-background">
+
+    <!-- ─── TOP BAR ─────────────────────────── -->
+    <top>
+        <HBox styleClass="top-bar" alignment="CENTER_LEFT" spacing="10">
+            <Button text="Home"
+                    styleClass="home-button"
+                    onAction="#handleHome"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="userNameTopLabel"
+                   text="FirstName LastName"
+                   styleClass="top-bar-name"/>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox alignment="CENTER" styleClass="outer-background">
+
+            <!-- White Card -->
+            <HBox styleClass="account-card" spacing="60">
+
+                <!-- Left: Credentials -->
+                <VBox spacing="20">
+                    <Label fx:id="userNameLabel"
+                           text="FirstName LastName"
+                           styleClass="account-name"/>
+
+                    <VBox spacing="8">
+                        <HBox spacing="10" alignment="CENTER_LEFT">
+                            <Label text="Email:" styleClass="field-label"/>
+                            <TextField fx:id="emailField"
+                                       styleClass="dark-input"/>
+                        </HBox>
+                        <HBox spacing="10" alignment="CENTER_LEFT">
+                            <Label text="ID:" styleClass="field-label"/>
+                            <TextField fx:id="idField"
+                                       styleClass="dark-input"/>
+                        </HBox>
+                    </VBox>
+
+                    <Button text="Update Credentials"
+                            styleClass="signup-button"
+                            onAction="#handleUpdateCredentials"/>
+
+                    <Label fx:id="updateStatusLabel"
+                           text=""
+                           styleClass="error-label"/>
+                </VBox>
+
+                <!-- Right: Balance Due -->
+                <VBox spacing="15">
+                    <Label text="Balance Due:"
+                           styleClass="balance-title"/>
+
+                    <ListView fx:id="balanceListView"
+                              styleClass="balance-list"/>
+
+                    <Button text="Make Payment"
+                            styleClass="payment-button"
+                            onAction="#handleMakePayment"/>
+                </VBox>
+
+            </HBox>
+        </VBox>
+    </center>
+
+</BorderPane>
