@@ -35,7 +35,7 @@
 
         <!-- CENTER: Users table + add button -->
         <center>
-            <VBox styleClass="manager-content">
+            <VBox styleClass="head-coordinator-content">
 
                 <TableView fx:id="usersTable" styleClass="users-table" VBox.vgrow="ALWAYS">
                     <columns>
@@ -52,7 +52,7 @@
                     <padding>
                         <Insets top="12" bottom="12"/>
                     </padding>
-                    <Button fx:id="addManagerBtn" text="+" styleClass="add-manager-button" onAction="#handleAddManager"/>
+                    <Button fx:id="addManagerBtn" text="+" styleClass="add-head-coordinator-button" onAction="#handleAddManager"/>
                 </HBox>
 
             </VBox>
