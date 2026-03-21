@@ -18,7 +18,7 @@ public class CSVRepository {
 
     // Headers
     private static final String USERS_HEADER        = "userId,name,email,password,userType,departmentId,idNumber,approved,decorationType";
-    private static final String EQUIPMENT_HEADER    = "equipmentId,description,labLocation,status";
+    private static final String EQUIPMENT_HEADER    = "equipmentId,description,labLocation,status,name,availableUnits,productStatistics,tags,imagePath";
     private static final String RESERVATIONS_HEADER = "reservationId,userId,equipmentId,startTime,endTime,status,deposit";
     private static final String PAYMENTS_HEADER     = "paymentId,reservationId,amount,paymentMethod,isDeposit,timestamp";
 
@@ -115,11 +115,17 @@ public class CSVRepository {
     // ─── EQUIPMENT METHODS ───────────────────────────────────────
 
     public void saveEquipment(Equipment equipment) {
+        String tagsJoined = String.join("|", equipment.getTags());
         String[] row = {
                 equipment.getEquipmentId(),
                 equipment.getDescription(),
                 equipment.getLabLocation(),
-                equipment.getStatus().name()
+                equipment.getStatus().name(),
+                equipment.getName(),
+                String.valueOf(equipment.getAvailableUnits()),
+                equipment.getProductStatistics().replace("\n", "\\n"),
+                tagsJoined,
+                equipment.getImagePath() != null ? equipment.getImagePath() : ""
         };
         handler.appendCSV(EQUIPMENT_FILE, row);
     }
@@ -129,6 +135,18 @@ public class CSVRepository {
         for (String[] row : handler.readCSV(EQUIPMENT_FILE)) {
             Equipment e = new Equipment(row[0], row[1], row[2]);
             e.setStatus(EquipmentStatus.valueOf(row[3]));
+            // backward compatible: new columns may not exist in old CSV rows
+            if (row.length > 4 && !row[4].isEmpty()) e.setName(row[4]);
+            if (row.length > 5 && !row[5].isEmpty()) {
+                try { e.setAvailableUnits(Integer.parseInt(row[5])); } catch (NumberFormatException ignored) {}
+            }
+            if (row.length > 6 && !row[6].isEmpty()) e.setProductStatistics(row[6].replace("\\n", "\n"));
+            if (row.length > 7 && !row[7].isEmpty()) {
+                java.util.Arrays.stream(row[7].split("\\|"))
+                        .filter(t -> !t.trim().isEmpty())
+                        .forEach(e.getTags()::add);
+            }
+            if (row.length > 8 && !row[8].isEmpty()) e.setImagePath(row[8]);
             list.add(e);
         }
         return list;
@@ -136,13 +154,19 @@ public class CSVRepository {
 
     public void updateEquipment(Equipment equipment) {
         List<String[]> rows = handler.readCSV(EQUIPMENT_FILE);
+        String tagsJoined = String.join("|", equipment.getTags());
         for (int i = 0; i < rows.size(); i++) {
             if (rows.get(i)[0].equals(equipment.getEquipmentId())) {
                 rows.set(i, new String[]{
                         equipment.getEquipmentId(),
                         equipment.getDescription(),
                         equipment.getLabLocation(),
-                        equipment.getStatus().name()
+                        equipment.getStatus().name(),
+                        equipment.getName(),
+                        String.valueOf(equipment.getAvailableUnits()),
+                        equipment.getProductStatistics().replace("\n", "\\n"),
+                        tagsJoined,
+                        equipment.getImagePath() != null ? equipment.getImagePath() : ""
                 });
                 break;
             }

@@ -1,9 +1,9 @@
-equipmentId,description,labLocation,status
-EQ-001,Oscilloscope,Lab 101,AVAILABLE
-EQ-002,Centrifuge,Lab 203,AVAILABLE
-EQ-003,Electron Microscope,Lab 105,AVAILABLE
-EQ-004,Spectrometer,Lab 302,AVAILABLE
-EQ-005,PCR Machine,Lab 203,AVAILABLE
-EQ-006,3D Printer,Lab 410,AVAILABLE
-EQ-007,Laser Cutter,Lab 410,AVAILABLE
-EQ-008,Wind Tunnel,Lab 501,AVAILABLE
+equipmentId,description,labLocation,status,name,availableUnits,productStatistics,tags,imagePath
+EQ-001,Oscilloscope,Lab 101,AVAILABLE,Oscilloscope,1,,
+EQ-002,Centrifuge,Lab 203,AVAILABLE,Centrifuge,1,,
+EQ-003,Electron Microscope,Lab 105,AVAILABLE,Electron Microscope,1,,
+EQ-004,Spectrometer,Lab 302,AVAILABLE,Spectrometer,1,,
+EQ-005,PCR Machine,Lab 203,AVAILABLE,PCR Machine,1,,
+EQ-006,3D Printer,Lab 410,AVAILABLE,3D Printer,1,,
+EQ-007,Laser Cutter,Lab 410,AVAILABLE,Laser Cutter,1,,
+EQ-008,Wind Tunnel,Lab 501,AVAILABLE,Wind Tunnel,1,,
