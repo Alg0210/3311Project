@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.geometry.Insets?>
+
+<StackPane prefWidth="1000" prefHeight="700"
+           xmlns="http://javafx.com/javafx/8"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="org.example.gui.panels.ManagerController">
+
+    <!-- Layer 0: Main Layout -->
+    <BorderPane>
+
+        <!-- TOP: Top bar -->
+        <top>
+            <HBox styleClass="top-bar" alignment="CENTER_LEFT">
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="userNameLabel" styleClass="top-bar-name"/>
+            </HBox>
+        </top>
+
+        <!-- LEFT: Sidebar navigation -->
+        <left>
+            <VBox styleClass="sidebar">
+                <Label fx:id="navAccounts"    text="Accounts"    styleClass="sidebar-item" onMouseClicked="#handleNavAccounts"/>
+                <Label fx:id="navManager"     text="Lab Manager" styleClass="sidebar-item" onMouseClicked="#handleNavManager"/>
+                <Label fx:id="navStudent"     text="Student"     styleClass="sidebar-item" onMouseClicked="#handleNavStudent"/>
+                <Label fx:id="navFaculty"     text="Faculty"     styleClass="sidebar-item" onMouseClicked="#handleNavFaculty"/>
+                <Label fx:id="navResearcher"  text="Researcher"  styleClass="sidebar-item" onMouseClicked="#handleNavResearcher"/>
+                <Label fx:id="navGuest"       text="Guest"       styleClass="sidebar-item" onMouseClicked="#handleNavGuest"/>
+            </VBox>
+        </left>
+
+        <!-- CENTER: Users table + add button -->
+        <center>
+            <VBox styleClass="manager-content">
+
+                <TableView fx:id="usersTable" styleClass="users-table" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colName"        text="Name"      prefWidth="140"/>
+                        <TableColumn fx:id="colEmail"       text="Email"     prefWidth="180"/>
+                        <TableColumn fx:id="colType"        text="User Type" prefWidth="110"/>
+                        <TableColumn fx:id="colCredentials" text=""          prefWidth="140"/>
+                        <TableColumn fx:id="colEquipment"   text=""          prefWidth="170"/>
+                        <TableColumn fx:id="colDelete"      text=""          prefWidth="120"/>
+                    </columns>
+                </TableView>
+
+                <HBox fx:id="addManagerBox" alignment="CENTER" visible="false" managed="false">
+                    <padding>
+                        <Insets top="12" bottom="12"/>
+                    </padding>
+                    <Button fx:id="addManagerBtn" text="+" styleClass="add-manager-button" onAction="#handleAddManager"/>
+                </HBox>
+
+            </VBox>
+        </center>
+
+    </BorderPane>
+
+    <!-- Layer 1: Credentials overlay -->
+    <VBox fx:id="credentialsOverlay" styleClass="overlay-bg" visible="false" alignment="CENTER">
+
+        <VBox styleClass="overlay-card" maxWidth="500" maxHeight="500" spacing="14">
+
+            <!-- User name + type header -->
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <Label fx:id="credUserName" styleClass="overlay-user-name"/>
+                <Separator orientation="VERTICAL" prefHeight="30"/>
+                <Label fx:id="credUserType" styleClass="overlay-user-type"/>
+            </HBox>
+
+            <Separator/>
+
+            <!-- ID Number -->
+            <VBox spacing="4">
+                <Label text="ID" styleClass="overlay-section-title"/>
+                <TextField fx:id="credIdNumber" editable="false" styleClass="dark-input"/>
+            </VBox>
+
+            <!-- Uploaded credentials -->
+            <VBox spacing="4">
+                <Label text="Uploaded Credentials" styleClass="overlay-section-title"/>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Rectangle width="200" height="120" fill="#1a1a1a" arcWidth="8" arcHeight="8"/>
+                    <Label text="Student ID" styleClass="overlay-label"/>
+                </HBox>
+            </VBox>
+
+            <Region VBox.vgrow="ALWAYS"/>
+
+            <!-- Actions -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Button text="Back"    styleClass="back-button"    onAction="#handleCredentialsBack"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="Deny"    styleClass="deny-button"    onAction="#handleCredentialsDeny"/>
+                <Button text="Approve" styleClass="approve-button" onAction="#handleCredentialsApprove"/>
+            </HBox>
+
+        </VBox>
+
+    </VBox>
+
+    <!-- Layer 2: Equipment overlay -->
+    <VBox fx:id="equipmentOverlay" styleClass="overlay-bg" visible="false" alignment="CENTER">
+
+        <VBox styleClass="overlay-card" maxWidth="600" maxHeight="500" spacing="14">
+
+            <!-- User name + type header -->
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <Label fx:id="equipUserName" styleClass="overlay-user-name"/>
+                <Separator orientation="VERTICAL" prefHeight="30"/>
+                <Label fx:id="equipUserType" styleClass="overlay-user-type"/>
+            </HBox>
+
+            <Separator/>
+
+            <Label text="Reserved Equipment" styleClass="overlay-section-title"/>
+
+            <ScrollPane VBox.vgrow="ALWAYS" fitToWidth="true" style="-fx-background-color: transparent;">
+                <VBox fx:id="equipmentList" spacing="10">
+                    <padding>
+                        <Insets top="4" right="4" bottom="4" left="4"/>
+                    </padding>
+                </VBox>
+            </ScrollPane>
+
+            <HBox alignment="CENTER_LEFT">
+                <Button text="Back" styleClass="back-button" onAction="#handleEquipmentBack"/>
+            </HBox>
+
+        </VBox>
+
+    </VBox>
+
+    <!-- Layer 3: Create Manager overlay -->
+    <VBox fx:id="createManagerOverlay" styleClass="overlay-bg" visible="false" alignment="CENTER">
+
+        <VBox styleClass="overlay-card" maxWidth="600" spacing="14">
+
+            <HBox spacing="20">
+
+                <!-- Left column: Name + Email -->
+                <VBox spacing="12">
+                    <Label text="First Name" styleClass="overlay-label"/>
+                    <TextField fx:id="managerFirstName" styleClass="dark-input" promptText="Firstname"/>
+                    <Label text="Last Name" styleClass="overlay-label"/>
+                    <TextField fx:id="managerLastName"  styleClass="dark-input" promptText="Lastname"/>
+                    <Label text="Email" styleClass="overlay-label"/>
+                    <TextField fx:id="managerEmail"     styleClass="dark-input" promptText="labman@my.yorku.ca"/>
+                </VBox>
+
+                <!-- Right column: Password -->
+                <VBox spacing="12">
+                    <Label text="Password" styleClass="overlay-label"/>
+                    <PasswordField fx:id="managerPassword"        styleClass="dark-input" promptText="Password"/>
+                    <Label text="Confirm Password" styleClass="overlay-label"/>
+                    <PasswordField fx:id="managerConfirmPassword" styleClass="dark-input" promptText="Password"/>
+                    <Label text="Password must contain a combination of uppercase and lowercase letters, numbers, and special characters."
+                           styleClass="hint-label" wrapText="true"/>
+                </VBox>
+
+            </HBox>
+
+            <Label fx:id="managerErrorLabel" styleClass="hint-label" text="" wrapText="true"/>
+
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Button text="Cancel"        styleClass="cancel-button"  onAction="#handleCreateManagerCancel"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="Create Account" styleClass="signup-button" onAction="#handleCreateManagerSubmit"/>
+            </HBox>
+
+        </VBox>
+
+    </VBox>
+
+    <!-- Layer 4: Snackbar -->
+    <HBox fx:id="snackbarContainer" visible="false" alignment="BOTTOM_CENTER"
+          pickOnBounds="false" StackPane.alignment="BOTTOM_CENTER">
+        <padding>
+            <Insets bottom="30"/>
+        </padding>
+        <HBox styleClass="snackbar" spacing="10" alignment="CENTER">
+            <Label fx:id="snackbarLabel" styleClass="snackbar-text"/>
+            <Button text="X" onAction="#handleSnackbarClose"
+                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-cursor: hand;"/>
+        </HBox>
+    </HBox>
+
+</StackPane>

@@ -13,6 +13,10 @@ public class UserFactory {
                 return new Researcher(userId, name, email, password, departmentId, idNumber);
             case "GUEST":
                 return new Guest(userId, name, email, password, null, idNumber);
+            case "MANAGER":
+                return new LabManager(userId, name, email, password, "MGR-" + userId);
+            case "HEAD_COORDINATOR":
+                return HeadCoordinator.getInstance(userId, name, email, password);
             default:
                 throw new IllegalArgumentException("Unknown user type: " + type);
         }

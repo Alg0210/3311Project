@@ -5,6 +5,7 @@ import org.example.equipment.*;
 import org.example.reservation.*;
 import org.example.payment.*;
 
+import org.example.users.UserDecorator;
 import java.util.*;
 
 
@@ -36,6 +37,13 @@ public class CSVRepository {
     // ─── USER METHODS ────────────────────────────────────────────
 
     public void saveUser(User user) {
+        String approved = "false";
+        String decorationType = "";
+        if (user instanceof UserDecorator) {
+            UserDecorator dec = (UserDecorator) user;
+            approved = String.valueOf(dec.isApproved());
+            decorationType = dec.getDecorationType();
+        }
         String[] row = {
                 user.getUserId(),
                 user.getName(),
@@ -44,8 +52,8 @@ public class CSVRepository {
                 user.getUserType(),
                 user.getDepartmentId() != null ? user.getDepartmentId() : "",
                 user.getIdNumber() != null ? user.getIdNumber() : "",
-                "false",
-                ""
+                approved,
+                decorationType
         };
         handler.appendCSV(USERS_FILE, row);
     }
@@ -79,6 +87,13 @@ public class CSVRepository {
     }
 
     public void updateUser(User user) {
+        String approved = "false";
+        String decorationType = "";
+        if (user instanceof UserDecorator) {
+            UserDecorator dec = (UserDecorator) user;
+            approved = String.valueOf(dec.isApproved());
+            decorationType = dec.getDecorationType();
+        }
         List<String[]> rows = handler.readCSV(USERS_FILE);
         for (int i = 0; i < rows.size(); i++) {
             if (rows.get(i)[0].equals(user.getUserId())) {
@@ -90,8 +105,8 @@ public class CSVRepository {
                         user.getUserType(),
                         user.getDepartmentId() != null ? user.getDepartmentId() : "",
                         user.getIdNumber() != null ? user.getIdNumber() : "",
-                        "false",
-                        ""
+                        approved,
+                        decorationType
                 });
                 break;
             }
@@ -99,8 +114,19 @@ public class CSVRepository {
         handler.writeCSV(USERS_FILE, USERS_HEADER, rows);
     }
 
+    public void deleteUser(String userId) {
+        List<String[]> rows = handler.readCSV(USERS_FILE);
+        java.util.Iterator<String[]> it = rows.iterator();
+        while (it.hasNext()) {
+            if (it.next()[0].equals(userId)) {
+                it.remove();
+                break;
+            }
+        }
+        handler.writeCSV(USERS_FILE, USERS_HEADER, rows);
+    }
+
     private User mapRowToUser(String[] row) {
-        // row: userId, name, email, password, userType, departmentId, idNumber, approved, decorationType
         String userId       = row[0];
         String name         = row[1];
         String email        = row[2];
@@ -108,8 +134,18 @@ public class CSVRepository {
         String userType     = row[4];
         String departmentId = row[5];
         String idNumber     = row[6];
+        String approved     = row.length > 7 ? row[7] : "false";
+        String decorationType = row.length > 8 ? row[8] : "";
 
-        return UserFactory.createUser(userType, userId, name, email, password, departmentId, idNumber);
+        User user = UserFactory.createUser(userType, userId, name, email, password, departmentId, idNumber);
+
+        if (decorationType != null && !decorationType.isEmpty()) {
+            UserDecorator decorator = new UserDecorator(user, decorationType);
+            decorator.setApproved(Boolean.parseBoolean(approved));
+            return decorator;
+        }
+
+        return user;
     }
 
     // ─── EQUIPMENT METHODS ───────────────────────────────────────
@@ -132,6 +168,15 @@ public class CSVRepository {
             list.add(e);
         }
         return list;
+    }
+
+    public String[] findEquipmentRowById(String equipmentId) {
+        for (String[] row : handler.readCSV(EQUIPMENT_FILE)) {
+            if (row[0].equals(equipmentId)) {
+                return row;
+            }
+        }
+        return null;
     }
 
     public void updateEquipment(Equipment equipment) {
@@ -169,6 +214,16 @@ public class CSVRepository {
         return handler.readCSV(RESERVATIONS_FILE);
     }
 
+    public List<String[]> getReservationRowsByUserId(String userId) {
+        List<String[]> result = new ArrayList<>();
+        for (String[] row : handler.readCSV(RESERVATIONS_FILE)) {
+            if (row[1].equals(userId)) {
+                result.add(row);
+            }
+        }
+        return result;
+    }
+
     public void updateReservation(Reservation reservation) {
         List<String[]> rows = handler.readCSV(RESERVATIONS_FILE);
         for (int i = 0; i < rows.size(); i++) {
@@ -204,6 +259,16 @@ public class CSVRepository {
 
     public List<String[]> getAllPaymentRows() {
         return handler.readCSV(PAYMENTS_FILE);
+    }
+
+    public List<String[]> getPaymentRowsByReservationId(String reservationId) {
+        List<String[]> result = new ArrayList<>();
+        for (String[] row : handler.readCSV(PAYMENTS_FILE)) {
+            if (row[1].equals(reservationId)) {
+                result.add(row);
+            }
+        }
+        return result;
     }
 }
 
