@@ -16,7 +16,7 @@ public class PaymentDecorator {
         switch (paymentMethod.toUpperCase()) {
             case "CREDIT":
             case "DEBIT":
-                return accountReference != null && accountReference.length() == 16;
+                return accountReference != null && accountReference.length() == 8;
             case "INSTITUTIONAL":
                 return accountReference != null && accountReference.startsWith("INST-");
             case "GRANT":

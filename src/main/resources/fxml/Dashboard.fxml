@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.gui.panels.DashboardController"
+            styleClass="dashboard-root">
+
+    <!-- ─── TOP BAR ─────────────────────────── -->
+    <top>
+        <HBox styleClass="top-bar" alignment="CENTER_LEFT" spacing="10">
+
+            <Button text="Home"
+                    styleClass="home-button"
+                    onAction="#handleHome"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <MenuButton fx:id="userMenuButton"
+                        text="FirstName LastName"
+                        styleClass="user-menu-button">
+                <items>
+                    <MenuItem text="Account" onAction="#handleAccount"/>
+                    <MenuItem text="My Reservations" onAction="#handleMyReservations"/>
+                    <MenuItem text="Log Out" onAction="#handleLogout"/>
+                </items>
+            </MenuButton>
+
+        </HBox>
+    </top>
+
+    <!-- ─── LEFT SIDEBAR (CART) ─────────────── -->
+    <left>
+        <VBox styleClass="sidebar" spacing="10">
+
+            <Label text="Cart" styleClass="cart-title"/>
+            <Separator/>
+
+            <ListView fx:id="cartListView"
+                      styleClass="cart-list"
+                      VBox.vgrow="ALWAYS"/>
+
+            <Separator/>
+
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="Subtotal" styleClass="subtotal-label"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="subtotalLabel"
+                       text="0"
+                       styleClass="subtotal-label"/>
+            </HBox>
+
+            <Button text="Checkout"
+                    styleClass="checkout-button"
+                    onAction="#handleCheckout"/>
+
+        </VBox>
+    </left>
+
+    <!-- ─── MAIN CONTENT ────────────────────── -->
+    <center>
+        <VBox styleClass="main-content" spacing="10">
+
+            <!-- Sort Bar -->
+            <HBox alignment="CENTER_RIGHT" spacing="10" styleClass="sort-bar">
+                <ComboBox fx:id="sortCombo"
+                          promptText="Sort By"
+                          styleClass="sort-combo"
+                          onAction="#handleSort"/>
+            </HBox>
+
+            <!-- Equipment Grid inside ScrollPane -->
+            <ScrollPane fitToWidth="true" styleClass="scroll-pane" VBox.vgrow="ALWAYS">
+                <content>
+                    <FlowPane fx:id="equipmentGrid"
+                              styleClass="equipment-grid"
+                              hgap="15"
+                              vgap="15"/>
+                </content>
+            </ScrollPane>
+
+        </VBox>
+    </center>
+
+</BorderPane>

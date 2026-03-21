@@ -1,1 +1,9 @@
 equipmentId,description,labLocation,status
+EQ-001,Oscilloscope,Lab 101,AVAILABLE
+EQ-002,Centrifuge,Lab 203,AVAILABLE
+EQ-003,Electron Microscope,Lab 105,AVAILABLE
+EQ-004,Spectrometer,Lab 302,AVAILABLE
+EQ-005,PCR Machine,Lab 203,AVAILABLE
+EQ-006,3D Printer,Lab 410,AVAILABLE
+EQ-007,Laser Cutter,Lab 410,AVAILABLE
+EQ-008,Wind Tunnel,Lab 501,AVAILABLE
