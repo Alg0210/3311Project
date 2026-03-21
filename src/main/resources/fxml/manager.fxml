@@ -7,17 +7,13 @@
             styleClass="manager-root">
     <top>
         <VBox>
-            <HBox styleClass="manager-title-bar" alignment="CENTER_LEFT">
-                <Label fx:id="categoryLabel" text="All Equipment"
-                       styleClass="manager-title-label"/>
-            </HBox>
             <HBox styleClass="manager-nav-bar" alignment="CENTER_LEFT" spacing="10">
                 <Label text="Lab Manager View" styleClass="manager-view-label"/>
                 <Region HBox.hgrow="ALWAYS"/>
-                <MenuButton fx:id="userMenuButton" text="FirstName LastName"
+                <MenuButton fx:id="userMenuButton"
+                            text="FirstName LastName"
                             styleClass="user-menu-button">
                     <items>
-                        <MenuItem text="Account" onAction="#handleAccount"/>
                         <MenuItem text="Log Out"  onAction="#handleLogout"/>
                     </items>
                 </MenuButton>
