@@ -6,7 +6,7 @@
            fx:controller="org.example.gui.panels.LoginController"
            styleClass="outer-background">
 
-    <VBox alignment="CENTER">
+    <VBox alignment="CENTER" maxWidth="460">
 
         <!-- White Card -->
         <VBox styleClass="login-card"

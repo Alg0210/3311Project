@@ -25,11 +25,17 @@ public class MainApp extends Application {
             Parent root = FXMLLoader.load(
                     MainApp.class.getResource("/fxml/" + fxmlName + ".fxml")
             );
-            Scene scene = new Scene(root);
-            scene.getStylesheets().add(
-                    MainApp.class.getResource("/styles/main.css").toExternalForm()
-            );
-            primaryStage.setScene(scene);
+            Scene existing = primaryStage.getScene();
+            if (existing != null) {
+                // Reuse the existing scene – just swap the root to preserve size
+                existing.setRoot(root);
+            } else {
+                Scene scene = new Scene(root, 1000, 700);
+                scene.getStylesheets().add(
+                        MainApp.class.getResource("/styles/main.css").toExternalForm()
+                );
+                primaryStage.setScene(scene);
+            }
             primaryStage.show();
         } catch (Exception e) {
             e.printStackTrace();
