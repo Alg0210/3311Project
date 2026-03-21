@@ -18,6 +18,7 @@
     </top>
 
     <center>
+
         <HBox spacing="20" styleClass="reservation-content" alignment="TOP_CENTER">
 
             <!-- Left: Payment + Time Slot -->

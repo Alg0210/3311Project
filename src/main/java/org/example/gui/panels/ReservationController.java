@@ -179,7 +179,7 @@ public class ReservationController {
                     selectedPaymentMethod,
                     selectedAccountReference
             );
-
+            reservationManager.processDeposit(reservation, selectedPaymentMethod, selectedAccountReference);
             Payment processed = decorator.process();
             if (processed == null) {
                 paymentErrorLabel.setText("Payment failed. Check your payment details.");
