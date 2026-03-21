@@ -16,7 +16,7 @@ public class MainApp extends Application {
         primaryStage.setTitle("YorkU Lab Reservation");
         primaryStage.setWidth(1000);
         primaryStage.setHeight(700);
-        primaryStage.setResizable(false);
+        primaryStage.setResizable(true);
         switchScene("LoginPg");
     }
 

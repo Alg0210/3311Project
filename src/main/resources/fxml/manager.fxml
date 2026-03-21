@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.gui.panels.ManagerController"
+            styleClass="manager-root">
+    <top>
+        <VBox>
+            <HBox styleClass="manager-title-bar" alignment="CENTER_LEFT">
+                <Label fx:id="categoryLabel" text="All Equipment"
+                       styleClass="manager-title-label"/>
+            </HBox>
+            <HBox styleClass="manager-nav-bar" alignment="CENTER_LEFT" spacing="10">
+                <Label text="Lab Manager View" styleClass="manager-view-label"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <MenuButton fx:id="userMenuButton" text="FirstName LastName"
+                            styleClass="user-menu-button">
+                    <items>
+                        <MenuItem text="Account" onAction="#handleAccount"/>
+                        <MenuItem text="Log Out"  onAction="#handleLogout"/>
+                    </items>
+                </MenuButton>
+            </HBox>
+        </VBox>
+    </top>
+    <center>
+        <VBox styleClass="main-content" spacing="10">
+            <HBox alignment="CENTER_RIGHT" spacing="10" styleClass="sort-bar">
+                <ComboBox fx:id="sortCombo" promptText="Sort By"
+                          styleClass="sort-combo" onAction="#handleSort"/>
+            </HBox>
+            <ScrollPane fitToWidth="true" styleClass="scroll-pane" VBox.vgrow="ALWAYS">
+                <content>
+                    <FlowPane fx:id="equipmentGrid" styleClass="equipment-grid"
+                              hgap="15" vgap="15"/>
+                </content>
+            </ScrollPane>
+        </VBox>
+    </center>
+</BorderPane>
