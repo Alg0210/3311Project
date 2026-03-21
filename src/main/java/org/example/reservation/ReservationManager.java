@@ -201,10 +201,11 @@ public class ReservationManager implements SensorObserver {
         LocalDateTime start = LocalDateTime.parse(row[3]);
         LocalDateTime end   = LocalDateTime.parse(row[4]);
         double deposit      = Double.parseDouble(row[6]);
+        User user = repository.findUserById(row[1]);
 
         // note: we pass null for user here for simplicity
         // in a full implementation you would look up the user by userId via AuthService
-        Reservation r = new Reservation(row[0], null, equipment, start, end, deposit);
+        Reservation r = new Reservation(row[0], user, equipment, start, end, deposit);
         r.setStatus(ReservationStatus.valueOf(row[5]));
         return r;
     }

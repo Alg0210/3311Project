@@ -1,7 +1,11 @@
 package org.example.gui;
 
 import org.example.auth.AuthService;
+import org.example.equipment.Equipment;
 import org.example.users.User;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainController {
 
@@ -31,10 +35,20 @@ public class MainController {
     public static void logout() {
         AuthService.logout();
         currentUser = null;
-        MainApp.switchScene("Login");
+        MainApp.switchScene("LoginPg");
     }
 
     public static User getCurrentUser() {
         return currentUser;
+    }
+
+    private static List<Equipment> cart = new ArrayList<>();
+
+    public static void setCart(List<Equipment> cartItems) {
+        cart = cartItems;
+    }
+
+    public static List<Equipment> getCart() {
+        return cart;
     }
 }

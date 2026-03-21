@@ -45,4 +45,24 @@ public abstract class User {
     public String getIdNumber() {
         return idNumber;
     }
+
+    public void setIdNumber(String idNumber) {
+        this.idNumber = idNumber;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 }

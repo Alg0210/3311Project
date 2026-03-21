@@ -14,8 +14,8 @@ public class MainApp extends Application {
     public void start(Stage stage) throws Exception {
         primaryStage = stage;
         primaryStage.setTitle("YorkU Lab Reservation");
-        primaryStage.setWidth(1000);
-        primaryStage.setHeight(700);
+        primaryStage.setWidth(1200);
+        primaryStage.setHeight(850);
         primaryStage.setResizable(false);
         switchScene("LoginPg");
     }
