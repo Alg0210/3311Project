@@ -20,7 +20,7 @@ import org.example.users.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ManagerController {
+public class HeadCoordinatorController {
 
     private final CSVRepository repository = new CSVRepository();
 
@@ -224,7 +224,13 @@ public class ManagerController {
     // ─── DATA LOADING ─────────────────────────────────────
 
     private void refreshUsers() {
-        allUsers = repository.getAllUsers();
+        List<User> all = repository.getAllUsers();
+        allUsers = new ArrayList<User>();
+        for (User u : all) {
+            if (!"HEAD_COORDINATOR".equals(u.getUserType())) {
+                allUsers.add(u);
+            }
+        }
         filterAndDisplay();
     }
 

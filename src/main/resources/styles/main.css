@@ -3,7 +3,7 @@
     -fx-background-color: #f5f5f5;
 }
 
-.loginButton {      /*This button can be used for "Home" in the user view as well*/
+.loginButton {
     -fx-display: flex;
    -fx-width: 142px;
     -fx-height: 56px;
@@ -19,7 +19,6 @@
     -fx-font-style: normal;
     -fx-font-weight: 400;
     -fx-line-height: normal;
-
 }
 
 .secondaryButton {
@@ -38,11 +37,9 @@
     -fx-font-style: normal;
     -fx-font-weight: 400;
     -fx-line-height: normal;
-
 }
 
 .inputParam{
-
     -fx-display: flex;
     -fx-width: 368px;
     -fx-height: 45px;
@@ -53,7 +50,7 @@
     -fx-background-color: #242731;
 
     -fx-font-size: 20px;
-  -fx-font-style: normal;
+    -fx-font-style: normal;
     -fx-font-weight: 400;
     -fx-line-height: normal;
 }
@@ -172,14 +169,313 @@
     -fx-wrap-text: true;
 }
 
-/* ═══════ MANAGER PAGE — SIDEBAR ═══════════════ */
-.sidebar {
-    -fx-background-color: #ffffff;
-    -fx-pref-width: 160px;
-    -fx-border-color: #e0e0e0;
-    -fx-border-width: 0 1 0 0;
+/* ─── DASHBOARD ─────────────────────────────── */
+.dashboard-root {
+    -fx-background-color: #2b2b2b;
 }
 
+/* ─── TOP BAR ───────────────────────────────── */
+.top-bar {
+    -fx-background-color: #1e1e1e;
+    -fx-padding: 10px 15px;
+    -fx-pref-height: 50px;
+}
+
+.home-button {
+    -fx-background-color: #e31837;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+}
+
+.home-button:hover {
+    -fx-background-color: #c0142e;
+}
+
+.user-menu-button {
+    -fx-background-color: #e31837;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+}
+
+/* ─── SIDEBAR ───────────────────────────────── */
+.sidebar {
+    -fx-background-color: #f0f0f0;
+    -fx-padding: 15px;
+    -fx-pref-width: 190px;
+}
+
+.cart-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.cart-list {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-pref-height: 300px;
+}
+
+.subtotal-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.checkout-button {
+    -fx-background-color: #e31837;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 4px;
+    -fx-pref-width: 130px;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+}
+
+/* ─── MAIN CONTENT ──────────────────────────── */
+.main-content {
+    -fx-background-color: #2b2b2b;
+    -fx-padding: 15px;
+}
+
+.sort-bar {
+    -fx-padding: 5px 0;
+}
+
+.sort-combo {
+    -fx-background-color: #f0f0f0;
+    -fx-background-radius: 4px;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.equipment-grid {
+    -fx-background-color: transparent;
+    -fx-padding: 10px;
+}
+
+/* ─── EQUIPMENT CARD ────────────────────────── */
+.equipment-card {
+    -fx-background-color: #3a3a3a;
+    -fx-background-radius: 8px;
+    -fx-padding: 10px;
+    -fx-pref-width: 160px;
+    -fx-cursor: hand;
+}
+
+.card-image-placeholder {
+    -fx-background-color: black;
+    -fx-pref-width: 140px;
+    -fx-pref-height: 120px;
+    -fx-background-radius: 4px;
+}
+
+.card-name {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-wrap-text: true;
+}
+
+.card-price {
+    -fx-font-size: 11px;
+    -fx-text-fill: #aaaaaa;
+}
+
+.more-button {
+    -fx-background-color: #555555;
+    -fx-text-fill: white;
+    -fx-font-size: 11px;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+    -fx-pref-width: 60px;
+}
+
+.more-button:hover {
+    -fx-background-color: #666666;
+}
+
+.reserve-button {
+    -fx-background-color: #e31837;
+    -fx-text-fill: white;
+    -fx-font-size: 11px;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+    -fx-pref-width: 60px;
+}
+
+.reserve-button:hover {
+    -fx-background-color: #c0142e;
+}
+
+/* ─── ACCOUNT PAGE ──────────────────────────── */
+.account-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12px;
+    -fx-padding: 40px;
+}
+
+.account-name {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.balance-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.balance-list {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-pref-height: 150px;
+    -fx-pref-width: 250px;
+}
+
+.payment-button {
+    -fx-background-color: #e31837;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+    -fx-pref-height: 40px;
+}
+
+.payment-button:hover {
+    -fx-background-color: #c0142e;
+}
+
+.top-bar-name {
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+}
+
+/* ─── RESERVATION PAGE ──────────────────────── */
+.reservation-content {
+    -fx-padding: 20px;
+}
+
+.payment-left {
+    -fx-pref-width: 380px;
+}
+
+.payment-section {
+    -fx-background-color: white;
+    -fx-background-radius: 8px;
+    -fx-padding: 20px;
+}
+
+.section-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.select-button {
+    -fx-background-color: #2c3e50;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+    -fx-pref-width: 80px;
+    -fx-alignment: CENTER_RIGHT;
+}
+
+.select-button:hover {
+    -fx-background-color: #1a252f;
+}
+
+.order-summary {
+    -fx-background-color: white;
+    -fx-background-radius: 8px;
+    -fx-padding: 20px;
+    -fx-pref-width: 280px;
+}
+
+.order-list {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-pref-height: 180px;
+}
+
+.summary-total-label {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+/* ─── MY RESERVATIONS PAGE ──────────────────── */
+.reservation-card {
+    -fx-background-color: #3a3a3a;
+    -fx-background-radius: 8px;
+    -fx-padding: 12px;
+    -fx-pref-width: 280px;
+}
+
+.card-image-placeholder-small {
+    -fx-background-color: black;
+    -fx-pref-width: 80px;
+    -fx-pref-height: 80px;
+    -fx-background-radius: 4px;
+    -fx-min-width: 80px;
+}
+
+.reservation-detail-label {
+    -fx-font-size: 11px;
+    -fx-text-fill: #cccccc;
+    -fx-wrap-text: true;
+}
+
+.cancel-res-button {
+    -fx-background-color: #555555;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+    -fx-pref-width: 100px;
+    -fx-pref-height: 35px;
+}
+
+.cancel-res-button:hover {
+    -fx-background-color: #666666;
+}
+
+.extend-button {
+    -fx-background-color: #e31837;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+    -fx-pref-width: 100px;
+    -fx-pref-height: 35px;
+}
+
+.extend-button:hover {
+    -fx-background-color: #c0142e;
+}
+
+/* ═══════ HEAD COORDINATOR PAGE — SIDEBAR ═══════ */
 .sidebar-item {
     -fx-padding: 14px 20px;
     -fx-font-size: 14px;
@@ -199,20 +495,7 @@
     -fx-font-weight: bold;
 }
 
-/* ═══════ MANAGER PAGE — TOP BAR ═══════════════ */
-.top-bar {
-    -fx-background-color: #1e1e1e;
-    -fx-pref-height: 50px;
-    -fx-padding: 0 24px;
-}
-
-.top-bar-name {
-    -fx-text-fill: white;
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-}
-
-/* ═══════ MANAGER PAGE — TABLE ═════════════════ */
+/* ═══════ HEAD COORDINATOR PAGE — TABLE ═════════ */
 .manager-content {
     -fx-background-color: #2b2b2b;
     -fx-padding: 16px;
@@ -295,7 +578,7 @@
     -fx-background-color: #c0142e;
 }
 
-/* ═══════ MANAGER PAGE — ADD BUTTON ════════════ */
+/* ═══════ HEAD COORDINATOR — ADD BUTTON ════════ */
 .add-manager-button {
     -fx-background-color: #E51535;
     -fx-text-fill: white;
@@ -394,15 +677,6 @@
 }
 
 /* ═══════ OVERLAY — EQUIPMENT CARD ════════════ */
-.equipment-card {
-    -fx-background-color: #f5f5f5;
-    -fx-background-radius: 8px;
-    -fx-padding: 12px;
-    -fx-border-color: #e0e0e0;
-    -fx-border-radius: 8px;
-    -fx-border-width: 1;
-}
-
 .equipment-card-name {
     -fx-font-size: 14px;
     -fx-font-weight: bold;
