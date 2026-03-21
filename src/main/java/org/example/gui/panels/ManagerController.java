@@ -4,6 +4,8 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import org.example.auth.AuthService;
 import org.example.data.CSVRepository;
@@ -14,11 +16,11 @@ import org.example.gui.MainController;
 import org.example.users.HeadCoordinator;
 import org.example.users.User;
 
+import java.io.File;
 import java.util.*;
 
 public class ManagerController {
 
-    @FXML private Label categoryLabel;
     @FXML private MenuButton userMenuButton;
     @FXML private ComboBox<String> sortCombo;
     @FXML private FlowPane equipmentGrid;
@@ -58,10 +60,30 @@ public class ManagerController {
         VBox card = new VBox(8);
         card.getStyleClass().add("equipment-card");
 
-        Pane img = new Pane();
-        img.getStyleClass().add("card-image-placeholder");
+        // Image area: show photo if available, else black placeholder
+        StackPane imgPane = new StackPane();
+        imgPane.getStyleClass().add("card-image-placeholder");
+        imgPane.setPrefSize(140, 120);
+        imgPane.setMinSize(140, 120);
+        imgPane.setMaxSize(140, 120);
 
-        Label name = new Label(equipment.getDescription());
+        String imgPath = equipment.getImagePath();
+        if (imgPath != null && !imgPath.isEmpty()) {
+            File imgFile = new File(imgPath);
+            if (imgFile.exists()) {
+                try {
+                    Image img = new Image(imgFile.toURI().toString(), 140, 120, false, true);
+                    ImageView iv = new ImageView(img);
+                    iv.setFitWidth(140);
+                    iv.setFitHeight(120);
+                    iv.setPreserveRatio(false);
+                    imgPane.getChildren().add(iv);
+                } catch (Exception ignored) { /* keep black placeholder */ }
+            }
+        }
+
+        Label name = new Label(equipment.getName() != null && !equipment.getName().isEmpty()
+                ? equipment.getName() : equipment.getDescription());
         name.getStyleClass().add("card-name");
 
         Label loc = new Label(equipment.getLabLocation());
@@ -82,7 +104,7 @@ public class ManagerController {
         HBox btns = new HBox(8, moreBtn, manageBtn);
         btns.setAlignment(Pos.CENTER);
 
-        card.getChildren().addAll(img, name, loc, status, btns);
+        card.getChildren().addAll(imgPane, name, loc, status, btns);
         return card;
     }
 
@@ -126,19 +148,7 @@ public class ManagerController {
     }
 
     private void handleAddEquipment() {
-        Optional<String> idRes = prompt("Add Equipment", "Step 1/3: Equipment ID", "Equipment ID:");
-        if (!idRes.isPresent() || idRes.get().trim().isEmpty()) return;
-
-        Optional<String> descRes = prompt("Add Equipment", "Step 2/3: Description", "Description:");
-        if (!descRes.isPresent() || descRes.get().trim().isEmpty()) return;
-
-        Optional<String> locRes = prompt("Add Equipment", "Step 3/3: Lab Location", "Location:");
-        if (!locRes.isPresent() || locRes.get().trim().isEmpty()) return;
-
-        equipmentManager.addEquipment(
-                new Equipment(idRes.get().trim(), descRes.get().trim(), locRes.get().trim()));
-        loadEquipment();
-        showAlert("Success", "Equipment added successfully.");
+        MainApp.switchScene("AddEquipment");
     }
 
     private void handleGenerateManagerAccount() {
@@ -157,7 +167,6 @@ public class ManagerController {
         showAlert("Success", "Manager account created for " + mgr.getName() + ".");
     }
 
-    @FXML private void handleAccount() { MainApp.switchScene("Account"); }
     @FXML private void handleLogout()  { MainController.logout(); }
 
     private Optional<String> prompt(String title, String header, String content) {

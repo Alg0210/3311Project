@@ -6,7 +6,7 @@ import java.util.List;
 
 
 public class EquipmentManager implements SensorObserver{
-    private CSVRepository repository;
+    private final CSVRepository repository;
 
     public EquipmentManager() {
         this.repository = new CSVRepository();
@@ -16,6 +16,10 @@ public class EquipmentManager implements SensorObserver{
 
     public void addEquipment(Equipment equipment) {
         repository.saveEquipment(equipment);
+    }
+
+    public void updateEquipment(Equipment equipment) {
+        repository.updateEquipment(equipment);
     }
 
     public List<Equipment> getAllEquipment() {

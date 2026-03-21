@@ -9,10 +9,12 @@ import org.example.payment.UserPricingStrategy;
 import org.example.users.User;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -27,7 +29,7 @@ public class DashboardController {
 
     private final EquipmentManager equipmentManager = new EquipmentManager();
     private List<Equipment> allEquipment = new ArrayList<>();
-    private List<Equipment> cart = new ArrayList<>();
+    private final List<Equipment> cart = new ArrayList<>();
 
     @FXML
     public void initialize() {
@@ -67,12 +69,32 @@ public class DashboardController {
         VBox card = new VBox(8);
         card.getStyleClass().add("equipment-card");
 
-        // placeholder image pane
-        Pane imagePlaceholder = new Pane();
-        imagePlaceholder.getStyleClass().add("card-image-placeholder");
+        // Image area: show saved photo if available, else black placeholder
+        StackPane imgPane = new StackPane();
+        imgPane.getStyleClass().add("card-image-placeholder");
+        imgPane.setPrefSize(140, 120);
+        imgPane.setMinSize(140, 120);
+        imgPane.setMaxSize(140, 120);
+
+        String imgPath = equipment.getImagePath();
+        if (imgPath != null && !imgPath.isEmpty()) {
+            File imgFile = new File(imgPath);
+            if (imgFile.exists()) {
+                try {
+                    Image img = new Image(imgFile.toURI().toString(), 140, 120, false, true);
+                    ImageView iv = new ImageView(img);
+                    iv.setFitWidth(140);
+                    iv.setFitHeight(120);
+                    iv.setPreserveRatio(false);
+                    imgPane.getChildren().add(iv);
+                } catch (Exception ignored) { /* keep black placeholder */ }
+            }
+        }
 
         // equipment name
-        Label nameLabel = new Label(equipment.getDescription());
+        String displayName = (equipment.getName() != null && !equipment.getName().isEmpty())
+                ? equipment.getName() : equipment.getDescription();
+        Label nameLabel = new Label(displayName);
         nameLabel.getStyleClass().add("card-name");
 
         // price label
@@ -97,7 +119,7 @@ public class DashboardController {
         HBox buttons = new HBox(8, moreButton, reserveButton);
         buttons.setAlignment(javafx.geometry.Pos.CENTER);
 
-        card.getChildren().addAll(imagePlaceholder, nameLabel, priceLabel, buttons);
+        card.getChildren().addAll(imgPane, nameLabel, priceLabel, buttons);
         return card;
     }
 

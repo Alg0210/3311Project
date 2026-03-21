@@ -46,8 +46,23 @@ public class CSVHandler {
 
     // Append a single row to a CSV file
     public void appendCSV(String filePath, String[] row) {
-        try (PrintWriter pw = new PrintWriter(new FileWriter(filePath, true))) {
-            pw.println(String.join(",", row));
+        try {
+            File file = new File(filePath);
+            // Ensure the file ends with a newline before appending
+            if (file.exists() && file.length() > 0) {
+                RandomAccessFile raf = new RandomAccessFile(file, "r");
+                raf.seek(file.length() - 1);
+                int lastByte = raf.read();
+                raf.close();
+                if (lastByte != '\n') {
+                    try (FileWriter fw = new FileWriter(file, true)) {
+                        fw.write(System.lineSeparator());
+                    }
+                }
+            }
+            try (PrintWriter pw = new PrintWriter(new FileWriter(file, true))) {
+                pw.println(String.join(",", row));
+            }
         } catch (IOException e) {
             System.out.println("Error appending to CSV: " + filePath);
         }
