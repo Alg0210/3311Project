@@ -387,7 +387,8 @@
 .payment-section {
     -fx-background-color: white;
     -fx-background-radius: 8px;
-    -fx-padding: 20px;
+    -fx-padding: 12px;
+
 }
 
 .section-title {
@@ -416,6 +417,7 @@
     -fx-background-radius: 8px;
     -fx-padding: 20px;
     -fx-pref-width: 280px;
+    -fx-max-height: 600px;
 }
 
 .order-list {
@@ -435,7 +437,7 @@
     -fx-background-color: #3a3a3a;
     -fx-background-radius: 8px;
     -fx-padding: 12px;
-    -fx-pref-width: 280px;
+    -fx-pref-width: 380px;
 }
 
 .card-image-placeholder-small {
@@ -819,4 +821,43 @@
 
 .add-button:hover {
     -fx-background-color: #c0142e;
+}
+.checkin-button {
+    -fx-background-color: #2c7a2c;
+    -fx-text-fill: white;
+    -fx-font-size: 11px;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+    -fx-pref-width: 90px;
+    -fx-pref-height: 35px;
+}
+
+.checkin-button:hover {
+    -fx-background-color: #1e5c1e;
+}
+
+.checkin-button:disabled {
+    -fx-background-color: #555555;
+    -fx-opacity: 0.6;
+}
+
+.complete-button {
+    -fx-background-color: #1a6496;
+    -fx-text-fill: white;
+    -fx-font-size: 11px;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+    -fx-pref-width: 140px;
+    -fx-pref-height: 35px;
+}
+
+.complete-button:hover {
+    -fx-background-color: #144f76;
+}
+
+.complete-button:disabled {
+    -fx-background-color: #555555;
+    -fx-opacity: 0.6;
 }
