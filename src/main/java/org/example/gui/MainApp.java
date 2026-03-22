@@ -30,7 +30,7 @@ public class MainApp extends Application {
                 // Reuse the existing scene – just swap the root to preserve size
                 existing.setRoot(root);
             } else {
-                Scene scene = new Scene(root, 1000, 700);
+                Scene scene = new Scene(root, 1000, 750);
                 scene.getStylesheets().add(
                         MainApp.class.getResource("/styles/main.css").toExternalForm()
                 );
