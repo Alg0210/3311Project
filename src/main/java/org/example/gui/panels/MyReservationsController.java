@@ -5,6 +5,7 @@ import org.example.data.CSVRepository;
 import org.example.equipment.Equipment;
 import org.example.equipment.EquipmentManager;
 import org.example.gui.MainApp;
+import org.example.payment.Payment;
 import org.example.reservation.Reservation;
 import org.example.reservation.ReservationAction;
 import org.example.reservation.ReservationManager;
@@ -17,7 +18,9 @@ import javafx.scene.layout.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MyReservationsController {
 
@@ -30,6 +33,11 @@ public class MyReservationsController {
 
     private static final DateTimeFormatter FORMATTER =
             DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a");
+
+    // track check in times per reservation so Complete Session can use them
+    private final Map<String, LocalDateTime> checkInTimes = new HashMap<>();
+    // track which payment method was used per reservation
+    private final Map<String, String> paymentMethods = new HashMap<>();
 
     @FXML
     public void initialize() {
@@ -45,10 +53,9 @@ public class MyReservationsController {
         List<String[]> rows = repository.getAllReservationRows();
 
         for (String[] row : rows) {
-            // skip if not this user's reservation
             if (!row[1].equals(currentUser.getUserId())) continue;
-            // skip cancelled
             if (row[5].equals(ReservationStatus.CANCELLED.name())) continue;
+            if (row[5].equals(ReservationStatus.COMPLETED.name())) continue;
 
             Equipment equipment = equipmentManager.getEquipmentById(row[2]);
             if (equipment == null) continue;
@@ -56,24 +63,23 @@ public class MyReservationsController {
             LocalDateTime start = LocalDateTime.parse(row[3]);
             LocalDateTime end   = LocalDateTime.parse(row[4]);
 
-            VBox card = createReservationCard(row[0], equipment, start, end);
+            VBox card = createReservationCard(row[0], equipment, start, end, row[5]);
             reservationsGrid.getChildren().add(card);
         }
     }
 
     private VBox createReservationCard(String reservationId, Equipment equipment,
-                                       LocalDateTime start, LocalDateTime end) {
+                                       LocalDateTime start, LocalDateTime end,
+                                       String status) {
         VBox card = new VBox(10);
         card.getStyleClass().add("reservation-card");
 
         // top row: image + details
         HBox topRow = new HBox(10);
 
-        // placeholder image
         Pane imagePlaceholder = new Pane();
         imagePlaceholder.getStyleClass().add("card-image-placeholder-small");
 
-        // details
         VBox details = new VBox(5);
         Label nameLabel = new Label(equipment.getDescription());
         nameLabel.getStyleClass().add("card-name");
@@ -86,10 +92,14 @@ public class MyReservationsController {
         endsOnLabel.getStyleClass().add("reservation-detail-label");
         endsOnLabel.setWrapText(true);
 
-        details.getChildren().addAll(nameLabel, reservedOnLabel, endsOnLabel);
+        Label statusLabel = new Label("Status: " + status);
+        statusLabel.getStyleClass().add("reservation-detail-label");
+
+        details.getChildren().addAll(nameLabel, reservedOnLabel, endsOnLabel, statusLabel);
         topRow.getChildren().addAll(imagePlaceholder, details);
 
-        // buttons
+        // ─── BUTTONS ─────────────────────────────────────────────
+
         Button cancelButton = new Button("Cancel");
         cancelButton.getStyleClass().add("cancel-res-button");
         cancelButton.setOnAction(e -> handleCancel(reservationId));
@@ -98,12 +108,110 @@ public class MyReservationsController {
         extendButton.getStyleClass().add("extend-button");
         extendButton.setOnAction(e -> handleExtend(reservationId, end));
 
-        HBox buttons = new HBox(10, cancelButton, extendButton);
+        Button checkInButton = new Button("Check In");
+        checkInButton.getStyleClass().add("checkin-button");
+        checkInButton.setOnAction(e -> handleCheckIn(reservationId, start, checkInButton));
+
+        Button completeButton = new Button("Complete Session");
+        completeButton.getStyleClass().add("complete-button");
+        completeButton.setDisable(true); // disabled until checked in
+        completeButton.setOnAction(e -> handleCompleteSession(reservationId, completeButton));
+
+        // store reference so check in can enable complete button
+        checkInButton.setUserData(completeButton);
+
+        HBox buttons = new HBox(8, cancelButton, extendButton, checkInButton, completeButton);
         buttons.setAlignment(Pos.CENTER);
+
+
+
 
         card.getChildren().addAll(topRow, buttons);
         return card;
     }
+
+    // ─── CHECK IN ────────────────────────────────────────────────
+
+    private void handleCheckIn(String reservationId, LocalDateTime start,
+                               Button checkInButton) {
+        LocalDateTime arrivalTime = LocalDateTime.now();
+        checkInTimes.put(reservationId, arrivalTime);
+
+        Reservation reservation = reservationManager.getReservationById(reservationId);
+        if (reservation == null) return;
+
+        boolean onTime = reservation.arrivedOnTime(arrivalTime);
+
+        if (onTime) {
+            showAlert("Checked In",
+                    "You have checked in on time. Your deposit will be deducted from the total.");
+        } else {
+            showAlert("Late Arrival",
+                    "You have arrived after the 20 minute window. Your deposit of $" +
+                            (int) reservation.getDeposit() + " has been forfeited.");
+        }
+
+        // disable check in and enable complete session
+        checkInButton.setDisable(true);
+        Button completeButton = (Button) checkInButton.getUserData();
+        if (completeButton != null) {
+            completeButton.setDisable(false);
+        }
+
+        // also disable cancel and extend after check in
+        HBox buttons = (HBox) checkInButton.getParent();
+        buttons.getChildren().forEach(node -> {
+            if (node instanceof Button) {
+                Button btn = (Button) node;
+                if (btn.getText().equals("Cancel") || btn.getText().equals("Extend")) {
+                    btn.setDisable(true);
+                }
+            }
+        });
+    }
+
+    // ─── COMPLETE SESSION ─────────────────────────────────────────
+
+    private void handleCompleteSession(String reservationId, Button completeButton) {
+        LocalDateTime arrivalTime = checkInTimes.get(reservationId);
+        if (arrivalTime == null) {
+            showAlert("Error", "Please check in first.");
+            return;
+        }
+
+        Reservation reservation = reservationManager.getReservationById(reservationId);
+        if (reservation == null) return;
+
+        boolean arrivedOnTime = reservation.arrivedOnTime(arrivalTime);
+
+        // ask for payment method for final payment
+        List<String> choices = new java.util.ArrayList<>();
+        choices.add("CREDIT");
+        choices.add("DEBIT");
+        choices.add("INSTITUTIONAL");
+        choices.add("GRANT");
+
+        ChoiceDialog<String> dialog = new ChoiceDialog<>("CREDIT", choices);
+        dialog.setTitle("Final Payment");
+        dialog.setHeaderText("Select payment method for final payment:");
+        dialog.showAndWait().ifPresent(method -> {
+
+            Payment finalPayment = reservationManager.processFinalPayment(
+                    reservation, method, "", arrivedOnTime);
+
+            if (finalPayment != null) {
+                double amount = finalPayment.getAmount();
+                showAlert("Session Complete",
+                        "Session completed.\nFinal payment of $" +
+                                String.format("%.2f", amount) + " processed via " + method + ".");
+                completeButton.setDisable(true);
+                // reload to remove completed reservation from view
+                initialize();
+            }
+        });
+    }
+
+    // ─── CANCEL ──────────────────────────────────────────────────
 
     private void handleCancel(String reservationId) {
         Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
@@ -117,14 +225,14 @@ public class MyReservationsController {
                         "CANCEL"
                 );
                 action.execute();
-                // reload the page
                 initialize();
             }
         });
     }
 
+    // ─── EXTEND ──────────────────────────────────────────────────
+
     private void handleExtend(String reservationId, LocalDateTime currentEnd) {
-        // simple dialog to pick new end time
         List<String> choices = new java.util.ArrayList<>();
         for (int i = 1; i <= 4; i++) {
             choices.add("+ " + i + " hour(s) → " +
@@ -153,5 +261,12 @@ public class MyReservationsController {
     @FXML
     private void handleHome() {
         MainApp.switchScene("Dashboard");
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
