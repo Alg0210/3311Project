@@ -423,7 +423,12 @@ public class HeadCoordinatorController {
             noData.getStyleClass().add("overlay-label");
             equipmentList.getChildren().add(noData);
         } else {
+            boolean anyVisible = false;
             for (String[] resRow : reservations) {
+                String resStatus = resRow[5];
+                if ("CANCELLED".equals(resStatus) || "COMPLETED".equals(resStatus)) continue;
+                anyVisible = true;
+
                 String equipmentId = resRow[2];
                 String startTime = resRow[3];
                 String endTime = resRow[4];
@@ -474,6 +479,11 @@ public class HeadCoordinatorController {
 
                 card.getChildren().addAll(placeholder, details, dateDetails);
                 equipmentList.getChildren().add(card);
+            }
+            if (!anyVisible) {
+                Label noData = new Label("No active reserved equipment.");
+                noData.getStyleClass().add("overlay-label");
+                equipmentList.getChildren().add(noData);
             }
         }
         equipmentOverlay.setVisible(true);
