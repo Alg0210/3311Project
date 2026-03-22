@@ -25,7 +25,7 @@ public class MainController {
                 MainApp.switchScene("HeadCoordinator");
                 break;
             case "MANAGER":
-                MainApp.switchScene("manager");
+                MainApp.switchScene("Manager");
                 break;
             default:
                 MainApp.switchScene("Dashboard");
