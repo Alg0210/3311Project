@@ -4,7 +4,7 @@ public class UserDecorator extends User {
 
     private User wrappedUser;
     private String decorationType; // "APPROVAL", "CERTIFICATION"
-    private boolean approved;
+    private String approvalStatus;
     private String certificationNumber;
 
     public UserDecorator(User user, String decorationType) {
@@ -13,15 +13,19 @@ public class UserDecorator extends User {
                 user.getDepartmentId(), user.getIdNumber());
         this.wrappedUser = user;
         this.decorationType = decorationType;
-        this.approved = false;
+        this.approvalStatus = "NOT_APPROVED";
+    }
+
+    public String getApprovalStatus() {
+        return approvalStatus;
+    }
+
+    public void setApprovalStatus(String approvalStatus) {
+        this.approvalStatus = approvalStatus;
     }
 
     public boolean isApproved() {
-        return approved;
-    }
-
-    public void setApproved(boolean approved) {
-        this.approved = approved;
+        return "APPROVED".equals(approvalStatus);
     }
 
     public String getDecorationType() {
