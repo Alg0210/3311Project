@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.gui.panels.EquipmentDetailController"
+            styleClass="outer-background">
+    <center>
+        <VBox alignment="CENTER" styleClass="outer-background">
+
+            <VBox styleClass="manage-detail-card" spacing="20">
+
+                <!-- ─── CONTENT ROW ─────────────────── -->
+                <HBox spacing="0" VBox.vgrow="ALWAYS">
+
+                    <!-- LEFT: image + name + desc + units -->
+                    <VBox styleClass="manage-detail-left" spacing="12">
+                        <!-- Clickable image area — click to change photo -->
+                        <StackPane fx:id="imagePane"
+                                   styleClass="manage-detail-image"
+                                   onMouseClicked="#handleChangeImage">
+                            <ImageView fx:id="detailImageView"
+                                       fitWidth="290" fitHeight="230"
+                                       preserveRatio="false"
+                                       visible="false"/>
+                            <!-- Hover overlay -->
+                            <Label fx:id="changeImageOverlay"
+                                   text="✎  Change Photo"
+                                   styleClass="detail-change-photo-overlay"
+                                   visible="false"
+                                   mouseTransparent="true"/>
+                        </StackPane>
+                        <Label fx:id="nameLabel"  text="" styleClass="manage-detail-name"/>
+                        <Label fx:id="descLabel"  text="" styleClass="manage-detail-desc" wrapText="true"/>
+                        <Label fx:id="unitsLabel" text="" styleClass="manage-units-label"/>
+                    </VBox>
+
+                    <!-- vertical divider -->
+                    <Separator orientation="VERTICAL"/>
+
+                    <!-- RIGHT: stats + tags -->
+                    <VBox styleClass="manage-detail-right" spacing="14" HBox.hgrow="ALWAYS">
+                        <Label text="PRODUCT STATS" styleClass="manage-stats-title"/>
+                        <Label fx:id="stat1Label" text="" styleClass="manage-stat-row"/>
+                        <Label fx:id="stat2Label" text="" styleClass="manage-stat-row"/>
+                        <Label fx:id="statProductLabel" text="" styleClass="manage-stat-row"
+                               wrapText="true"/>
+                        <Region VBox.vgrow="ALWAYS"/>
+                        <HBox fx:id="tagsBox" spacing="8" style="-fx-flex-wrap:wrap;"/>
+                    </VBox>
+
+                </HBox>
+
+                <!-- ─── BUTTON BAR ───────────────────── -->
+                <Separator/>
+                <HBox spacing="10" styleClass="manage-button-bar">
+                    <Button text="Back"        styleClass="back-button"          onAction="#handleBack"/>
+                    <Button text="Maintenance" styleClass="outline-button"        onAction="#handleMark"/>
+                    <Button text="Disable"     styleClass="outline-button"        onAction="#handleDisable"/>
+                    <Button text="Enable"      styleClass="enable-action-button"  onAction="#handleEnable"/>
+                </HBox>
+
+            </VBox>
+        </VBox>
+    </center>
+</BorderPane>

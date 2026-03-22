@@ -10,6 +10,7 @@ import java.util.List;
 public class MainController {
 
     private static User currentUser;
+    private static Equipment selectedEquipment;
 
     // call this after a successful login
     public static void onLoginSuccess(User user) {
@@ -50,5 +51,12 @@ public class MainController {
 
     public static List<Equipment> getCart() {
         return cart;
+    }
+    public static void setSelectedEquipment(Equipment equipment) {
+        selectedEquipment = equipment;
+    }
+
+    public static Equipment getSelectedEquipment() {
+        return selectedEquipment;
     }
 }

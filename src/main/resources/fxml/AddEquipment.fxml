@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.gui.panels.AddEquipmentController"
+            styleClass="outer-background">
+
+    <center>
+        <VBox alignment="CENTER" styleClass="outer-background">
+
+            <VBox styleClass="add-eq-card" spacing="0">
+
+                <!-- ─── MAIN CONTENT ROW ──────────────────── -->
+                <HBox spacing="0" VBox.vgrow="ALWAYS">
+
+                    <!-- LEFT PANEL: image + name + description -->
+                    <VBox styleClass="add-eq-left" spacing="12">
+
+                        <!-- Clickable image placeholder / preview -->
+                        <StackPane fx:id="imagePlaceholder"
+                                   styleClass="add-eq-image-pane"
+                                   onMouseClicked="#handlePickImage">
+                            <!-- Preview (hidden until image selected) -->
+                            <ImageView fx:id="imagePreview"
+                                       fitWidth="295" fitHeight="240"
+                                       preserveRatio="true"
+                                       visible="false"/>
+                            <!-- Overlay: + icon + hint (hidden once image is set) -->
+                            <VBox fx:id="uploadOverlay" alignment="CENTER" spacing="8">
+                                <Label text="+" styleClass="add-eq-plus-label"/>
+                                <Label text="Click to upload photo" styleClass="add-eq-upload-hint"/>
+                                <Label text="JPEG · PNG · HEIC" styleClass="add-eq-upload-formats"/>
+                            </VBox>
+                        </StackPane>
+
+                        <!-- Equipment Name -->
+                        <Label text="Equipment Name" styleClass="add-eq-field-label"/>
+                        <TextField fx:id="nameField"
+                                   promptText="Name"
+                                   styleClass="add-eq-text-field"/>
+
+                        <!-- Description -->
+                        <Label text="Description" styleClass="add-eq-field-label"/>
+                        <TextArea fx:id="descriptionArea"
+                                  promptText="Text..."
+                                  styleClass="add-eq-text-area"
+                                  wrapText="true"
+                                  prefRowCount="3"/>
+
+                    </VBox>
+
+                    <!-- vertical divider -->
+                    <Separator orientation="VERTICAL" styleClass="add-eq-divider"/>
+
+                    <!-- RIGHT PANEL: units + stats + tags -->
+                    <VBox styleClass="add-eq-right" spacing="16" HBox.hgrow="ALWAYS">
+
+                        <!-- Available Units -->
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                            <Label text="Available Units" styleClass="add-eq-field-label"/>
+                            <HBox styleClass="unit-spinner-box" alignment="CENTER" spacing="0">
+                                <Button text="−" styleClass="unit-spinner-btn" onAction="#handleDecrement"/>
+                                <Label fx:id="unitCountLabel" text="0" styleClass="unit-count-label"/>
+                                <Button text="+" styleClass="unit-spinner-btn" onAction="#handleIncrement"/>
+                            </HBox>
+                        </HBox>
+
+                        <!-- Location -->
+                        <Label text="Location" styleClass="add-eq-field-label"/>
+                        <TextField fx:id="locationField"
+                                   promptText="e.g. Lab 101"
+                                   styleClass="add-eq-text-field"/>
+
+                        <!-- Product Statistics -->
+                        <Label text="Product Statistics" styleClass="add-eq-field-label"/>
+                        <TextArea fx:id="statsArea"
+                                  promptText="Text..."
+                                  styleClass="add-eq-stats-area"
+                                  wrapText="true"
+                                  VBox.vgrow="ALWAYS"/>
+
+                        <!-- Tags -->
+                        <Label text="Tags" styleClass="add-eq-field-label"/>
+                        <VBox styleClass="tags-box" spacing="8">
+                            <HBox spacing="8">
+                                <ToggleButton fx:id="tagChemistry"  text="Chemistry"  styleClass="tag-toggle"/>
+                                <ToggleButton fx:id="tagHandheld"   text="Handheld"   styleClass="tag-toggle"/>
+                                <ToggleButton fx:id="tagIndividual" text="Individual" styleClass="tag-toggle"/>
+                            </HBox>
+                            <HBox spacing="8">
+                                <ToggleButton fx:id="tagPhysics"    text="Physics"    styleClass="tag-toggle"/>
+                                <ToggleButton fx:id="tagInLab"      text="In-Lab"     styleClass="tag-toggle"/>
+                                <ToggleButton fx:id="tagPartnered"  text="Partnered"  styleClass="tag-toggle"/>
+                            </HBox>
+                        </VBox>
+
+                    </VBox>
+                </HBox>
+
+                <!-- ─── BUTTON BAR ───────────────────────── -->
+                <HBox styleClass="add-eq-button-bar" alignment="CENTER_LEFT" spacing="0">
+                    <Button text="Back" styleClass="back-button" onAction="#handleBack"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="Add"  styleClass="add-button"  onAction="#handleAdd"/>
+                </HBox>
+
+            </VBox>
+        </VBox>
+    </center>
+
+</BorderPane>
+
