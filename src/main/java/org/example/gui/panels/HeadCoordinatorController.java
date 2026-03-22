@@ -30,7 +30,7 @@ public class HeadCoordinatorController {
     private User selectedOverlayUser;
     private Label[] navItems;
 
-    @FXML private Label userNameLabel;
+    @FXML private MenuButton userMenuButton;
 
     @FXML private Label navAccounts;
     @FXML private Label navManager;
@@ -74,7 +74,7 @@ public class HeadCoordinatorController {
     public void initialize() {
         User current = MainController.getCurrentUser();
         if (current != null) {
-            userNameLabel.setText(current.getName());
+            userMenuButton.setText(current.getName());
         }
 
         navItems = new Label[]{ navAccounts, navManager, navStudent,

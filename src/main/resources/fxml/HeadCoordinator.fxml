@@ -17,7 +17,11 @@
         <top>
             <HBox styleClass="top-bar" alignment="CENTER_LEFT">
                 <Region HBox.hgrow="ALWAYS"/>
-                <Label fx:id="userNameLabel" styleClass="top-bar-name"/>
+                <MenuButton fx:id="userMenuButton" text="User" styleClass="user-menu-button">
+                    <items>
+                        <MenuItem text="Log Out" onAction="#handleLogout"/>
+                    </items>
+                </MenuButton>
             </HBox>
         </top>
 
