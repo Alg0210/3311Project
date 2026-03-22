@@ -23,19 +23,27 @@ public class MainApp extends Application {
     public static void switchScene(String fxmlName) {
         try {
             Parent root = FXMLLoader.load(
-                    MainApp.class.getResource("/fxml/" + fxmlName + ".fxml")
-            );
+                    MainApp.class.getResource("/fxml/" + fxmlName + ".fxml"));
             Scene existing = primaryStage.getScene();
             if (existing != null) {
-                // Reuse the existing scene – just swap the root to preserve size
                 existing.setRoot(root);
             } else {
                 Scene scene = new Scene(root, 1000, 750);
                 scene.getStylesheets().add(
-                        MainApp.class.getResource("/styles/main.css").toExternalForm()
-                );
+                        MainApp.class.getResource("/styles/main.css").toExternalForm());
                 primaryStage.setScene(scene);
+                existing = scene;
             }
+
+            String hcStylesheet = MainApp.class.getResource("/styles/headcoordinator.css").toExternalForm();
+            if ("HeadCoordinator".equals(fxmlName)) {
+                if (!existing.getStylesheets().contains(hcStylesheet)) {
+                    existing.getStylesheets().add(hcStylesheet);
+                }
+            } else {
+                existing.getStylesheets().remove(hcStylesheet);
+            }
+
             primaryStage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -49,6 +57,5 @@ public class MainApp extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
 
 }

@@ -25,7 +25,7 @@ public class MainController {
                 MainApp.switchScene("HeadCoordinator");
                 break;
             case "MANAGER":
-                MainApp.switchScene("Dashboard");
+                MainApp.switchScene("manager");
                 break;
             default:
                 MainApp.switchScene("Dashboard");
@@ -52,6 +52,7 @@ public class MainController {
     public static List<Equipment> getCart() {
         return cart;
     }
+
     public static void setSelectedEquipment(Equipment equipment) {
         selectedEquipment = equipment;
     }

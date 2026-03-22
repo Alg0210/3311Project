@@ -43,12 +43,13 @@
 
                 <TableView fx:id="usersTable" styleClass="users-table" VBox.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn fx:id="colName"        text="Name"      prefWidth="140"/>
-                        <TableColumn fx:id="colEmail"       text="Email"     prefWidth="180"/>
-                        <TableColumn fx:id="colType"        text="User Type" prefWidth="110"/>
-                        <TableColumn fx:id="colCredentials" text=""          prefWidth="140"/>
-                        <TableColumn fx:id="colEquipment"   text=""          prefWidth="170"/>
-                        <TableColumn fx:id="colDelete"      text=""          prefWidth="120"/>
+                        <TableColumn fx:id="colName"        text="Name"      prefWidth="125"/>
+                        <TableColumn fx:id="colEmail"       text="Email"     prefWidth="160"/>
+                        <TableColumn fx:id="colType"        text="User Type" prefWidth="95"/>
+                        <TableColumn fx:id="colApproval"    text="Approval Status"    prefWidth="160"/>
+                        <TableColumn fx:id="colCredentials" text="Credentials"          prefWidth="130"/>
+                        <TableColumn fx:id="colEquipment"   text="Equipment"          prefWidth="170"/>
+                        <TableColumn fx:id="colDelete"      text="Delete"          prefWidth="130"/>
                     </columns>
                 </TableView>
 
@@ -89,7 +90,7 @@
                 <Label text="Uploaded Credentials" styleClass="overlay-section-title"/>
                 <HBox spacing="10" alignment="CENTER_LEFT">
                     <Rectangle width="200" height="120" fill="#1a1a1a" arcWidth="8" arcHeight="8"/>
-                    <Label text="Student ID" styleClass="overlay-label"/>
+                    <Label fx:id="credTypeLabel" text="Student ID" styleClass="overlay-label"/>
                 </HBox>
             </VBox>
 

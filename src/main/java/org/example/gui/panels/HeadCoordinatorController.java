@@ -30,45 +30,82 @@ public class HeadCoordinatorController {
     private User selectedOverlayUser;
     private Label[] navItems;
 
-    @FXML private MenuButton userMenuButton;
+    @FXML
+    private MenuButton userMenuButton;
 
-    @FXML private Label navAccounts;
-    @FXML private Label navManager;
-    @FXML private Label navStudent;
-    @FXML private Label navFaculty;
-    @FXML private Label navResearcher;
-    @FXML private Label navGuest;
+    @FXML
+    private Label navAccounts;
+    @FXML
+    private Label navManager;
+    @FXML
+    private Label navStudent;
+    @FXML
+    private Label navFaculty;
+    @FXML
+    private Label navResearcher;
+    @FXML
+    private Label navGuest;
 
-    @FXML private TableView<User> usersTable;
-    @FXML private TableColumn<User, String> colName;
-    @FXML private TableColumn<User, String> colEmail;
-    @FXML private TableColumn<User, String> colType;
-    @FXML private TableColumn<User, Void> colCredentials;
-    @FXML private TableColumn<User, Void> colEquipment;
-    @FXML private TableColumn<User, Void> colDelete;
-    @FXML private HBox addManagerBox;
-    @FXML private Button addManagerBtn;
+    @FXML
+    private TableView<User> usersTable;
+    @FXML
+    private TableColumn<User, String> colName;
+    @FXML
+    private TableColumn<User, String> colEmail;
+    @FXML
+    private TableColumn<User, String> colType;
+    @FXML
+    private TableColumn<User, Void> colCredentials;
+    @FXML
+    private TableColumn<User, Void> colApproval;
+    @FXML
+    private TableColumn<User, Void> colEquipment;
+    @FXML
+    private TableColumn<User, Void> colDelete;
+    @FXML
+    private HBox addManagerBox;
+    @FXML
+    private Button addManagerBtn;
 
-    @FXML private VBox credentialsOverlay;
-    @FXML private Label credUserName;
-    @FXML private Label credUserType;
-    @FXML private TextField credIdNumber;
+    @FXML
+    private VBox credentialsOverlay;
+    @FXML
+    private Label credUserName;
+    @FXML
+    private Label credUserType;
+    @FXML
+    private TextField credIdNumber;
+    @FXML
+    private Label credTypeLabel;
 
-    @FXML private VBox equipmentOverlay;
-    @FXML private Label equipUserName;
-    @FXML private Label equipUserType;
-    @FXML private VBox equipmentList;
+    @FXML
+    private VBox equipmentOverlay;
+    @FXML
+    private Label equipUserName;
+    @FXML
+    private Label equipUserType;
+    @FXML
+    private VBox equipmentList;
 
-    @FXML private VBox createManagerOverlay;
-    @FXML private TextField managerFirstName;
-    @FXML private TextField managerLastName;
-    @FXML private TextField managerEmail;
-    @FXML private PasswordField managerPassword;
-    @FXML private PasswordField managerConfirmPassword;
-    @FXML private Label managerErrorLabel;
+    @FXML
+    private VBox createManagerOverlay;
+    @FXML
+    private TextField managerFirstName;
+    @FXML
+    private TextField managerLastName;
+    @FXML
+    private TextField managerEmail;
+    @FXML
+    private PasswordField managerPassword;
+    @FXML
+    private PasswordField managerConfirmPassword;
+    @FXML
+    private Label managerErrorLabel;
 
-    @FXML private HBox snackbarContainer;
-    @FXML private Label snackbarLabel;
+    @FXML
+    private HBox snackbarContainer;
+    @FXML
+    private Label snackbarLabel;
 
     @FXML
     public void initialize() {
@@ -77,8 +114,8 @@ public class HeadCoordinatorController {
             userMenuButton.setText(current.getName());
         }
 
-        navItems = new Label[]{ navAccounts, navManager, navStudent,
-                                navFaculty, navResearcher, navGuest };
+        navItems = new Label[] { navAccounts, navManager, navStudent,
+                navFaculty, navResearcher, navGuest };
 
         selectNavItem(navAccounts);
 
@@ -87,6 +124,7 @@ public class HeadCoordinatorController {
         colType.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("userType"));
 
         setupCredentialsColumn();
+        setupApprovalColumn();
         setupEquipmentColumn();
         setupDeleteColumn();
 
@@ -113,6 +151,7 @@ public class HeadCoordinatorController {
                             }
                         });
                     }
+
                     @Override
                     protected void updateItem(Void item, boolean empty) {
                         super.updateItem(item, empty);
@@ -122,11 +161,49 @@ public class HeadCoordinatorController {
                             User user = getTableView().getItems().get(getIndex());
                             String type = user.getUserType();
                             if ("STUDENT".equals(type) || "FACULTY".equals(type)
-                                    || "RESEARCHER".equals(type)) {
+                                    || "RESEARCHER".equals(type) || "GUEST".equals(type)) {
                                 setGraphic(btn);
                             } else {
                                 setGraphic(null);
                             }
+                        }
+                    }
+                };
+            }
+        });
+    }
+
+    private void setupApprovalColumn() {
+        colApproval.setCellFactory(new Callback<TableColumn<User, Void>, TableCell<User, Void>>() {
+            @Override
+            public TableCell<User, Void> call(TableColumn<User, Void> param) {
+                return new TableCell<User, Void>() {
+                    private final Label label = new Label();
+
+                    @Override
+                    protected void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            User user = getTableView().getItems().get(getIndex());
+                            if ("GUEST".equals(user.getUserType())) {
+                                label.setText("No Approval Needed");
+                                label.setStyle("-fx-text-fill: #888888; -fx-font-weight: bold;");
+                            } else {
+                                String status = (user instanceof UserDecorator)
+                                        ? ((UserDecorator) user).getApprovalStatus()
+                                        : "NOT_APPROVED";
+                                label.setText(status.replace("_", " "));
+                                if ("APPROVED".equals(status)) {
+                                    label.setStyle("-fx-text-fill: #27ae60; -fx-font-weight: bold;");
+                                } else if ("DENIED".equals(status)) {
+                                    label.setStyle("-fx-text-fill: #e31837; -fx-font-weight: bold;");
+                                } else {
+                                    label.setStyle("-fx-text-fill: #888888; -fx-font-weight: bold;");
+                                }
+                            }
+                            setGraphic(label);
                         }
                     }
                 };
@@ -150,10 +227,16 @@ public class HeadCoordinatorController {
                             }
                         });
                     }
+
                     @Override
                     protected void updateItem(Void item, boolean empty) {
                         super.updateItem(item, empty);
-                        setGraphic(empty ? null : btn);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            User user = getTableView().getItems().get(getIndex());
+                            setGraphic("MANAGER".equals(user.getUserType()) ? null : btn);
+                        }
                     }
                 };
             }
@@ -176,6 +259,7 @@ public class HeadCoordinatorController {
                             }
                         });
                     }
+
                     @Override
                     protected void updateItem(Void item, boolean empty) {
                         super.updateItem(item, empty);
@@ -188,12 +272,47 @@ public class HeadCoordinatorController {
 
     // ─── SIDEBAR NAVIGATION ───────────────────────────────
 
-    @FXML private void handleNavAccounts()   { selectNavItem(navAccounts);   currentCategory = "Accounts";   filterAndDisplay(); }
-    @FXML private void handleNavManager()    { selectNavItem(navManager);    currentCategory = "MANAGER";    filterAndDisplay(); }
-    @FXML private void handleNavStudent()    { selectNavItem(navStudent);    currentCategory = "STUDENT";    filterAndDisplay(); }
-    @FXML private void handleNavFaculty()    { selectNavItem(navFaculty);    currentCategory = "FACULTY";    filterAndDisplay(); }
-    @FXML private void handleNavResearcher() { selectNavItem(navResearcher); currentCategory = "RESEARCHER"; filterAndDisplay(); }
-    @FXML private void handleNavGuest()      { selectNavItem(navGuest);      currentCategory = "GUEST";      filterAndDisplay(); }
+    @FXML
+    private void handleNavAccounts() {
+        selectNavItem(navAccounts);
+        currentCategory = "Accounts";
+        filterAndDisplay();
+    }
+
+    @FXML
+    private void handleNavManager() {
+        selectNavItem(navManager);
+        currentCategory = "MANAGER";
+        filterAndDisplay();
+    }
+
+    @FXML
+    private void handleNavStudent() {
+        selectNavItem(navStudent);
+        currentCategory = "STUDENT";
+        filterAndDisplay();
+    }
+
+    @FXML
+    private void handleNavFaculty() {
+        selectNavItem(navFaculty);
+        currentCategory = "FACULTY";
+        filterAndDisplay();
+    }
+
+    @FXML
+    private void handleNavResearcher() {
+        selectNavItem(navResearcher);
+        currentCategory = "RESEARCHER";
+        filterAndDisplay();
+    }
+
+    @FXML
+    private void handleNavGuest() {
+        selectNavItem(navGuest);
+        currentCategory = "GUEST";
+        filterAndDisplay();
+    }
 
     private void selectNavItem(Label selected) {
         for (Label nav : navItems) {
@@ -241,6 +360,14 @@ public class HeadCoordinatorController {
         credUserName.setText(user.getName());
         credUserType.setText(user.getUserType());
         credIdNumber.setText(user.getIdNumber() != null ? user.getIdNumber() : "N/A");
+        String type = user.getUserType();
+        if ("FACULTY".equals(type) || "RESEARCHER".equals(type)) {
+            credTypeLabel.setText("Staff ID");
+        } else if ("GUEST".equals(type)) {
+            credTypeLabel.setText("Guest Certification");
+        } else {
+            credTypeLabel.setText("Student ID");
+        }
         credentialsOverlay.setVisible(true);
     }
 
@@ -252,9 +379,10 @@ public class HeadCoordinatorController {
 
     @FXML
     private void handleCredentialsApprove() {
-        if (selectedOverlayUser == null) return;
+        if (selectedOverlayUser == null)
+            return;
         if (selectedOverlayUser instanceof UserDecorator) {
-            ((UserDecorator) selectedOverlayUser).setApproved(true);
+            ((UserDecorator) selectedOverlayUser).setApprovalStatus("APPROVED");
             repository.updateUser(selectedOverlayUser);
         }
         String name = selectedOverlayUser.getName();
@@ -266,9 +394,10 @@ public class HeadCoordinatorController {
 
     @FXML
     private void handleCredentialsDeny() {
-        if (selectedOverlayUser == null) return;
+        if (selectedOverlayUser == null)
+            return;
         if (selectedOverlayUser instanceof UserDecorator) {
-            ((UserDecorator) selectedOverlayUser).setApproved(false);
+            ((UserDecorator) selectedOverlayUser).setApprovalStatus("DENIED");
             repository.updateUser(selectedOverlayUser);
         }
         String name = selectedOverlayUser.getName();
@@ -295,12 +424,12 @@ public class HeadCoordinatorController {
         } else {
             for (String[] resRow : reservations) {
                 String equipmentId = resRow[2];
-                String startTime   = resRow[3];
-                String endTime     = resRow[4];
-                String deposit     = resRow[6];
+                String startTime = resRow[3];
+                String endTime = resRow[4];
+                String deposit = resRow[6];
 
                 String[] equipRow = repository.findEquipmentRowById(equipmentId);
-                String equipName  = (equipRow != null) ? equipRow[1] : equipmentId;
+                String equipName = (equipRow != null) ? equipRow[1] : equipmentId;
 
                 List<String[]> payments = repository.getPaymentRowsByReservationId(resRow[0]);
                 double amountPaid = 0.0;
@@ -309,7 +438,8 @@ public class HeadCoordinatorController {
                 }
                 double depositAmount = Double.parseDouble(deposit);
                 double amountDue = depositAmount - amountPaid;
-                if (amountDue < 0) amountDue = 0;
+                if (amountDue < 0)
+                    amountDue = 0;
 
                 HBox card = new HBox(12);
                 card.getStyleClass().add("equipment-card");
@@ -374,10 +504,10 @@ public class HeadCoordinatorController {
 
     @FXML
     private void handleCreateManagerSubmit() {
-        String firstName   = managerFirstName.getText().trim();
-        String lastName    = managerLastName.getText().trim();
-        String email       = managerEmail.getText().trim();
-        String password    = managerPassword.getText();
+        String firstName = managerFirstName.getText().trim();
+        String lastName = managerLastName.getText().trim();
+        String email = managerEmail.getText().trim();
+        String password = managerPassword.getText();
         String confirmPass = managerConfirmPassword.getText();
 
         if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty()
