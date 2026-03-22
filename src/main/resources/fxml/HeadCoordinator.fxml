@@ -46,7 +46,7 @@
                         <TableColumn fx:id="colName"        text="Name"      prefWidth="125"/>
                         <TableColumn fx:id="colEmail"       text="Email"     prefWidth="160"/>
                         <TableColumn fx:id="colType"        text="User Type" prefWidth="95"/>
-                        <TableColumn fx:id="colApproval"    text="Approval Status"    prefWidth="160"/>
+                        <TableColumn fx:id="colApproval"    text="Approval Status"    prefWidth="190"/>
                         <TableColumn fx:id="colCredentials" text="Credentials"          prefWidth="130"/>
                         <TableColumn fx:id="colEquipment"   text="Equipment"          prefWidth="170"/>
                         <TableColumn fx:id="colDelete"      text="Delete"          prefWidth="130"/>

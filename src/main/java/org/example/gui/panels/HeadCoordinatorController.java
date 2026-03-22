@@ -187,9 +187,10 @@ public class HeadCoordinatorController {
                             setGraphic(null);
                         } else {
                             User user = getTableView().getItems().get(getIndex());
-                            if ("GUEST".equals(user.getUserType())) {
-                                label.setText("No Approval Needed");
-                                label.setStyle("-fx-text-fill: #888888; -fx-font-weight: bold;");
+                            if ("GUEST".equals(user.getUserType()) || "MANAGER".equals(user.getUserType())) {
+                                label.setText("NO APPROVAL REQUIRED");
+                                label.setStyle(
+                                        "-fx-text-fill: #888888; -fx-font-weight: bold; -fx-border-color: #888888; -fx-border-width: 1px; -fx-border-radius: 4px; -fx-padding: 2px;");
                             } else {
                                 String status = (user instanceof UserDecorator)
                                         ? ((UserDecorator) user).getApprovalStatus()
