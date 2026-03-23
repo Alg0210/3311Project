@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class MainApp extends Application {
@@ -17,6 +18,10 @@ public class MainApp extends Application {
         primaryStage.setWidth(1000);
         primaryStage.setHeight(750);
         primaryStage.setResizable(true);
+
+        Font.loadFont(MainApp.class.getResourceAsStream("/fonts/Inter-Regular.ttf"), 14);
+        Font.loadFont(MainApp.class.getResourceAsStream("/fonts/Inter-Bold.ttf"), 14);
+        Font.loadFont(MainApp.class.getResourceAsStream("/fonts/Inter-SemiBold.ttf"), 14);
         switchScene("LoginPg");
     }
 

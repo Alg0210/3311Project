@@ -135,6 +135,14 @@ public class MyReservationsController {
     private void handleCheckIn(String reservationId, LocalDateTime start,
                                Button checkInButton) {
         LocalDateTime arrivalTime = LocalDateTime.now();
+
+
+        if (arrivalTime.isBefore(start)) {
+            showAlert("Cannot Check In",
+                    "Your reservation has not started yet. It starts on " +
+                            start.format(FORMATTER) + ".");
+            return;
+        }
         checkInTimes.put(reservationId, arrivalTime);
 
         Reservation reservation = reservationManager.getReservationById(reservationId);
@@ -163,7 +171,7 @@ public class MyReservationsController {
         buttons.getChildren().forEach(node -> {
             if (node instanceof Button) {
                 Button btn = (Button) node;
-                if (btn.getText().equals("Cancel") || btn.getText().equals("Extend")) {
+                if (btn.getText().equals("Cancel")) {
                     btn.setDisable(true);
                 }
             }
@@ -225,7 +233,14 @@ public class MyReservationsController {
                         "CANCEL"
                 );
                 action.execute();
-                initialize();
+                Reservation updated = reservationManager.getReservationById(reservationId);
+                if (updated != null && updated.getStatus() == ReservationStatus.CANCELLED) {
+                    showAlert("Cancelled", "Reservation cancelled successfully.");
+                    initialize();
+                } else {
+                    showAlert("Cancellation Failed",
+                            "Cannot cancel — reservation has already started.");
+                }
             }
         });
     }
@@ -254,7 +269,14 @@ public class MyReservationsController {
                     newEnd
             );
             action.execute();
-            initialize();
+            Reservation updated = reservationManager.getReservationById(reservationId);
+            if (updated != null && updated.getEndTime().equals(newEnd)) {
+                showAlert("Extended", "Reservation extended successfully.");
+                initialize();
+            } else {
+                showAlert("Extension Failed",
+                        "Cannot extend — equipment is already booked for that time slot.");
+            }
         });
     }
 

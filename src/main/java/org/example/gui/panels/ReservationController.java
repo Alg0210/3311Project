@@ -162,7 +162,7 @@ public class ReservationController {
                     currentUser, equipment, start, end);
 
             if (reservation == null) {
-                paymentErrorLabel.setText(
+                showAlert("Booking Failed",
                         equipment.getDescription() + " is not available for this time slot.");
                 return;
             }
@@ -182,7 +182,7 @@ public class ReservationController {
             reservationManager.processDeposit(reservation, selectedPaymentMethod, selectedAccountReference);
             Payment processed = decorator.process();
             if (processed == null) {
-                paymentErrorLabel.setText("Payment failed. Check your payment details.");
+                showAlert("Payment Failed", "Payment failed. Check your payment details.");
                 return;
             }
 
