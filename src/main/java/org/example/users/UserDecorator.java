@@ -3,7 +3,7 @@ package org.example.users;
 public class UserDecorator extends User {
 
     private User wrappedUser;
-    private String decorationType; // "APPROVAL", "CERTIFICATION"
+    private String decorationType;
     private String approvalStatus;
     private String certificationNumber;
 

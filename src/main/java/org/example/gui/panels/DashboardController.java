@@ -48,7 +48,6 @@ public class DashboardController {
                 "Location"
         ));
 
-        // load equipment
         loadEquipment();
     }
 
@@ -146,7 +145,6 @@ public class DashboardController {
             case "Location":
                 sorted.sort(Comparator.comparing(Equipment::getLabLocation));
                 break;
-            // price sorting would need user type context
             default:
                 break;
         }

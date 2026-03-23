@@ -6,7 +6,7 @@ public class ReservationAction implements ReservationCommand {
 
     private ReservationManager manager;
     private Reservation reservation;
-    private String actionType; // "CREATE", "MODIFY", "CANCEL", "EXTEND"
+    private String actionType;
     private LocalDateTime newEndTime;
 
     // for CREATE, CANCEL
