@@ -7,7 +7,7 @@ public class Payment {
     private String paymentId;
     private String reservationId;
     private double amount;
-    private String paymentMethod; // "CREDIT", "DEBIT", "INSTITUTIONAL", "GRANT"
+    private String paymentMethod;
     private boolean isDeposit;
     private boolean forfeited;
     private LocalDateTime timestamp;
