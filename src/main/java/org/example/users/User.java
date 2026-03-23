@@ -7,7 +7,7 @@ public abstract class User {
     protected String password;
     protected String userType;
     protected String departmentId;
-    protected String idNumber; // student/staff ID or certification number
+    protected String idNumber;
 
     public User(String userId, String name, String email, String password,
             String userType, String departmentId, String idNumber) {

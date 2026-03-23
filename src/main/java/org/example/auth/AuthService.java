@@ -19,7 +19,7 @@ public class AuthService {
             currentUser = user;
             return user;
         }
-        return null; // login failed
+        return null;
     }
 
     public boolean register(String type, String name, String email,
@@ -35,7 +35,7 @@ public class AuthService {
             return false;
         }
 
-        // generate a simple unique ID
+        // generate unique ID
         String userId = type.toUpperCase().substring(0, 3) + "-" + System.currentTimeMillis();
 
         // create the user via factory
@@ -58,7 +58,7 @@ public class AuthService {
         if (user instanceof UserDecorator) {
             return ((UserDecorator) user).isApproved();
         }
-        return true; // guests don't need approval
+        return true;
     }
 
     public static User getCurrentUser() {

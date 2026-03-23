@@ -2,8 +2,8 @@ package org.example.payment;
 
 public class PaymentDecorator {
     private Payment payment;
-    private String paymentMethod; // "CREDIT", "DEBIT", "INSTITUTIONAL", "GRANT"
-    private String accountReference; // card number, grant ID, institutional account ID
+    private String paymentMethod;
+    private String accountReference;
 
     public PaymentDecorator(Payment payment, String paymentMethod, String accountReference) {
         this.payment = payment;

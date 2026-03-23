@@ -4,8 +4,8 @@ public class EquipmentAction implements EquipmentCommand{
 
     private EquipmentManager manager;
     private Equipment equipment;
-    private String actionType; // "ADD", "ENABLE", "DISABLE", "MAINTENANCE"
-    private EquipmentStatus previousStatus; // for undo
+    private String actionType;
+    private EquipmentStatus previousStatus;
 
     public EquipmentAction(EquipmentManager manager, Equipment equipment, String actionType) {
         this.manager = manager;
@@ -15,7 +15,7 @@ public class EquipmentAction implements EquipmentCommand{
 
     @Override
     public void execute() {
-        previousStatus = equipment.getStatus(); // save for undo
+        previousStatus = equipment.getStatus();
         switch (actionType.toUpperCase()) {
             case "ADD":
                 manager.addEquipment(equipment);

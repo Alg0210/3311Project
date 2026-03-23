@@ -69,7 +69,6 @@ public class DashboardController {
         VBox card = new VBox(8);
         card.getStyleClass().add("equipment-card");
 
-        // Image area: show saved photo if available, else black placeholder
         StackPane imgPane = new StackPane();
         imgPane.getStyleClass().add("card-image-placeholder");
         imgPane.setPrefSize(140, 120);
@@ -87,7 +86,9 @@ public class DashboardController {
                     iv.setFitHeight(120);
                     iv.setPreserveRatio(false);
                     imgPane.getChildren().add(iv);
-                } catch (Exception ignored) { /* keep black placeholder */ }
+                } catch (Exception ignored) {
+
+                }
             }
         }
 
