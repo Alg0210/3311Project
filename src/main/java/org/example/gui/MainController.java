@@ -22,6 +22,8 @@ public class MainController {
     private static void routeByUserType(User user) {
         switch (user.getUserType()) {
             case "HEAD_COORDINATOR":
+                MainApp.switchScene("HeadCoordinator");
+                break;
             case "MANAGER":
                 MainApp.switchScene("Manager");
                 break;
@@ -50,6 +52,7 @@ public class MainController {
     public static List<Equipment> getCart() {
         return cart;
     }
+
     public static void setSelectedEquipment(Equipment equipment) {
         selectedEquipment = equipment;
     }

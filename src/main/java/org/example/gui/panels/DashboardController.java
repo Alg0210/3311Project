@@ -98,6 +98,9 @@ public class DashboardController {
         Label nameLabel = new Label(displayName);
         nameLabel.getStyleClass().add("card-name");
 
+        Label statusLabel = new Label(equipment.getStatus().name());
+        statusLabel.getStyleClass().add("card-status");
+
         // price label
         User currentUser = AuthService.getCurrentUser();
         double rate = 0.0;
