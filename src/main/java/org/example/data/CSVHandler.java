@@ -32,7 +32,7 @@ public class CSVHandler {
         return rows;
     }
 
-    // Write all rows to a CSV file (overwrites existing content)
+    // Write all rows to a CSV file
     public void writeCSV(String filePath, String header, List<String[]> rows) {
         try (PrintWriter pw = new PrintWriter(new FileWriter(filePath, false))) {
             pw.println(header);

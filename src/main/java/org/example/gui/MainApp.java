@@ -27,7 +27,6 @@ public class MainApp extends Application {
             );
             Scene existing = primaryStage.getScene();
             if (existing != null) {
-                // Reuse the existing scene – just swap the root to preserve size
                 existing.setRoot(root);
             } else {
                 Scene scene = new Scene(root, 1000, 750);

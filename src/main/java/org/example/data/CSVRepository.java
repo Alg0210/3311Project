@@ -100,7 +100,6 @@ public class CSVRepository {
     }
 
     private User mapRowToUser(String[] row) {
-        // row: userId, name, email, password, userType, departmentId, idNumber, approved, decorationType
         String userId       = row[0];
         String name         = row[1];
         String email        = row[2];
@@ -135,7 +134,6 @@ public class CSVRepository {
         for (String[] row : handler.readCSV(EQUIPMENT_FILE)) {
             Equipment e = new Equipment(row[0], row[1], row[2]);
             e.setStatus(EquipmentStatus.valueOf(row[3]));
-            // backward compatible: new columns may not exist in old CSV rows
             if (row.length > 4 && !row[4].isEmpty()) e.setName(row[4]);
             if (row.length > 5 && !row[5].isEmpty()) {
                 try { e.setAvailableUnits(Integer.parseInt(row[5])); } catch (NumberFormatException ignored) {}

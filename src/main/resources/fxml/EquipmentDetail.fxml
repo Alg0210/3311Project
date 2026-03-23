@@ -11,12 +11,9 @@
 
             <VBox styleClass="manage-detail-card" spacing="20">
 
-                <!-- ─── CONTENT ROW ─────────────────── -->
                 <HBox spacing="0" VBox.vgrow="ALWAYS">
 
-                    <!-- LEFT: image + name + desc + units -->
                     <VBox styleClass="manage-detail-left" spacing="12">
-                        <!-- Clickable image area — click to change photo -->
                         <StackPane fx:id="imagePane"
                                    styleClass="manage-detail-image"
                                    onMouseClicked="#handleChangeImage">

@@ -45,9 +45,7 @@ public class MyReservationsController {
         List<String[]> rows = repository.getAllReservationRows();
 
         for (String[] row : rows) {
-            // skip if not this user's reservation
             if (!row[1].equals(currentUser.getUserId())) continue;
-            // skip cancelled
             if (row[5].equals(ReservationStatus.CANCELLED.name())) continue;
 
             Equipment equipment = equipmentManager.getEquipmentById(row[2]);
@@ -117,7 +115,6 @@ public class MyReservationsController {
                         "CANCEL"
                 );
                 action.execute();
-                // reload the page
                 initialize();
             }
         });

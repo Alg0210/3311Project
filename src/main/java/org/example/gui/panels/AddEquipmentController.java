@@ -41,7 +41,7 @@ public class AddEquipmentController {
     private int    unitCount        = 0;
     private String selectedImagePath = "";
 
-    // Extensions that JavaFX Image can render natively
+    // Extensions that JavaFX Image
     private static final Set<String> PREVIEWABLE = new HashSet<>(
             Arrays.asList("jpg", "jpeg", "png"));
 
@@ -85,12 +85,11 @@ public class AddEquipmentController {
                 showNonPreviewableFeedback(file.getName());
             }
         } else {
-            // HEIC / HEIF / RAW — accepted but can't render natively
             showNonPreviewableFeedback(file.getName());
         }
     }
 
-    /** Shows the filename inside the black pane for non-previewable formats. */
+    /** Image pane UI */
     private void showNonPreviewableFeedback(String fileName) {
         imagePreview.setVisible(false);
         // Replace overlay content with a short "file selected" message
@@ -105,7 +104,7 @@ public class AddEquipmentController {
         uploadOverlay.getChildren().addAll(icon, name, ok);
     }
 
-    // ─── Unit Spinner ────────────────────────────────────────────
+    // ─── Unit Increate and Decrement ────────────────────────────────────────────
 
     @FXML
     private void handleDecrement() {

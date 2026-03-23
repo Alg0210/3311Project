@@ -52,7 +52,6 @@ public class EquipmentDetailController {
             }
         }
 
-        // Show "Change Photo" overlay on hover
         imagePane.setOnMouseEntered(e -> changeImageOverlay.setVisible(true));
         imagePane.setOnMouseExited(e  -> changeImageOverlay.setVisible(false));
 
@@ -63,7 +62,7 @@ public class EquipmentDetailController {
         descLabel.setText("Lab: " + equipment.getLabLocation());
         unitsLabel.setText("Available Units: " + equipment.getAvailableUnits());
 
-        // ── Product Stats (from CSV) ───────────────────────────
+        // ── Product Stats ───────────────────────────
         stat1Label.setText("Equipment ID:  " + equipment.getEquipmentId());
         stat2Label.setText("Status:        " + equipment.getStatus().name());
 
@@ -74,7 +73,7 @@ public class EquipmentDetailController {
             statProductLabel.setText("");
         }
 
-        // ── Tags (from CSV) ────────────────────────────────────
+        // ── Tags ────────────────────────────────────
         tagsBox.getChildren().clear();
         if (equipment.getTags() != null && !equipment.getTags().isEmpty()) {
             for (String tag : equipment.getTags()) {
@@ -83,7 +82,6 @@ public class EquipmentDetailController {
                 tagsBox.getChildren().add(chip);
             }
         } else {
-            // fallback: location + status chips
             Label locTag = new Label(equipment.getLabLocation());
             locTag.getStyleClass().add("manage-tag");
             Label statusTag = new Label(equipment.getStatus().name());
@@ -113,7 +111,7 @@ public class EquipmentDetailController {
         if (file == null) return;
 
         equipment.setImagePath(file.getAbsolutePath());
-        equipmentManager.updateEquipment(equipment);   // persist to CSV
+        equipmentManager.updateEquipment(equipment);
 
         String ext = file.getName().contains(".")
                 ? file.getName().substring(file.getName().lastIndexOf('.') + 1).toLowerCase() : "";
@@ -125,7 +123,6 @@ public class EquipmentDetailController {
                 detailImageView.setVisible(true);
             } catch (Exception ignored) { }
         }
-        // HEIC/HEIF: path saved, preview stays as-is (can't render natively)
     }
 
     @FXML private void handleBack() { MainApp.switchScene("Manager"); }

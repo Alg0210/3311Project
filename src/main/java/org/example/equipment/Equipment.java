@@ -16,7 +16,7 @@ public class Equipment {
 
     public Equipment(String equipmentId, String description, String labLocation) {
         this.equipmentId = equipmentId;
-        this.name = description; // default name = description for backward compat
+        this.name = description;
         this.description = description;
         this.labLocation = labLocation;
         this.status = EquipmentStatus.AVAILABLE;
