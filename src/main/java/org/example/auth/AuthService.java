@@ -69,6 +69,15 @@ public class AuthService {
         currentUser = null;
     }
 
+    // Test helper methods
+    public static void setCurrentUserForTesting(User user) {
+        currentUser = user;
+    }
+
+    public static void clearCurrentUserForTesting() {
+        currentUser = null;
+    }
+
     private boolean requiresApproval(String type) {
         return type.equalsIgnoreCase("STUDENT") ||
                 type.equalsIgnoreCase("FACULTY") ||
