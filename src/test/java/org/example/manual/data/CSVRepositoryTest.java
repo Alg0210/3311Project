@@ -2,6 +2,10 @@ package org.example.manual.data;
 
 import org.example.data.CSVRepository;
 import org.example.equipment.Equipment;
+import org.example.equipment.EquipmentStatus;
+import org.example.payment.Payment;
+import org.example.reservation.Reservation;
+import org.example.reservation.ReservationStatus;
 import org.example.users.User;
 import org.example.users.UserDecorator;
 import org.example.users.UserFactory;
@@ -12,6 +16,8 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,15 +26,21 @@ public class CSVRepositoryTest {
 
     private static final String USERS_FILE = "src/main/resources/data/users.csv";
     private static final String EQUIPMENT_FILE = "src/main/resources/data/equipment.csv";
+    private static final String RESERVATIONS_FILE = "src/main/resources/data/reservations.csv";
+    private static final String PAYMENTS_FILE = "src/main/resources/data/payments.csv";
 
     private byte[] usersBackup;
     private byte[] equipmentBackup;
+    private byte[] reservationsBackup;
+    private byte[] paymentsBackup;
     private CSVRepository repository;
 
     @BeforeEach
     public void setUp() throws IOException {
         usersBackup = Files.readAllBytes(Paths.get(USERS_FILE));
         equipmentBackup = Files.readAllBytes(Paths.get(EQUIPMENT_FILE));
+        reservationsBackup = Files.readAllBytes(Paths.get(RESERVATIONS_FILE));
+        paymentsBackup = Files.readAllBytes(Paths.get(PAYMENTS_FILE));
         repository = new CSVRepository();
     }
 
@@ -36,6 +48,8 @@ public class CSVRepositoryTest {
     public void tearDown() throws IOException {
         Files.write(Paths.get(USERS_FILE), usersBackup);
         Files.write(Paths.get(EQUIPMENT_FILE), equipmentBackup);
+        Files.write(Paths.get(RESERVATIONS_FILE), reservationsBackup);
+        Files.write(Paths.get(PAYMENTS_FILE), paymentsBackup);
     }
 
     // ─── USER TESTS ───────────────────────────────────────────────────────────
@@ -169,5 +183,182 @@ public class CSVRepositoryTest {
         assertNotNull(row);
         assertEquals("TEST-EQ-002", row[0]);
         assertEquals("Lab B", row[2]);
+    }
+
+    @Test
+    public void testUpdateEquipmentPersistsChanges() {
+        Equipment equipment = new Equipment("TEST-EQ-003", "Oscilloscope", "Lab C");
+        repository.saveEquipment(equipment);
+
+        equipment.setName("Digital Oscilloscope");
+        equipment.setStatus(EquipmentStatus.MAINTENANCE);
+        equipment.setAvailableUnits(3);
+        repository.updateEquipment(equipment);
+
+        String[] row = repository.findEquipmentRowById("TEST-EQ-003");
+        assertNotNull(row);
+        assertEquals("Digital Oscilloscope", row[4]);
+        assertEquals("MAINTENANCE", row[3]);
+        assertEquals("3", row[5]);
+    }
+
+    @Test
+    public void testGetAllEquipmentWithRichData() {
+        Equipment equipment = new Equipment("TEST-EQ-004", "Spectrometer", "Lab D");
+        equipment.setName("Mass Spectrometer");
+        equipment.setAvailableUnits(2);
+        equipment.setProductStatistics("efficiency=95%");
+        equipment.setTags(Arrays.asList("chemistry", "analysis"));
+        equipment.setImagePath("/images/spectrometer.png");
+        repository.saveEquipment(equipment);
+
+        List<Equipment> all = repository.getAllEquipment();
+        Equipment found = null;
+        for (Equipment e : all) {
+            if ("TEST-EQ-004".equals(e.getEquipmentId())) {
+                found = e;
+                break;
+            }
+        }
+
+        assertNotNull(found);
+        assertEquals("Mass Spectrometer", found.getName());
+        assertEquals(2, found.getAvailableUnits());
+        assertEquals("efficiency=95%", found.getProductStatistics());
+        assertTrue(found.getTags().contains("chemistry"));
+        assertTrue(found.getTags().contains("analysis"));
+        assertEquals("/images/spectrometer.png", found.getImagePath());
+    }
+
+    @Test
+    public void testUpdateUserWithDecoratorPersistsApprovalStatus() {
+        User base = UserFactory.createUser("STUDENT", "TEST-STU-002", "Grace", "grace@csvrepotest.com", "Test123!",
+                "Bio", "ID007");
+        UserDecorator decorated = new UserDecorator(base, "APPROVAL");
+        repository.saveUser(decorated);
+
+        decorated.setApprovalStatus("APPROVED");
+        repository.updateUser(decorated);
+
+        User found = repository.findUserByEmail("grace@csvrepotest.com");
+        assertNotNull(found);
+        assertTrue(found instanceof UserDecorator);
+        assertEquals("APPROVED", ((UserDecorator) found).getApprovalStatus());
+    }
+
+    @Test
+    public void testDeleteUserForNonExistentIdDoesNotCorruptData() {
+        User user = UserFactory.createUser("GUEST", "TEST-GUE-006", "Harry", "harry@csvrepotest.com", "Test123!", null,
+                "ID008");
+        repository.saveUser(user);
+        int sizeBefore = repository.getAllUsers().size();
+
+        repository.deleteUser("BOGUS-ID-99999");
+
+        assertEquals(sizeBefore, repository.getAllUsers().size());
+        assertNotNull(repository.findUserByEmail("harry@csvrepotest.com"));
+    }
+
+    // ─── RESERVATION TESTS ───────────────────────────────────────
+
+    private Reservation buildReservation(String reservationId, String userId, String equipmentId) {
+        User user = UserFactory.createUser("GUEST", userId, "TestUser", userId + "@csvrepotest.com", "Test123!", null,
+                "ID-" + userId);
+        Equipment equipment = new Equipment(equipmentId, "Test Equipment", "Lab Z");
+        LocalDateTime start = LocalDateTime.of(2026, 5, 1, 9, 0);
+        LocalDateTime end = LocalDateTime.of(2026, 5, 1, 11, 0);
+        return new Reservation(reservationId, user, equipment, start, end, 50.0);
+    }
+
+    @Test
+    public void testSaveReservationAppearsInAllReservationRows() {
+        Reservation reservation = buildReservation("TEST-RES-001", "TEST-USR-001", "TEST-EQ-RES-001");
+        repository.saveReservation(reservation);
+
+        List<String[]> rows = repository.getAllReservationRows();
+        boolean found = rows.stream().anyMatch(r -> "TEST-RES-001".equals(r[0]));
+        assertTrue(found);
+    }
+
+    @Test
+    public void testGetAllReservationRowsContainsSavedReservation() {
+        Reservation reservation = buildReservation("TEST-RES-002", "TEST-USR-002", "TEST-EQ-RES-002");
+        repository.saveReservation(reservation);
+
+        List<String[]> rows = repository.getAllReservationRows();
+        String[] match = rows.stream().filter(r -> "TEST-RES-002".equals(r[0])).findFirst().orElse(null);
+
+        assertNotNull(match);
+        assertEquals("TEST-USR-002", match[1]);
+        assertEquals("TEST-EQ-RES-002", match[2]);
+        assertEquals("PENDING", match[5]);
+        assertEquals("50.0", match[6]);
+    }
+
+    @Test
+    public void testGetReservationRowsByUserIdReturnsOnlyMatchingRows() {
+        Reservation resA = buildReservation("TEST-RES-003", "TEST-USR-003", "TEST-EQ-RES-003");
+        Reservation resB = buildReservation("TEST-RES-004", "TEST-USR-004", "TEST-EQ-RES-004");
+        repository.saveReservation(resA);
+        repository.saveReservation(resB);
+
+        List<String[]> rows = repository.getReservationRowsByUserId("TEST-USR-003");
+
+        assertTrue(rows.stream().anyMatch(r -> "TEST-RES-003".equals(r[0])));
+        assertFalse(rows.stream().anyMatch(r -> "TEST-RES-004".equals(r[0])));
+    }
+
+    @Test
+    public void testUpdateReservationPersistsStatusChange() {
+        Reservation reservation = buildReservation("TEST-RES-005", "TEST-USR-005", "TEST-EQ-RES-005");
+        repository.saveReservation(reservation);
+
+        reservation.setStatus(ReservationStatus.CONFIRMED);
+        repository.updateReservation(reservation);
+
+        List<String[]> rows = repository.getAllReservationRows();
+        String[] match = rows.stream().filter(r -> "TEST-RES-005".equals(r[0])).findFirst().orElse(null);
+        assertNotNull(match);
+        assertEquals("CONFIRMED", match[5]);
+    }
+
+    // ─── PAYMENT TESTS ───────────────────────────────────────────
+
+    @Test
+    public void testSavePaymentAppearsInAllPaymentRows() {
+        Payment payment = new Payment("TEST-PAY-001", "TEST-RES-PAY-001", 100.0, "CREDIT_CARD", true);
+        repository.savePayment(payment);
+
+        List<String[]> rows = repository.getAllPaymentRows();
+        boolean found = rows.stream().anyMatch(r -> "TEST-PAY-001".equals(r[0]));
+        assertTrue(found);
+    }
+
+    @Test
+    public void testGetAllPaymentRowsContainsSavedPayment() {
+        Payment payment = new Payment("TEST-PAY-002", "TEST-RES-PAY-002", 75.5, "DEBIT_CARD", false);
+        repository.savePayment(payment);
+
+        List<String[]> rows = repository.getAllPaymentRows();
+        String[] match = rows.stream().filter(r -> "TEST-PAY-002".equals(r[0])).findFirst().orElse(null);
+
+        assertNotNull(match);
+        assertEquals("TEST-RES-PAY-002", match[1]);
+        assertEquals("75.5", match[2]);
+        assertEquals("DEBIT_CARD", match[3]);
+        assertEquals("false", match[4]);
+    }
+
+    @Test
+    public void testGetPaymentRowsByReservationIdReturnsOnlyMatchingRows() {
+        Payment payA = new Payment("TEST-PAY-003", "TEST-RES-PAY-003", 50.0, "CASH", true);
+        Payment payB = new Payment("TEST-PAY-004", "TEST-RES-PAY-004", 60.0, "CASH", false);
+        repository.savePayment(payA);
+        repository.savePayment(payB);
+
+        List<String[]> rows = repository.getPaymentRowsByReservationId("TEST-RES-PAY-003");
+
+        assertTrue(rows.stream().anyMatch(r -> "TEST-PAY-003".equals(r[0])));
+        assertFalse(rows.stream().anyMatch(r -> "TEST-PAY-004".equals(r[0])));
     }
 }
