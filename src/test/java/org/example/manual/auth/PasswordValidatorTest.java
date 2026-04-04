@@ -1,5 +1,6 @@
-package org.example.auth;
+package org.example.manual.auth;
 
+import org.example.auth.PasswordValidator;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
