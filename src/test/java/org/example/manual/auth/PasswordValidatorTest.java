@@ -63,3 +63,4 @@ public class PasswordValidatorTest {
         assertTrue(PasswordValidator.isValid("Test1 2!"));
     }
 }
+

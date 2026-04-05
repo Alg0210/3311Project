@@ -12,6 +12,8 @@ public class EquipmentManager implements SensorObserver{
         this.repository = new CSVRepository();
     }
 
+    public EquipmentManager(CSVRepository repository) { this.repository = repository; }
+
     // ─── Add, UPDATE EQUIPMENT ────────────────────────────────────────────────────
 
     public void addEquipment(Equipment equipment) {
