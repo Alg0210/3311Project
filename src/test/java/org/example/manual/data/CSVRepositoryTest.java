@@ -1,5 +1,6 @@
-package org.example.data;
+package org.example.manual.data;
 
+import org.example.data.CSVRepository;
 import org.example.equipment.Equipment;
 import org.example.users.User;
 import org.example.users.UserDecorator;
@@ -170,3 +171,4 @@ public class CSVRepositoryTest {
         assertEquals("Lab B", row[2]);
     }
 }
+

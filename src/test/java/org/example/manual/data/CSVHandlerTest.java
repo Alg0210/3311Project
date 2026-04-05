@@ -1,5 +1,6 @@
-package org.example.data;
+package org.example.manual.data;
 
+import org.example.data.CSVHandler;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -159,3 +160,4 @@ public class CSVHandlerTest {
         assertEquals(2, rows.size());
     }
 }
+

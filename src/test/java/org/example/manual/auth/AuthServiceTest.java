@@ -1,5 +1,6 @@
-package org.example.auth;
+package org.example.manual.auth;
 
+import org.example.auth.AuthService;
 import org.example.users.User;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -118,3 +119,4 @@ public class AuthServiceTest {
         assertNull(AuthService.getCurrentUser());
     }
 }
+
