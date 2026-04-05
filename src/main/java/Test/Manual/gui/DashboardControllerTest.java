@@ -2,18 +2,12 @@ package Test.Manual.gui;
 
 import org.example.auth.AuthService;
 import org.example.equipment.Equipment;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.AfterEach;
-
+import org.junit.jupiter.api.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-@DisplayName("Dashboard Controller Tests")
 public class DashboardControllerTest {
 
     private TestDashboardController testController;
@@ -33,10 +27,9 @@ public class DashboardControllerTest {
         AuthService.clearCurrentUserForTesting();
     }
 
-    // ────── INITIALIZATION TESTS ──────────
+    // Initialization
 
     @Test
-    @DisplayName("Should initialize with current user name in menu button")
     void testInitializeWithUserName() {
         testController.callInitialize();
 
@@ -44,7 +37,6 @@ public class DashboardControllerTest {
     }
 
     @Test
-    @DisplayName("Should initialize when current user is null")
     void testInitializeWithNullUser() {
         AuthService.clearCurrentUserForTesting();
         TestDashboardController controller = new TestDashboardController(testEquipmentManager);
@@ -53,7 +45,6 @@ public class DashboardControllerTest {
     }
 
     @Test
-    @DisplayName("Should populate sort combo box options")
     void testInitializePopulatesSortOptions() {
         testController.callInitialize();
 
@@ -67,7 +58,6 @@ public class DashboardControllerTest {
     }
 
     @Test
-    @DisplayName("Should load available equipment on initialization")
     void testInitializeLoadsEquipment() {
         Equipment eq1 = new Equipment("EQ001", "Microscope", "Lab A");
         Equipment eq2 = new Equipment("EQ002", "Spectrometer", "Lab B");
@@ -79,10 +69,9 @@ public class DashboardControllerTest {
         assertEquals(2, testController.getEquipmentGridItemCount(), "Should load available equipment");
     }
 
-    // ────── LOAD EQUIPMENT TESTS ──────────
+    // Load Equipment
 
     @Test
-    @DisplayName("Should load available equipment from manager")
     void testLoadEquipment() {
         Equipment eq1 = new Equipment("EQ001", "Microscope", "Lab A");
         Equipment eq2 = new Equipment("EQ002", "Spectrometer", "Lab B");
@@ -95,17 +84,15 @@ public class DashboardControllerTest {
     }
 
     @Test
-    @DisplayName("Should handle empty equipment list")
     void testLoadEquipmentEmpty() {
         testController.callLoadEquipment();
 
         assertEquals(0, testController.getEquipmentGridItemCount(), "Should handle empty equipment list");
     }
 
-    // ────── SORT TESTS ──────────
+    // Sort
 
     @Test
-    @DisplayName("Should sort equipment A-Z by name")
     void testHandleSortNameAZ() {
         Equipment eq1 = new Equipment("EQ001", "Zebra Scanner", "Lab A");
         Equipment eq2 = new Equipment("EQ002", "Apple Cutter", "Lab B");
@@ -125,7 +112,6 @@ public class DashboardControllerTest {
     }
 
     @Test
-    @DisplayName("Should sort equipment Z-A by name")
     void testHandleSortNameZA() {
         Equipment eq1 = new Equipment("EQ001", "Apple Cutter", "Lab A");
         Equipment eq2 = new Equipment("EQ002", "Microscope", "Lab B");
@@ -145,7 +131,6 @@ public class DashboardControllerTest {
     }
 
     @Test
-    @DisplayName("Should sort equipment by location")
     void testHandleSortLocation() {
         Equipment eq1 = new Equipment("EQ001", "Equipment C", "Lab Z");
         Equipment eq2 = new Equipment("EQ002", "Equipment A", "Lab B");
@@ -165,7 +150,6 @@ public class DashboardControllerTest {
     }
 
     @Test
-    @DisplayName("Should handle sort with null selection")
     void testHandleSortNullSelection() {
         Equipment eq1 = new Equipment("EQ001", "Equipment A", "Lab A");
         testEquipmentManager.addEquipmentForRetrieval(eq1);
@@ -176,10 +160,9 @@ public class DashboardControllerTest {
         assertDoesNotThrow(() -> testController.callHandleSort(), "Should handle null sort selection");
     }
 
-    // ────── RESERVE EQUIPMENT TESTS ──────────
+    // Reserve equipment
 
     @Test
-    @DisplayName("Should add equipment to cart")
     void testHandleReserveAddToCart() {
         Equipment equipment = new Equipment("EQ001", "Microscope", "Lab A");
 
@@ -190,7 +173,6 @@ public class DashboardControllerTest {
     }
 
     @Test
-    @DisplayName("Should prevent duplicate items in cart")
     void testHandleReserveDuplicateInCart() {
         Equipment equipment = new Equipment("EQ001", "Microscope", "Lab A");
 
@@ -204,7 +186,6 @@ public class DashboardControllerTest {
     }
 
     @Test
-    @DisplayName("Should add multiple different equipment to cart")
     void testHandleReserveMultipleEquipment() {
         Equipment eq1 = new Equipment("EQ001", "Microscope", "Lab A");
         Equipment eq2 = new Equipment("EQ002", "Spectrometer", "Lab B");
@@ -217,10 +198,9 @@ public class DashboardControllerTest {
         assertEquals(3, testController.getCartItemCount(), "Cart should have 3 items");
     }
 
-    // ────── CART TESTS ──────────
+    // Cart titan
 
     @Test
-    @DisplayName("Should update cart display")
     void testUpdateCartDisplay() {
         Equipment eq1 = new Equipment("EQ001", "Microscope", "Lab A");
         Equipment eq2 = new Equipment("EQ002", "Spectrometer", "Lab B");
@@ -233,7 +213,6 @@ public class DashboardControllerTest {
     }
 
     @Test
-    @DisplayName("Should calculate correct subtotal")
     void testCalculateSubtotal() {
         Equipment eq1 = new Equipment("EQ001", "Microscope", "Lab A");
         Equipment eq2 = new Equipment("EQ002", "Spectrometer", "Lab B");
@@ -247,16 +226,14 @@ public class DashboardControllerTest {
     }
 
     @Test
-    @DisplayName("Should display empty cart correctly")
     void testEmptyCartDisplay() {
         assertEquals(0, testController.getCartItemCount(), "Cart should be empty initially");
         assertEquals("$0", testController.getSubtotalLabel(), "Subtotal should be $0 for empty cart");
     }
 
-    // ────── CHECKOUT TESTS ──────────
+    // Checkout
 
     @Test
-    @DisplayName("Should reject checkout with empty cart")
     void testHandleCheckoutEmptyCart() {
         testController.callHandleCheckout();
 
@@ -266,7 +243,6 @@ public class DashboardControllerTest {
     }
 
     @Test
-    @DisplayName("Should proceed with checkout when cart has items")
     void testHandleCheckoutWithItems() {
         Equipment equipment = new Equipment("EQ001", "Microscope", "Lab A");
         testController.callHandleReserve(equipment);
@@ -278,7 +254,6 @@ public class DashboardControllerTest {
     }
 
     @Test
-    @DisplayName("Should store cart in MainController on checkout")
     void testHandleCheckoutStoresCart() {
         Equipment eq1 = new Equipment("EQ001", "Microscope", "Lab A");
         Equipment eq2 = new Equipment("EQ002", "Spectrometer", "Lab B");
@@ -291,10 +266,9 @@ public class DashboardControllerTest {
         assertEquals(2, storedCart.size(), "Cart should be stored in MainController");
     }
 
-    // ────── NAVIGATION TESTS ──────────
+    // Navi
 
     @Test
-    @DisplayName("Should refresh equipment on home click")
     void testHandleHome() {
         Equipment equipment = new Equipment("EQ001", "Microscope", "Lab A");
         testEquipmentManager.addEquipmentForRetrieval(equipment);
@@ -306,7 +280,6 @@ public class DashboardControllerTest {
     }
 
     @Test
-    @DisplayName("Should switch to Account scene")
     void testHandleAccount() {
         TestMainApp.resetSceneSwitch();
         testController.callHandleAccount();
@@ -315,7 +288,6 @@ public class DashboardControllerTest {
     }
 
     @Test
-    @DisplayName("Should switch to MyReservations scene")
     void testHandleMyReservations() {
         TestMainApp.resetSceneSwitch();
         testController.callHandleMyReservations();
@@ -324,17 +296,14 @@ public class DashboardControllerTest {
     }
 
     @Test
-    @DisplayName("Should logout user")
     void testHandleLogout() {
         testController.callHandleLogout();
 
         assertTrue(TestMainController.wasLogoutCalled(), "Should call logout");
     }
 
-    // ────── MORE EQUIPMENT TESTS ──────────
 
     @Test
-    @DisplayName("Should show equipment details alert")
     void testHandleMoreShowsDetails() {
         Equipment equipment = new Equipment("EQ001", "Microscope", "Lab A");
 
@@ -346,10 +315,7 @@ public class DashboardControllerTest {
         assertTrue(message.contains("Lab A"), "Alert should contain location");
     }
 
-    // ────── INTEGRATION TESTS ──────────
-
     @Test
-    @DisplayName("Should handle complete shopping workflow")
     void testCompleteShoppingWorkflow() {
         Equipment eq1 = new Equipment("EQ001", "Microscope", "Lab A");
         Equipment eq2 = new Equipment("EQ002", "Spectrometer", "Lab B");
@@ -372,7 +338,6 @@ public class DashboardControllerTest {
     }
 
     @Test
-    @DisplayName("Should handle sort and display correctly")
     void testSortAndDisplayWorkflow() {
         Equipment eq1 = new Equipment("EQ001", "Zebra Scanner", "Lab Z");
         Equipment eq2 = new Equipment("EQ002", "Apple Cutter", "Lab A");
@@ -388,9 +353,6 @@ public class DashboardControllerTest {
     }
 }
 
-/**
- * TestDashboardController wraps DashboardController for testing without JavaFX
- */
 class TestDashboardController {
     private String userMenuButtonText = "";
     private List<String> sortOptions = new ArrayList<>();
@@ -467,9 +429,7 @@ class TestDashboardController {
         }
     }
 
-    private void updateCart() {
-        // Cart display is managed, just tracking items
-    }
+    private void updateCart() { }
 
     public void callHandleCheckout() {
         if (cart.isEmpty()) {
@@ -502,7 +462,7 @@ class TestDashboardController {
         lastAlertMessage = message;
     }
 
-    // Getters for verification
+    // Getters
     public String getUserMenuButtonText() { return userMenuButtonText; }
     public List<String> getSortOptions() { return new ArrayList<>(sortOptions); }
     public int getEquipmentGridItemCount() { return equipmentList.size(); }
@@ -535,13 +495,10 @@ class TestDashboardController {
     public boolean wasAlertShown() { return alertShown; }
     public String getLastAlertMessage() { return lastAlertMessage; }
 
-    // Setters for testing
+    // Setters
     public void setSortSelection(String selection) { this.sortSelection = selection; }
 }
 
-/**
- * DashboardTestEquipmentManager is a test double for EquipmentManager
- */
 class DashboardTestEquipmentManager {
     private List<Equipment> equipmentList = new ArrayList<>();
 
@@ -554,9 +511,6 @@ class DashboardTestEquipmentManager {
     }
 }
 
-/**
- * DashboardTestUser is a test double for User
- */
 class DashboardTestUser extends org.example.users.User {
     public DashboardTestUser(String userId, String name, String email, String password,
                    String userType, String departmentId, String idNumber) {
@@ -569,9 +523,6 @@ class DashboardTestUser extends org.example.users.User {
     }
 }
 
-/**
- * TestMainController provides static methods for testing
- */
 class TestMainController {
     private static List<Equipment> storedCart = new ArrayList<>();
     private static boolean logoutCalled = false;

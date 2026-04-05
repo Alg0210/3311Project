@@ -3,11 +3,8 @@ package Test.Manual.Sensors;
 import org.example.sensors.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.DisplayName;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-@DisplayName("Equipment Sensor Tests")
 public class EquipmentSensorTest {
 
     private EquipmentSensor sensor;
@@ -21,22 +18,18 @@ public class EquipmentSensorTest {
         observer2 = new TestSensorObserver();
     }
 
-    // ────── INITIALIZATION TESTS ──────────
 
     @Test
-    @DisplayName("Should initialize sensor with correct equipment ID")
     void testSensorInitialization() {
         assertEquals("EQ001", sensor.getEquipmentId(), "Equipment ID should match");
     }
 
     @Test
-    @DisplayName("Should initialize sensor with AVAILABLE status")
     void testSensorInitialStatus() {
         assertEquals("AVAILABLE", sensor.getCurrentStatus(), "Initial status should be AVAILABLE");
     }
 
     @Test
-    @DisplayName("Should create sensor with empty observers list")
     void testSensorInitialEmptyObservers() {
         EquipmentSensor newSensor = new EquipmentSensor("EQ002");
         // Verify no observers are notified when trigger is called on fresh sensor
@@ -45,10 +38,8 @@ public class EquipmentSensorTest {
         assertDoesNotThrow(() -> newSensor.triggerUpdate("AVAILABLE"));
     }
 
-    // ────── ADD OBSERVER TESTS ──────────
 
     @Test
-    @DisplayName("Should add single observer successfully")
     void testAddSingleObserver() {
         sensor.addObserver(observer1);
         
@@ -60,7 +51,6 @@ public class EquipmentSensorTest {
     }
 
     @Test
-    @DisplayName("Should add multiple observers successfully")
     void testAddMultipleObservers() {
         sensor.addObserver(observer1);
         sensor.addObserver(observer2);
@@ -74,7 +64,6 @@ public class EquipmentSensorTest {
     }
 
     @Test
-    @DisplayName("Should add same observer multiple times")
     void testAddSameObserverMultipleTimes() {
         sensor.addObserver(observer1);
         sensor.addObserver(observer1);
@@ -85,10 +74,8 @@ public class EquipmentSensorTest {
         assertEquals(2, observer1.getUpdateCallCount(), "Observer should be notified twice");
     }
 
-    // ────── REMOVE OBSERVER TESTS ──────────
 
     @Test
-    @DisplayName("Should remove observer successfully")
     void testRemoveObserver() {
         sensor.addObserver(observer1);
         sensor.addObserver(observer2);
@@ -101,20 +88,16 @@ public class EquipmentSensorTest {
     }
 
     @Test
-    @DisplayName("Should handle removing non-existent observer")
     void testRemoveNonExistentObserver() {
         sensor.addObserver(observer1);
-        
-        // Should not throw exception
+
         assertDoesNotThrow(() -> sensor.removeObserver(observer2));
-        
-        // observer1 should still be notified
+
         sensor.triggerUpdate("AVAILABLE");
         assertTrue(observer1.wasUpdateCalled(), "Non-removed observer should still be notified");
     }
 
     @Test
-    @DisplayName("Should remove observer from list with multiple observers")
     void testRemoveObserverFromMultiple() {
         sensor.addObserver(observer1);
         sensor.addObserver(observer2);
@@ -129,10 +112,8 @@ public class EquipmentSensorTest {
         assertTrue(observer3.wasUpdateCalled(), "Observer 3 should be notified");
     }
 
-    // ────── TRIGGER UPDATE TESTS ──────────
 
     @Test
-    @DisplayName("Should trigger update and notify all observers")
     void testTriggerUpdate() {
         sensor.addObserver(observer1);
         sensor.addObserver(observer2);
@@ -144,7 +125,6 @@ public class EquipmentSensorTest {
     }
 
     @Test
-    @DisplayName("Should update current status when trigger is called")
     void testTriggerUpdateChangesStatus() {
         assertEquals("AVAILABLE", sensor.getCurrentStatus(), "Initial status should be AVAILABLE");
         
@@ -154,7 +134,6 @@ public class EquipmentSensorTest {
     }
 
     @Test
-    @DisplayName("Should trigger multiple status updates in sequence")
     void testMultipleTriggerUpdates() {
         sensor.addObserver(observer1);
         
@@ -172,16 +151,13 @@ public class EquipmentSensorTest {
     }
 
     @Test
-    @DisplayName("Should handle trigger update with no observers")
     void testTriggerUpdateNoObservers() {
         assertDoesNotThrow(() -> sensor.triggerUpdate("MAINTENANCE"));
         assertEquals("MAINTENANCE", sensor.getCurrentStatus(), "Status should be updated");
     }
 
-    // ────── NOTIFY OBSERVERS TESTS ──────────
 
     @Test
-    @DisplayName("Should notify observers with correct equipment ID")
     void testNotifyObserversEquipmentId() {
         sensor.addObserver(observer1);
         
@@ -191,7 +167,6 @@ public class EquipmentSensorTest {
     }
 
     @Test
-    @DisplayName("Should notify observers with correct status")
     void testNotifyObserversStatus() {
         sensor.addObserver(observer1);
         
@@ -201,7 +176,6 @@ public class EquipmentSensorTest {
     }
 
     @Test
-    @DisplayName("Should notify all observers with same data")
     void testNotifyAllObserversWithSameData() {
         sensor.addObserver(observer1);
         sensor.addObserver(observer2);
@@ -214,10 +188,8 @@ public class EquipmentSensorTest {
         assertEquals("AVAILABLE", observer2.getLastStatus());
     }
 
-    // ────── GETTERS TESTS ──────────
 
     @Test
-    @DisplayName("Should return correct equipment ID")
     void testGetEquipmentId() {
         EquipmentSensor sensor2 = new EquipmentSensor("EQ002");
         EquipmentSensor sensor3 = new EquipmentSensor("EQ003");
@@ -228,7 +200,6 @@ public class EquipmentSensorTest {
     }
 
     @Test
-    @DisplayName("Should return current status")
     void testGetCurrentStatus() {
         assertEquals("AVAILABLE", sensor.getCurrentStatus());
         
@@ -239,45 +210,30 @@ public class EquipmentSensorTest {
         assertEquals("DISABLED", sensor.getCurrentStatus());
     }
 
-    // ────── INTEGRATION TESTS ──────────
 
     @Test
-    @DisplayName("Should handle complete observer pattern lifecycle")
     void testCompleteObserverLifecycle() {
-        // Add observers
         sensor.addObserver(observer1);
         sensor.addObserver(observer2);
-        
-        // Trigger update
         sensor.triggerUpdate("MAINTENANCE");
         assertTrue(observer1.wasUpdateCalled());
         assertTrue(observer2.wasUpdateCalled());
-        
-        // Remove one observer
         sensor.removeObserver(observer1);
         observer1.reset();
         observer2.reset();
-        
-        // Trigger another update
         sensor.triggerUpdate("AVAILABLE");
         assertFalse(observer1.wasUpdateCalled(), "Removed observer should not be notified");
         assertTrue(observer2.wasUpdateCalled(), "Remaining observer should be notified");
     }
 
     @Test
-    @DisplayName("Should handle rapid observer additions and removals")
     void testRapidObserverChanges() {
         TestSensorObserver obs3 = new TestSensorObserver();
-        
-        // Add all
+
         sensor.addObserver(observer1);
         sensor.addObserver(observer2);
         sensor.addObserver(obs3);
-        
-        // Remove one
         sensor.removeObserver(observer2);
-        
-        // Trigger
         sensor.triggerUpdate("IN_USE");
         
         assertTrue(observer1.wasUpdateCalled());
@@ -286,22 +242,14 @@ public class EquipmentSensorTest {
     }
 
     @Test
-    @DisplayName("Should maintain state across multiple sensors")
     void testMultipleSensorsIndependence() {
         EquipmentSensor sensor2 = new EquipmentSensor("EQ002");
         TestSensorObserver obs2 = new TestSensorObserver();
-        
-        // Configure sensors differently
         sensor.addObserver(observer1);
         sensor2.addObserver(obs2);
-        
-        // Update sensor1
         sensor.triggerUpdate("MAINTENANCE");
-        
-        // Update sensor2
         sensor2.triggerUpdate("DISABLED");
-        
-        // Verify independence
+
         assertEquals("MAINTENANCE", sensor.getCurrentStatus());
         assertEquals("DISABLED", sensor2.getCurrentStatus());
         assertEquals("EQ001", observer1.getLastEquipmentId());
@@ -309,30 +257,20 @@ public class EquipmentSensorTest {
     }
 
     @Test
-    @DisplayName("Should handle observer receiving updates from multiple sensors")
     void testObserverMultipleSensors() {
         EquipmentSensor sensor2 = new EquipmentSensor("EQ002");
-        
-        // Same observer watches multiple sensors
         sensor.addObserver(observer1);
         sensor2.addObserver(observer1);
-        
-        // Trigger from first sensor
         sensor.triggerUpdate("MAINTENANCE");
+
         assertEquals("EQ001", observer1.getLastEquipmentId());
         assertEquals("MAINTENANCE", observer1.getLastStatus());
-        
-        // Trigger from second sensor
         sensor2.triggerUpdate("IN_USE");
         assertEquals("EQ002", observer1.getLastEquipmentId());
         assertEquals("IN_USE", observer1.getLastStatus());
     }
 }
 
-/**
- * TestSensorObserver is a test double that tracks update notifications
- * for verification purposes in unit tests.
- */
 class TestSensorObserver implements SensorObserver {
     
     private boolean updateCalled = false;
