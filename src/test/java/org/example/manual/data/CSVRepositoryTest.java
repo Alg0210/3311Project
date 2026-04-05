@@ -24,10 +24,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CSVRepositoryTest {
 
-    private static final String USERS_FILE = "src/main/resources/data/users.csv";
-    private static final String EQUIPMENT_FILE = "src/main/resources/data/equipment.csv";
-    private static final String RESERVATIONS_FILE = "src/main/resources/data/reservations.csv";
-    private static final String PAYMENTS_FILE = "src/main/resources/data/payments.csv";
+    private static final String userFile = "src/main/resources/data/users.csv";
+    private static final String equipmentFile = "src/main/resources/data/equipment.csv";
+    private static final String reservationsFile = "src/main/resources/data/reservations.csv";
+    private static final String paymentsFile = "src/main/resources/data/payments.csv";
 
     private byte[] usersBackup;
     private byte[] equipmentBackup;
@@ -37,22 +37,22 @@ public class CSVRepositoryTest {
 
     @BeforeEach
     public void setUp() throws IOException {
-        usersBackup = Files.readAllBytes(Paths.get(USERS_FILE));
-        equipmentBackup = Files.readAllBytes(Paths.get(EQUIPMENT_FILE));
-        reservationsBackup = Files.readAllBytes(Paths.get(RESERVATIONS_FILE));
-        paymentsBackup = Files.readAllBytes(Paths.get(PAYMENTS_FILE));
+        usersBackup = Files.readAllBytes(Paths.get(userFile));
+        equipmentBackup = Files.readAllBytes(Paths.get(equipmentFile));
+        reservationsBackup = Files.readAllBytes(Paths.get(reservationsFile));
+        paymentsBackup = Files.readAllBytes(Paths.get(paymentsFile));
         repository = new CSVRepository();
     }
 
     @AfterEach
-    public void tearDown() throws IOException {
-        Files.write(Paths.get(USERS_FILE), usersBackup);
-        Files.write(Paths.get(EQUIPMENT_FILE), equipmentBackup);
-        Files.write(Paths.get(RESERVATIONS_FILE), reservationsBackup);
-        Files.write(Paths.get(PAYMENTS_FILE), paymentsBackup);
+    public void restart() throws IOException {
+        Files.write(Paths.get(userFile), usersBackup);
+        Files.write(Paths.get(equipmentFile), equipmentBackup);
+        Files.write(Paths.get(reservationsFile), reservationsBackup);
+        Files.write(Paths.get(paymentsFile), paymentsBackup);
     }
 
-    // ─── USER TESTS ───────────────────────────────────────────────────────────
+    // user tests
 
     @Test
     public void testSaveAndFindUserByEmail() {
@@ -149,7 +149,7 @@ public class CSVRepositoryTest {
         assertTrue(found instanceof UserDecorator);
     }
 
-    // ─── EQUIPMENT TESTS ─────────────────────────────────────────────────────
+    // equipment tests
 
     @Test
     public void testSaveAndFindEquipmentInGetAllEquipment() {
@@ -259,7 +259,7 @@ public class CSVRepositoryTest {
         assertNotNull(repository.findUserByEmail("harry@csvrepotest.com"));
     }
 
-    // ─── RESERVATION TESTS ───────────────────────────────────────
+    // reservation tests
 
     private Reservation buildReservation(String reservationId, String userId, String equipmentId) {
         User user = UserFactory.createUser("GUEST", userId, "TestUser", userId + "@csvrepotest.com", "Test123!", null,
@@ -322,7 +322,7 @@ public class CSVRepositoryTest {
         assertEquals("CONFIRMED", match[5]);
     }
 
-    // ─── PAYMENT TESTS ───────────────────────────────────────────
+    // payment tests
 
     @Test
     public void testSavePaymentAppearsInAllPaymentRows() {
