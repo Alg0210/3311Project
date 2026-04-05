@@ -25,7 +25,6 @@ public class ReservationManagerTest {
     private MockRepository mockRepo;
     private MockEqManager mockEqManager;
 
-    // We can use an inner class stub to avoid mock dependencies if Mockito isn't installed.
     class MockRepository extends CSVRepository {
         public List<Reservation> savedRes = new ArrayList<>();
         public List<String[]> allRows = new ArrayList<>();
@@ -41,7 +40,6 @@ public class ReservationManagerTest {
 
         @Override
         public void updateReservation(Reservation res) {
-            // Find in allRows and update
             for (String[] row : allRows) {
                 if(row[0].equals(res.getReservationId())) {
                     row[5] = res.getStatus().name();
@@ -112,7 +110,7 @@ public class ReservationManagerTest {
         eq.setStatus(EquipmentStatus.IN_USE);
 
         Reservation res = manager.createReservation(user, eq, LocalDateTime.now(), LocalDateTime.now().plusHours(1));
-        assertNull(res); // Should return null if not available
+        assertNull(res);
     }
 
     @Test
