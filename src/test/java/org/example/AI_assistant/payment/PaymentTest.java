@@ -9,8 +9,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PaymentTest {
 
-    // ─── CREATION & GETTERS ─────────────────────────────────────
-
     @Test
     void testDepositPaymentCreation() {
         Payment p = new Payment("PAY-1", "RES-1", 10.0, "CREDIT", true);
@@ -33,8 +31,6 @@ public class PaymentTest {
         assertFalse(p.isDeposit());
         assertFalse(p.isForfeited());
     }
-
-    // ─── DIFFERENT PAYMENT METHODS (Req10) ──────────────────────
 
     @Test
     void testCreditPayment() {
@@ -59,8 +55,6 @@ public class PaymentTest {
         Payment p = new Payment("PAY-1", "RES-1", 30.0, "GRANT", true);
         assertEquals("GRANT", p.getPaymentMethod());
     }
-
-    // ─── DEPOSIT AMOUNTS PER USER TYPE (Req3/Req4) ──────────────
 
     @Test
     void testStudentDepositAmount() {
@@ -87,8 +81,6 @@ public class PaymentTest {
         assertEquals(30.0, p.getAmount());
     }
 
-    // ─── FORFEITURE (Req4) ──────────────────────────────────────
-
     @Test
     void testForfeitDeposit() {
         Payment p = new Payment("PAY-1", "RES-1", 10.0, "CREDIT", true);
@@ -112,8 +104,6 @@ public class PaymentTest {
         assertFalse(p.isForfeited());
     }
 
-    // ─── TIMESTAMP ──────────────────────────────────────────────
-
     @Test
     void testTimestampAutoSet() {
         Payment p = new Payment("PAY-1", "RES-1", 10.0, "CREDIT", true);
@@ -128,8 +118,6 @@ public class PaymentTest {
         p.setTimestamp(customTime);
         assertEquals(customTime, p.getTimestamp());
     }
-
-    // ─── EDGE CASES ──────────────────────────────────────────────
 
     @Test
     void testZeroAmountPayment() {

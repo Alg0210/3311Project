@@ -8,8 +8,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PaymentDecoratorTest {
 
-    // ─── CREDIT VALIDATION ──────────────────────────────────────
-
     @Test
     void testCreditValidationSuccess8Chars() {
         Payment p = new Payment("P1", "R1", 50.0, "CREDIT", true);
@@ -61,8 +59,6 @@ public class PaymentDecoratorTest {
         assertNull(d.process());
     }
 
-    // ─── DEBIT VALIDATION ───────────────────────────────────────
-
     @Test
     void testDebitValidationSuccess() {
         Payment p = new Payment("P1", "R1", 50.0, "DEBIT", true);
@@ -90,8 +86,6 @@ public class PaymentDecoratorTest {
         PaymentDecorator d = new PaymentDecorator(p, "DEBIT", "123");
         assertNull(d.process());
     }
-
-    // ─── INSTITUTIONAL VALIDATION ───────────────────────────────
 
     @Test
     void testInstitutionalValidationSuccess() {
@@ -127,8 +121,6 @@ public class PaymentDecoratorTest {
         PaymentDecorator d = new PaymentDecorator(p, "INSTITUTIONAL", "INST-XYZ");
         assertNotNull(d.process());
     }
-
-    // ─── GRANT VALIDATION ───────────────────────────────────────
 
     @Test
     void testGrantValidationSuccess() {
@@ -172,8 +164,6 @@ public class PaymentDecoratorTest {
         assertNull(d.process());
     }
 
-    // ─── INVALID / UNKNOWN METHOD ───────────────────────────────
-
     @Test
     void testInvalidMethodCash() {
         Payment p = new Payment("P1", "R1", 50.0, "CASH", true);
@@ -197,8 +187,6 @@ public class PaymentDecoratorTest {
         assertFalse(d.validate());
     }
 
-    // ─── GETTERS ─────────────────────────────────────────────────
-
     @Test
     void testGetPayment() {
         Payment p = new Payment("P1", "R1", 50.0, "CREDIT", true);
@@ -219,8 +207,6 @@ public class PaymentDecoratorTest {
         PaymentDecorator d = new PaymentDecorator(p, "CREDIT", "12345678");
         assertEquals("12345678", d.getAccountReference());
     }
-
-    // ─── DECORATOR WITH DIFFERENT PRICING TIER AMOUNTS ──────────
 
     @Test
     void testDecoratorWithStudentDeposit() {
@@ -258,8 +244,6 @@ public class PaymentDecoratorTest {
         Payment result = d.process();
         assertEquals(15.0, result.getAmount());
     }
-
-    // ─── EXACTLY 8 CHARS BOUNDARY FOR CREDIT/DEBIT ──────────────
 
     @Test
     void testCreditExactly7CharsFails() {
