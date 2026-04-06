@@ -27,7 +27,7 @@ public class AuthServiceTest {
     }
 
     @AfterEach
-    public void restart() throws IOException {
+    public void tearDown() throws IOException {
         AuthService.logout();
         Files.write(Paths.get(userFile), usersBackup);
     }
@@ -116,4 +116,3 @@ public class AuthServiceTest {
         assertNull(AuthService.getCurrentUser());
     }
 }
-
