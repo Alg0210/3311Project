@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+
+<h1>UserFactory.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3270ef85_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3270ef85_1'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package org.example.users;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3270ef85_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3270ef85_2'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3270ef85_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3270ef85_3'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>public class UserFactory {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3270ef85_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3270ef85_4'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3270ef85_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3270ef85_5'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static User createUser(String type, String userId, String name, String email, String password,</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3270ef85_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3270ef85_6'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            String departmentId, String idNumber) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3270ef85_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3270ef85_7'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        switch (type.toUpperCase()) {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3270ef85_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3270ef85_8'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            case &#34;STUDENT&#34;:</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3270ef85_9'/>
+9
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3270ef85_9'>1</a>
+<span>
+1. createUser : replaced return value with null for org/example/users/UserFactory::createUser &rarr; SURVIVED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>                return new Student(userId, name, email, password, departmentId, idNumber);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3270ef85_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3270ef85_10'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            case &#34;FACULTY&#34;:</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3270ef85_11'/>
+11
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3270ef85_11'>1</a>
+<span>
+1. createUser : replaced return value with null for org/example/users/UserFactory::createUser &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                return new Faculty(userId, name, email, password, departmentId, idNumber);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3270ef85_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3270ef85_12'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            case &#34;RESEARCHER&#34;:</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3270ef85_13'/>
+13
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3270ef85_13'>1</a>
+<span>
+1. createUser : replaced return value with null for org/example/users/UserFactory::createUser &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                return new Researcher(userId, name, email, password, departmentId, idNumber);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3270ef85_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3270ef85_14'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            case &#34;GUEST&#34;:</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3270ef85_15'/>
+15
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3270ef85_15'>1</a>
+<span>
+1. createUser : replaced return value with null for org/example/users/UserFactory::createUser &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                return new Guest(userId, name, email, password, null, idNumber);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3270ef85_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3270ef85_16'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            case &#34;MANAGER&#34;:</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3270ef85_17'/>
+17
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3270ef85_17'>1</a>
+<span>
+1. createUser : replaced return value with null for org/example/users/UserFactory::createUser &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                return new LabManager(userId, name, email, password, &#34;MGR-&#34; + userId);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3270ef85_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3270ef85_18'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            case &#34;HEAD_COORDINATOR&#34;:</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3270ef85_19'/>
+19
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3270ef85_19'>1</a>
+<span>
+1. createUser : replaced return value with null for org/example/users/UserFactory::createUser &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                return HeadCoordinator.getInstance(userId, name, email, password);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3270ef85_20'/>
+20
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3270ef85_20'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            default:</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3270ef85_21'/>
+21
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3270ef85_21'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                throw new IllegalArgumentException(&#34;Unknown user type: &#34; + type);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3270ef85_22'/>
+22
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3270ef85_22'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3270ef85_23'/>
+23
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3270ef85_23'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3270ef85_24'/>
+24
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3270ef85_24'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3270ef85_9'>9</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3270ef85_9'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createUser<br/><b>Killed by : </b>none</span></span> replaced return value with null for org/example/users/UserFactory::createUser &rarr; SURVIVED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3270ef85_11'>11</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3270ef85_11'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createUser<br/><b>Killed by : </b>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test164(org.example.randoop.RandoopRegressionTest0)]</span></span> replaced return value with null for org/example/users/UserFactory::createUser &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3270ef85_13'>13</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3270ef85_13'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createUser<br/><b>Killed by : </b>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test041(org.example.randoop.RandoopRegressionTest0)]</span></span> replaced return value with null for org/example/users/UserFactory::createUser &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3270ef85_15'>15</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3270ef85_15'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createUser<br/><b>Killed by : </b>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test173(org.example.randoop.RandoopRegressionTest0)]</span></span> replaced return value with null for org/example/users/UserFactory::createUser &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3270ef85_17'>17</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3270ef85_17'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createUser<br/><b>Killed by : </b>none</span></span> replaced return value with null for org/example/users/UserFactory::createUser &rarr; NO_COVERAGE</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3270ef85_19'>19</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3270ef85_19'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createUser<br/><b>Killed by : </b>none</span></span> replaced return value with null for org/example/users/UserFactory::createUser &rarr; NO_COVERAGE</p> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+<li class='mutator'>CONDITIONALS_BOUNDARY</li>
+<li class='mutator'>EMPTY_RETURNS</li>
+<li class='mutator'>FALSE_RETURNS</li>
+<li class='mutator'>INCREMENTS</li>
+<li class='mutator'>INVERT_NEGS</li>
+<li class='mutator'>MATH</li>
+<li class='mutator'>NEGATE_CONDITIONALS</li>
+<li class='mutator'>NULL_RETURNS</li>
+<li class='mutator'>PRIMITIVE_RETURNS</li>
+<li class='mutator'>TRUE_RETURNS</li>
+<li class='mutator'>VOID_METHOD_CALLS</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test041(org.example.randoop.RandoopRegressionTest0)] (0 ms)</li><li>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test164(org.example.randoop.RandoopRegressionTest0)] (0 ms)</li><li>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test122(org.example.randoop.RandoopRegressionTest0)] (0 ms)</li><li>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test173(org.example.randoop.RandoopRegressionTest0)] (0 ms)</li><li>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test039(org.example.randoop.RandoopRegressionTest0)] (1 ms)</li><li>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test086(org.example.randoop.RandoopRegressionTest0)] (1 ms)</li><li>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test052(org.example.randoop.RandoopRegressionTest0)] (7 ms)</li><li>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test083(org.example.randoop.RandoopRegressionTest0)] (9 ms)</li><li>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test098(org.example.randoop.RandoopRegressionTest0)] (9 ms)</li><li>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test185(org.example.randoop.RandoopRegressionTest0)] (10 ms)</li><li>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test236(org.example.randoop.RandoopRegressionTest0)] (10 ms)</li><li>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test150(org.example.randoop.RandoopRegressionTest0)] (19 ms)</li><li>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test232(org.example.randoop.RandoopRegressionTest0)] (23 ms)</li><li>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test140(org.example.randoop.RandoopRegressionTest0)] (27 ms)</li><li>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test094(org.example.randoop.RandoopRegressionTest0)] (30 ms)</li><li>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test139(org.example.randoop.RandoopRegressionTest0)] (28 ms)</li><li>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test211(org.example.randoop.RandoopRegressionTest0)] (36 ms)</li><li>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test146(org.example.randoop.RandoopRegressionTest0)] (31 ms)</li><li>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test025(org.example.randoop.RandoopRegressionTest0)] (44 ms)</li><li>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test177(org.example.randoop.RandoopRegressionTest0)] (41 ms)</li><li>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test147(org.example.randoop.RandoopRegressionTest0)] (45 ms)</li><li>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test169(org.example.randoop.RandoopRegressionTest0)] (48 ms)</li><li>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test020(org.example.randoop.RandoopRegressionTest0)] (60 ms)</li><li>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test161(org.example.randoop.RandoopRegressionTest0)] (55 ms)</li><li>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test136(org.example.randoop.RandoopRegressionTest0)] (63 ms)</li><li>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test212(org.example.randoop.RandoopRegressionTest0)] (84 ms)</li><li>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test070(org.example.randoop.RandoopRegressionTest0)] (83 ms)</li><li>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test251(org.example.randoop.RandoopRegressionTest0)] (95 ms)</li><li>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test080(org.example.randoop.RandoopRegressionTest0)] (110 ms)</li><li>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test184(org.example.randoop.RandoopRegressionTest0)] (110 ms)</li><li>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test047(org.example.randoop.RandoopRegressionTest0)] (134 ms)</li><li>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test252(org.example.randoop.RandoopRegressionTest0)] (213 ms)</li><li>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test069(org.example.randoop.RandoopRegressionTest0)] (346 ms)</li><li>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test064(org.example.randoop.RandoopRegressionTest0)] (1474 ms)</li><li>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test215(org.example.randoop.RandoopRegressionTest0)] (0 ms)</li><li>org.example.randoop.RandoopRegressionTest0.[engine:junit-vintage]/[runner:org.example.randoop.RandoopRegressionTest0]/[test:test231(org.example.randoop.RandoopRegressionTest0)] (0 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='https://pitest.org'>PIT</a> 1.15.3
+
+</body>
+</html>

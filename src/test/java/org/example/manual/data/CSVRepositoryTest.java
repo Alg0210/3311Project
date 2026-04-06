@@ -45,7 +45,7 @@ public class CSVRepositoryTest {
     }
 
     @AfterEach
-    public void restart() throws IOException {
+    public void tearDown() throws IOException {
         Files.write(Paths.get(userFile), usersBackup);
         Files.write(Paths.get(equipmentFile), equipmentBackup);
         Files.write(Paths.get(reservationsFile), reservationsBackup);

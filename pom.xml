@@ -113,6 +113,47 @@
                     </includes>
                 </configuration>
             </plugin>
+            <!-- PITest Mutation Testing -->
+            <plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>1.15.3</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.pitest</groupId>
+                        <artifactId>pitest-junit5-plugin</artifactId>
+                        <version>1.2.1</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <targetClasses>
+                        <param>org.example.auth.*</param>
+                        <param>org.example.data.*</param>
+                        <param>org.example.equipment.*</param>
+                        <param>org.example.payment.*</param>
+                        <param>org.example.reservation.*</param>
+                        <param>org.example.sensors.*</param>
+                        <param>org.example.users.*</param>
+                    </targetClasses>
+                    <targetTests>
+                        <param>org.example.manual.**</param>
+                        <param>org.example.AI_assistant.**</param>
+                        <param>org.example.randoop.**</param>
+                    </targetTests>
+                    <excludedTestClasses>
+                        <param>org.example.randoop.RandoopRegressionTest</param>
+                        <param>org.example.randoop.RandoopErrorTest</param>
+                        <param>org.example.randoop.RandoopErrorTest0</param>
+                        <param>org.example.manual.gui.**</param>
+                    </excludedTestClasses>
+                    <outputFormats>
+                        <param>HTML</param>
+                        <param>CSV</param>
+                    </outputFormats>
+                    <timestampedReports>false</timestampedReports>
+                    <skipFailingTests>true</skipFailingTests>
+                </configuration>
+            </plugin>
         </plugins>
         <resources>
             <resource>

@@ -1,0 +1,401 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------------< org.example:3311Project >-----------------------
+[INFO] Building 3311Project 1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[WARNING] 6 problems were encountered while building the effective model for org.openjfx:javafx-controls:jar:21.0.2 during dependency collection step for project (use -X to see details)
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ 3311Project ---
+[INFO] Deleting /Users/anthonyma/Documents/EECS3311/3311Project/target
+[INFO] 
+[INFO] --- jacoco:0.8.10:prepare-agent (default) @ 3311Project ---
+[INFO] argLine set to -javaagent:/Users/anthonyma/.m2/repository/org/jacoco/org.jacoco.agent/0.8.10/org.jacoco.agent-0.8.10-runtime.jar=destfile=/Users/anthonyma/Documents/EECS3311/3311Project/target/jacoco.exec
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ 3311Project ---
+[INFO] Copying 22 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ 3311Project ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 43 source files with javac [debug target 11] to target/classes
+[WARNING] location of system modules is not set in conjunction with -source 11
+  not setting the location of system modules may lead to class files that cannot run on JDK 11
+    --release 11 is recommended instead of -source 11 -target 11 because it sets the location of system modules automatically
+[INFO] 
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ 3311Project ---
+[INFO] skip non existing resourceDirectory /Users/anthonyma/Documents/EECS3311/3311Project/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ 3311Project ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 52 source files with javac [debug target 11] to target/test-classes
+[WARNING] location of system modules is not set in conjunction with -source 11
+  not setting the location of system modules may lead to class files that cannot run on JDK 11
+    --release 11 is recommended instead of -source 11 -target 11 because it sets the location of system modules automatically
+[INFO] 
+[INFO] --- pitest:1.15.3:mutationCoverage (default-cli) @ 3311Project ---
+[INFO] Root dir is : /Users/anthonyma/Documents/EECS3311/3311Project
+[INFO] Found plugin : Default csv report plugin
+[INFO] Found plugin : Default xml report plugin
+[INFO] Found plugin : Default html report plugin
+[INFO] Found plugin : Static initializer code detector plugin
+[INFO] Found plugin : Excluded annotations plugin
+[INFO] Found plugin : Try with resources filter
+[INFO] Found plugin : Inlined finally block filter plugin
+[INFO] Found plugin : Implicit null check filter
+[INFO] Found plugin : Method reference null check filter
+[INFO] Found plugin : For each loop filter
+[INFO] Found plugin : Enum junk filter
+[INFO] Found plugin : Record junk mutation filter
+[INFO] Found plugin : String switch filter
+[INFO] Found plugin : Assertions filter
+[INFO] Found plugin : Enum switch filter
+[INFO] Found plugin : Logging calls filter
+[INFO] Found plugin : Infinite for loop filter
+[INFO] Found plugin : Long running iterator loop filter
+[INFO] Found plugin : For loop counter filter
+[INFO] Found plugin : Kotlin junk mutations filter
+[INFO] Found plugin : Groovy junk mutations filter
+[INFO] Found plugin : Max mutations per class limit
+[INFO] Found plugin : Equals shortcut equivalent mutant filter
+[INFO] Found plugin : Trivial return vals equivalence filter
+[INFO] Found plugin : Filters mutants with line number <= 1
+[INFO] Found plugin : Division by one equivalent mutant filter
+[INFO] Found plugin : Lombok junk mutations filter
+[INFO] Found plugin : Mutant export plugin
+[INFO] Found plugin : Auto add java.awt.headless=true to keep keyboard focus on Mac OS
+[INFO] Found plugin : Auto set number of threads based on machine
+[INFO] Found plugin : Default build verifier
+[INFO] Found plugin : Detect missing JUnit5 plugin
+[INFO] Found plugin : Detect missing TestNG plugin
+[INFO] Found plugin : Detect missing kotlin plugin
+[INFO] Found plugin : Detect missing spring plugin
+[INFO] Found shared classpath plugin : Default mutation engine
+[INFO] Found shared classpath plugin : JUnit 5 test framework support
+[INFO] Found shared classpath plugin : JUnit plugin
+[INFO] Available mutators : EXPERIMENTAL_ARGUMENT_PROPAGATION,FALSE_RETURNS,TRUE_RETURNS,CONDITIONALS_BOUNDARY,CONSTRUCTOR_CALLS,EMPTY_RETURNS,INCREMENTS,INLINE_CONSTS,INVERT_NEGS,MATH,NEGATE_CONDITIONALS,NON_VOID_METHOD_CALLS,NULL_RETURNS,PRIMITIVE_RETURNS,REMOVE_CONDITIONALS_EQUAL_IF,REMOVE_CONDITIONALS_EQUAL_ELSE,REMOVE_CONDITIONALS_ORDER_IF,REMOVE_CONDITIONALS_ORDER_ELSE,VOID_METHOD_CALLS,EXPERIMENTAL_BIG_DECIMAL,EXPERIMENTAL_BIG_INTEGER,EXPERIMENTAL_MEMBER_VARIABLE,EXPERIMENTAL_NAKED_RECEIVER,REMOVE_INCREMENTS,EXPERIMENTAL_SWITCH,EXPERIMENTAL_BIG_DECIMAL,EXPERIMENTAL_BIG_INTEGER
+[INFO] Adding org.pitest:pitest-junit5-plugin to SUT classpath
+[INFO] Adding org.pitest:pitest to SUT classpath
+[INFO] Auto adding org.junit.platform:junit-platform-launcher:jar:1.9.2 < central (https://repo.maven.apache.org/maven2, default, releases) to classpath.
+[INFO] Mutating from /Users/anthonyma/Documents/EECS3311/3311Project/target/classes
+6:57:54 p.m. PIT >> INFO : Verbose logging is disabled. If you encounter a problem, please enable it before reporting an issue.
+6:57:54 p.m. PIT >> INFO : Created 25 mutation test units in pre scan
+6:57:55 p.m. PIT >> INFO : Sending 1 test classes to minion
+6:57:55 p.m. PIT >> INFO : Sent tests to minion
+6:57:56 p.m. PIT >> INFO : MINION : RuntimeException while transforming  org/example/auth/AuthService
+6:57:56 p.m. PIT >> INFO : MINION : java.lang.IllegalArgumentException: Unsupported class file major version 69
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.ClassReader.<init>(ClassReader.java:200)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.ClassReader.<init>(ClassReader.java:180)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.ClassReader.<init>(ClassReader.java:166)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.classinfo.ComputeClassWriter.typeInfo(ComputeClassWriter.java:192)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.classinfo.ComputeClassWriter.typeAncestors(ComputeClassWriter.java:144)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.classinfo.ComputeClassWriter.getCommonSuperClass(ComputeClassWriter.java:96)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.classinfo.ComputeClassWriter.getCommonSuperClass(ComputeClassWriter.java:74)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.SymbolTable.addMergedType(SymbolTable.java:1264)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.Frame.merge(Frame.java:1311)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.Frame.merge(Frame.java:1208)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.MethodWriter.computeAllFrames(MethodWriter.java:1612)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.MethodWriter.visitMaxs(MethodWriter.java:1548)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.MethodVisitor.visitMaxs(MethodVisitor.java:786)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.commons.LocalVariablesSorter.visitMaxs(LocalVariablesSorter.java:147)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.MethodVisitor.visitMaxs(MethodVisitor.java:786)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.tree.MethodNode.accept(MethodNode.java:767)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.coverage.analysis.CoverageAnalyser.visitEnd(CoverageAnalyser.java:46)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.ClassReader.readMethod(ClassReader.java:1519)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.ClassReader.accept(ClassReader.java:745)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.ClassReader.accept(ClassReader.java:425)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.coverage.CoverageTransformer.transformBytes(CoverageTransformer.java:59)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.coverage.CoverageTransformer.transform(CoverageTransformer.java:32)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.instrument/java.lang.instrument.ClassFileTransformer.transform(ClassFileTransformer.java:257)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.instrument/sun.instrument.TransformerManager.transform(TransformerManager.java:188)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.instrument/sun.instrument.InstrumentationImpl.transform(InstrumentationImpl.java:594)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.base/java.lang.ClassLoader.defineClass1(Native Method)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:962)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:144)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:776)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull(BuiltinClassLoader.java:691)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:620)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:578)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:490)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.example.randoop.RandoopRegressionTest0.test002(RandoopRegressionTest0.java:24)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.vintage.engine.execution.RunnerExecutor.execute(RunnerExecutor.java:42)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.vintage.engine.VintageTestEngine.executeAllChildren(VintageTestEngine.java:80)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.vintage.engine.VintageTestEngine.execute(VintageTestEngine.java:72)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:147)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:127)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:90)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:55)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:102)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:54)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:86)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.platform.launcher.core.DefaultLauncherSession$DelegatingLauncher.execute(DefaultLauncherSession.java:86)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.platform.launcher.core.SessionPerRequestLauncher.execute(SessionPerRequestLauncher.java:53)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.junit5.JUnit5TestUnitFinder.findTestUnits(JUnit5TestUnitFinder.java:84)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.mutationtest.config.PrioritisingTestUnitFinder.findTestUnits(PrioritisingTestUnitFinder.java:20)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.testapi.execute.FindTestUnits.findTestUnits(FindTestUnits.java:64)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.testapi.execute.FindTestUnits.getTestUnits(FindTestUnits.java:47)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.testapi.execute.FindTestUnits.findTestUnitsForAllSuppliedClasses(FindTestUnits.java:36)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.coverage.execute.CoverageMinion.discoverTests(CoverageMinion.java:177)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.coverage.execute.CoverageMinion.getTestsFromParent(CoverageMinion.java:163)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.coverage.execute.CoverageMinion.main(CoverageMinion.java:87)
+6:57:56 p.m. PIT >> INFO : MINION : RuntimeException while transforming  org/example/data/CSVHandler
+6:57:56 p.m. PIT >> INFO : MINION : java.lang.IllegalArgumentException: Unsupported class file major version 69
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.ClassReader.<init>(ClassReader.java:200)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.ClassReader.<init>(ClassReader.java:180)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.ClassReader.<init>(ClassReader.java:166)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.classinfo.ComputeClassWriter.typeInfo(ComputeClassWriter.java:192)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.classinfo.ComputeClassWriter.getCommonSuperClass(ComputeClassWriter.java:71)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.SymbolTable.addMergedType(SymbolTable.java:1264)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.Frame.merge(Frame.java:1311)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.Frame.merge(Frame.java:1208)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.MethodWriter.computeAllFrames(MethodWriter.java:1612)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.MethodWriter.visitMaxs(MethodWriter.java:1548)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.MethodVisitor.visitMaxs(MethodVisitor.java:786)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.commons.LocalVariablesSorter.visitMaxs(LocalVariablesSorter.java:147)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.MethodVisitor.visitMaxs(MethodVisitor.java:786)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.tree.MethodNode.accept(MethodNode.java:767)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.coverage.analysis.CoverageAnalyser.visitEnd(CoverageAnalyser.java:46)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.ClassReader.readMethod(ClassReader.java:1519)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.ClassReader.accept(ClassReader.java:745)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.ClassReader.accept(ClassReader.java:425)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.coverage.CoverageTransformer.transformBytes(CoverageTransformer.java:59)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.coverage.CoverageTransformer.transform(CoverageTransformer.java:32)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.instrument/java.lang.instrument.ClassFileTransformer.transform(ClassFileTransformer.java:257)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.instrument/sun.instrument.TransformerManager.transform(TransformerManager.java:188)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.instrument/sun.instrument.InstrumentationImpl.transform(InstrumentationImpl.java:594)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.base/java.lang.ClassLoader.defineClass1(Native Method)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:962)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:144)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:776)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull(BuiltinClassLoader.java:691)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:620)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:578)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:490)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.example.data.CSVRepository.<init>(CSVRepository.java:28)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.example.reservation.ReservationManager.<init>(ReservationManager.java:21)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.example.randoop.RandoopRegressionTest0.test005(RandoopRegressionTest0.java:49)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.vintage.engine.execution.RunnerExecutor.execute(RunnerExecutor.java:42)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.vintage.engine.VintageTestEngine.executeAllChildren(VintageTestEngine.java:80)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.vintage.engine.VintageTestEngine.execute(VintageTestEngine.java:72)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:147)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:127)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:90)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:55)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:102)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:54)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:86)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.platform.launcher.core.DefaultLauncherSession$DelegatingLauncher.execute(DefaultLauncherSession.java:86)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.platform.launcher.core.SessionPerRequestLauncher.execute(SessionPerRequestLauncher.java:53)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.junit5.JUnit5TestUnitFinder.findTestUnits(JUnit5TestUnitFinder.java:84)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.mutationtest.config.PrioritisingTestUnitFinder.findTestUnits(PrioritisingTestUnitFinder.java:20)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.testapi.execute.FindTestUnits.findTestUnits(FindTestUnits.java:64)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.testapi.execute.FindTestUnits.getTestUnits(FindTestUnits.java:47)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.testapi.execute.FindTestUnits.findTestUnitsForAllSuppliedClasses(FindTestUnits.java:36)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.coverage.execute.CoverageMinion.discoverTests(CoverageMinion.java:177)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.coverage.execute.CoverageMinion.getTestsFromParent(CoverageMinion.java:163)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.coverage.execute.CoverageMinion.main(CoverageMinion.java:87)
+6:57:56 p.m. PIT >> INFO : MINION : RuntimeException while transforming  org/example/equipment/EquipmentManager
+6:57:56 p.m. PIT >> INFO : MINION : java.lang.IllegalArgumentException: Unsupported class file major version 69
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.ClassReader.<init>(ClassReader.java:200)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.ClassReader.<init>(ClassReader.java:180)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.ClassReader.<init>(ClassReader.java:166)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.classinfo.ComputeClassWriter.typeInfo(ComputeClassWriter.java:192)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.classinfo.ComputeClassWriter.getCommonSuperClass(ComputeClassWriter.java:71)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.SymbolTable.addMergedType(SymbolTable.java:1264)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.Frame.merge(Frame.java:1311)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.Frame.merge(Frame.java:1208)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.MethodWriter.computeAllFrames(MethodWriter.java:1612)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.MethodWriter.visitMaxs(MethodWriter.java:1548)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.MethodVisitor.visitMaxs(MethodVisitor.java:786)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.commons.LocalVariablesSorter.visitMaxs(LocalVariablesSorter.java:147)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.MethodVisitor.visitMaxs(MethodVisitor.java:786)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.tree.MethodNode.accept(MethodNode.java:767)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.coverage.analysis.CoverageAnalyser.visitEnd(CoverageAnalyser.java:46)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.ClassReader.readMethod(ClassReader.java:1519)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.ClassReader.accept(ClassReader.java:745)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.reloc.asm.ClassReader.accept(ClassReader.java:425)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.coverage.CoverageTransformer.transformBytes(CoverageTransformer.java:59)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.coverage.CoverageTransformer.transform(CoverageTransformer.java:32)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.instrument/java.lang.instrument.ClassFileTransformer.transform(ClassFileTransformer.java:257)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.instrument/sun.instrument.TransformerManager.transform(TransformerManager.java:188)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.instrument/sun.instrument.InstrumentationImpl.transform(InstrumentationImpl.java:594)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.base/java.lang.ClassLoader.defineClass1(Native Method)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:962)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:144)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:776)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull(BuiltinClassLoader.java:691)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:620)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:578)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:490)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.example.reservation.ReservationManager.<init>(ReservationManager.java:22)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.example.randoop.RandoopRegressionTest0.test005(RandoopRegressionTest0.java:49)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+6:57:56 p.m. PIT >> INFO : MINION : 	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.vintage.engine.execution.RunnerExecutor.execute(RunnerExecutor.java:42)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.vintage.engine.VintageTestEngine.executeAllChildren(VintageTestEngine.java:80)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.vintage.engine.VintageTestEngine.execute(VintageTestEngine.java:72)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:147)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:127)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:90)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:55)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:102)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:54)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:86)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.platform.launcher.core.DefaultLauncherSession$DelegatingLauncher.execute(DefaultLauncherSession.java:86)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.junit.platform.launcher.core.SessionPerRequestLauncher.execute(SessionPerRequestLauncher.java:53)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.junit5.JUnit5TestUnitFinder.findTestUnits(JUnit5TestUnitFinder.java:84)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.mutationtest.config.PrioritisingTestUnitFinder.findTestUnits(PrioritisingTestUnitFinder.java:20)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.testapi.execute.FindTestUnits.findTestUnits(FindTestUnits.java:64)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.testapi.execute.FindTestUnits.getTestUnits(FindTestUnits.java:47)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.testapi.execute.FindTestUnits.findTestUnitsForAllSuppliedClasses(FindTestUnits.java:36)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.coverage.execute.CoverageMinion.discoverTests(CoverageMinion.java:177)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.coverage.execute.CoverageMinion.getTestsFromParent(CoverageMinion.java:163)
+6:57:56 p.m. PIT >> INFO : MINION : 	at org.pitest.coverage.execute.CoverageMinion.main(CoverageMinion.java:87)
+/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|6:58:08 p.m. PIT >> INFO : Calculated coverage in 13 seconds.
+6:58:08 p.m. PIT >> INFO : Created 23 mutation test units
+7:01:49 p.m. PIT >> WARNING : Minion exited abnormally due to TIMED_OUT
+/7:03:18 p.m. PIT >> WARNING : Minion exited abnormally due to TIMED_OUT
+7:03:33 p.m. PIT >> WARNING : Minion exited abnormally due to TIMED_OUT
+-\|/-\|/-\|/-\|/-\|/-\7:06:34 p.m. PIT >> INFO : Completed in 520 seconds
+================================================================================
+- Mutators
+================================================================================
+> org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator
+>> Generated 12 Killed 1 (8%)
+> KILLED 1 SURVIVED 10 TIMED_OUT 0 NON_VIABLE 0 
+> MEMORY_ERROR 0 NOT_STARTED 0 STARTED 0 RUN_ERROR 0 
+> NO_COVERAGE 1 
+--------------------------------------------------------------------------------
+> org.pitest.mutationtest.engine.gregor.mutators.returns.PrimitiveReturnsMutator
+>> Generated 8 Killed 5 (63%)
+> KILLED 5 SURVIVED 3 TIMED_OUT 0 NON_VIABLE 0 
+> MEMORY_ERROR 0 NOT_STARTED 0 STARTED 0 RUN_ERROR 0 
+> NO_COVERAGE 0 
+--------------------------------------------------------------------------------
+> org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator
+>> Generated 83 Killed 0 (0%)
+> KILLED 0 SURVIVED 28 TIMED_OUT 0 NON_VIABLE 0 
+> MEMORY_ERROR 0 NOT_STARTED 0 STARTED 0 RUN_ERROR 0 
+> NO_COVERAGE 55 
+--------------------------------------------------------------------------------
+> org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanTrueReturnValsMutator
+>> Generated 19 Killed 6 (32%)
+> KILLED 6 SURVIVED 2 TIMED_OUT 0 NON_VIABLE 0 
+> MEMORY_ERROR 0 NOT_STARTED 0 STARTED 0 RUN_ERROR 0 
+> NO_COVERAGE 11 
+--------------------------------------------------------------------------------
+> org.pitest.mutationtest.engine.gregor.mutators.returns.NullReturnValsMutator
+>> Generated 31 Killed 13 (42%)
+> KILLED 13 SURVIVED 6 TIMED_OUT 0 NON_VIABLE 0 
+> MEMORY_ERROR 0 NOT_STARTED 0 STARTED 0 RUN_ERROR 0 
+> NO_COVERAGE 12 
+--------------------------------------------------------------------------------
+> org.pitest.mutationtest.engine.gregor.mutators.MathMutator
+>> Generated 4 Killed 1 (25%)
+> KILLED 1 SURVIVED 2 TIMED_OUT 0 NON_VIABLE 0 
+> MEMORY_ERROR 0 NOT_STARTED 0 STARTED 0 RUN_ERROR 0 
+> NO_COVERAGE 1 
+--------------------------------------------------------------------------------
+> org.pitest.mutationtest.engine.gregor.mutators.returns.EmptyObjectReturnValsMutator
+>> Generated 43 Killed 23 (53%)
+> KILLED 23 SURVIVED 15 TIMED_OUT 0 NON_VIABLE 0 
+> MEMORY_ERROR 0 NOT_STARTED 0 STARTED 0 RUN_ERROR 0 
+> NO_COVERAGE 5 
+--------------------------------------------------------------------------------
+> org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanFalseReturnValsMutator
+>> Generated 8 Killed 2 (25%)
+> KILLED 2 SURVIVED 2 TIMED_OUT 0 NON_VIABLE 0 
+> MEMORY_ERROR 0 NOT_STARTED 0 STARTED 0 RUN_ERROR 0 
+> NO_COVERAGE 4 
+--------------------------------------------------------------------------------
+> org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator
+>> Generated 93 Killed 20 (22%)
+> KILLED 17 SURVIVED 38 TIMED_OUT 3 NON_VIABLE 0 
+> MEMORY_ERROR 0 NOT_STARTED 0 STARTED 0 RUN_ERROR 0 
+> NO_COVERAGE 35 
+--------------------------------------------------------------------------------
+================================================================================
+- Timings
+================================================================================
+> pre-scan for mutations : < 1 second
+> scan classpath : < 1 second
+> coverage and dependency analysis : 13 seconds
+> build mutation tests : < 1 second
+> run mutation analysis : 8 minutes and 25 seconds
+--------------------------------------------------------------------------------
+> Total  : 8 minutes and 39 seconds
+--------------------------------------------------------------------------------
+================================================================================
+- Statistics
+================================================================================
+>> Line Coverage (for mutated classes only): 431/649 (66%)
+>> Generated 301 mutations Killed 71 (24%)
+>> Mutations with no coverage 124. Test strength 40%
+>> Ran 3005 tests (9.98 tests per mutation)
+Enhanced functionality available at https://www.arcmutate.com/
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  08:52 min
+[INFO] Finished at: 2026-04-05T19:06:34-04:00
+[INFO] ------------------------------------------------------------------------

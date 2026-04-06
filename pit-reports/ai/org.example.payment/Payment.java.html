@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+
+<h1>Payment.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@312819ae_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_1'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package org.example.payment;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@312819ae_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_2'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@312819ae_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_3'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.time.LocalDateTime;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@312819ae_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_4'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@312819ae_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_5'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>public class Payment {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@312819ae_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_6'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@312819ae_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_7'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private String paymentId;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@312819ae_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_8'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private String reservationId;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@312819ae_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_9'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private double amount;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@312819ae_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_10'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private String paymentMethod;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@312819ae_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_11'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private boolean isDeposit;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@312819ae_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_12'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private boolean forfeited;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@312819ae_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_13'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private LocalDateTime timestamp;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@312819ae_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_14'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@312819ae_15'/>
+15
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_15'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public Payment(String paymentId, String reservationId, double amount,</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@312819ae_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_16'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                   String paymentMethod, boolean isDeposit) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@312819ae_17'/>
+17
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_17'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.paymentId = paymentId;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@312819ae_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_18'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.reservationId = reservationId;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@312819ae_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_19'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.amount = amount;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@312819ae_20'/>
+20
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_20'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.paymentMethod = paymentMethod;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@312819ae_21'/>
+21
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_21'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.isDeposit = isDeposit;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@312819ae_22'/>
+22
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_22'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.forfeited = false;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@312819ae_23'/>
+23
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_23'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.timestamp = LocalDateTime.now();</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@312819ae_24'/>
+24
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_24'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@312819ae_25'/>
+25
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_25'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@312819ae_26'/>
+26
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_26'>1</a>
+<span>
+1. getPaymentId : replaced return value with &#34;&#34; for org/example/payment/Payment::getPaymentId &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    public String getPaymentId() { return paymentId; }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@312819ae_27'/>
+27
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_27'>1</a>
+<span>
+1. getReservationId : replaced return value with &#34;&#34; for org/example/payment/Payment::getReservationId &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    public String getReservationId() { return reservationId; }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@312819ae_28'/>
+28
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_28'>1</a>
+<span>
+1. getAmount : replaced double return with 0.0d for org/example/payment/Payment::getAmount &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    public double getAmount() { return amount; }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@312819ae_29'/>
+29
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_29'>1</a>
+<span>
+1. getPaymentMethod : replaced return value with &#34;&#34; for org/example/payment/Payment::getPaymentMethod &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    public String getPaymentMethod() { return paymentMethod; }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@312819ae_30'/>
+30
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_30'>2</a>
+<span>
+1. isDeposit : replaced boolean return with false for org/example/payment/Payment::isDeposit &rarr; KILLED<br/>
+2. isDeposit : replaced boolean return with true for org/example/payment/Payment::isDeposit &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    public boolean isDeposit() { return isDeposit; }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@312819ae_31'/>
+31
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_31'>2</a>
+<span>
+1. isForfeited : replaced boolean return with true for org/example/payment/Payment::isForfeited &rarr; KILLED<br/>
+2. isForfeited : replaced boolean return with false for org/example/payment/Payment::isForfeited &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    public boolean isForfeited() { return forfeited; }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@312819ae_32'/>
+32
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_32'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    public void setForfeited(boolean forfeited) { this.forfeited = forfeited; }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@312819ae_33'/>
+33
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_33'>1</a>
+<span>
+1. getTimestamp : replaced return value with null for org/example/payment/Payment::getTimestamp &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    public LocalDateTime getTimestamp() { return timestamp; }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@312819ae_34'/>
+34
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_34'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    public void setTimestamp(LocalDateTime timestamp) { this.timestamp = timestamp; }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@312819ae_35'/>
+35
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_35'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@312819ae_26'>26</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_26'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getPaymentId<br/><b>Killed by : </b>org.example.AI_assistant.payment.PaymentTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.payment.PaymentTest]/[method:testFinalPaymentCreation()]</span></span> replaced return value with &#34;&#34; for org/example/payment/Payment::getPaymentId &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@312819ae_27'>27</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_27'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getReservationId<br/><b>Killed by : </b>org.example.AI_assistant.payment.PaymentTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.payment.PaymentTest]/[method:testFinalPaymentCreation()]</span></span> replaced return value with &#34;&#34; for org/example/payment/Payment::getReservationId &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@312819ae_28'>28</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_28'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getAmount<br/><b>Killed by : </b>org.example.AI_assistant.payment.PaymentTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.payment.PaymentTest]/[method:testFacultyDepositAmount()]</span></span> replaced double return with 0.0d for org/example/payment/Payment::getAmount &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@312819ae_29'>29</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_29'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getPaymentMethod<br/><b>Killed by : </b>org.example.AI_assistant.payment.PaymentTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.payment.PaymentTest]/[method:testInstitutionalPayment()]</span></span> replaced return value with &#34;&#34; for org/example/payment/Payment::getPaymentMethod &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@312819ae_30'>30</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_30'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>isDeposit<br/><b>Killed by : </b>org.example.AI_assistant.payment.PaymentTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.payment.PaymentTest]/[method:testStudentDepositAmount()]</span></span> replaced boolean return with false for org/example/payment/Payment::isDeposit &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>isDeposit<br/><b>Killed by : </b>org.example.AI_assistant.payment.PaymentTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.payment.PaymentTest]/[method:testFinalPaymentCreation()]</span></span> replaced boolean return with true for org/example/payment/Payment::isDeposit &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@312819ae_31'>31</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_31'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>isForfeited<br/><b>Killed by : </b>org.example.AI_assistant.payment.PaymentTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.payment.PaymentTest]/[method:testForfeitedDefaultFalse()]</span></span> replaced boolean return with true for org/example/payment/Payment::isForfeited &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>isForfeited<br/><b>Killed by : </b>org.example.AI_assistant.payment.PaymentTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.payment.PaymentTest]/[method:testUnforfeitDeposit()]</span></span> replaced boolean return with false for org/example/payment/Payment::isForfeited &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@312819ae_33'>33</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@312819ae_33'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getTimestamp<br/><b>Killed by : </b>org.example.AI_assistant.payment.PaymentTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.payment.PaymentTest]/[method:testSetTimestamp()]</span></span> replaced return value with null for org/example/payment/Payment::getTimestamp &rarr; KILLED</p> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+<li class='mutator'>CONDITIONALS_BOUNDARY</li>
+<li class='mutator'>EMPTY_RETURNS</li>
+<li class='mutator'>FALSE_RETURNS</li>
+<li class='mutator'>INCREMENTS</li>
+<li class='mutator'>INVERT_NEGS</li>
+<li class='mutator'>MATH</li>
+<li class='mutator'>NEGATE_CONDITIONALS</li>
+<li class='mutator'>NULL_RETURNS</li>
+<li class='mutator'>PRIMITIVE_RETURNS</li>
+<li class='mutator'>TRUE_RETURNS</li>
+<li class='mutator'>VOID_METHOD_CALLS</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>org.example.AI_assistant.payment.PaymentTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.payment.PaymentTest]/[method:testFacultyDepositAmount()] (0 ms)</li><li>org.example.AI_assistant.payment.PaymentTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.payment.PaymentTest]/[method:testResearcherDepositAmount()] (0 ms)</li><li>org.example.AI_assistant.payment.PaymentTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.payment.PaymentTest]/[method:testStudentDepositAmount()] (0 ms)</li><li>org.example.AI_assistant.payment.PaymentTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.payment.PaymentTest]/[method:testZeroAmountPayment()] (0 ms)</li><li>org.example.AI_assistant.payment.PaymentTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.payment.PaymentTest]/[method:testLargeAmountPayment()] (0 ms)</li><li>org.example.AI_assistant.payment.PaymentTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.payment.PaymentTest]/[method:testGuestDepositAmount()] (0 ms)</li><li>org.example.AI_assistant.payment.PaymentTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.payment.PaymentTest]/[method:testFinalPaymentCreation()] (0 ms)</li><li>org.example.AI_assistant.payment.PaymentTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.payment.PaymentTest]/[method:testDepositPaymentCreation()] (0 ms)</li><li>org.example.AI_assistant.payment.PaymentDecoratorTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.payment.PaymentDecoratorTest]/[method:testCreditProcessSuccess()] (0 ms)</li><li>org.example.AI_assistant.payment.PaymentDecoratorTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.payment.PaymentDecoratorTest]/[method:testGrantProcessSuccess()] (0 ms)</li><li>org.example.AI_assistant.payment.PaymentDecoratorTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.payment.PaymentDecoratorTest]/[method:testDecoratorWithGrantFacultyPayment()] (0 ms)</li><li>org.example.AI_assistant.payment.PaymentDecoratorTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.payment.PaymentDecoratorTest]/[method:testInstitutionalProcessSuccess()] (0 ms)</li><li>org.example.AI_assistant.payment.PaymentDecoratorTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.payment.PaymentDecoratorTest]/[method:testDecoratorWithGuestDeposit()] (0 ms)</li><li>org.example.AI_assistant.payment.PaymentDecoratorTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.payment.PaymentDecoratorTest]/[method:testDecoratorWithStudentDeposit()] (0 ms)</li><li>org.example.AI_assistant.payment.PaymentDecoratorTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.payment.PaymentDecoratorTest]/[method:testDebitProcessSuccess()] (0 ms)</li><li>org.example.AI_assistant.payment.PaymentDecoratorTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.payment.PaymentDecoratorTest]/[method:testDecoratorWithInstitutionalResearcherPayment()] (1 ms)</li><li>org.example.AI_assistant.reservation.ReservationManagerTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.reservation.ReservationManagerTest]/[method:testProcessDepositFaculty()] (0 ms)</li><li>org.example.AI_assistant.reservation.ReservationManagerTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.reservation.ReservationManagerTest]/[method:testProcessDepositResearcher()] (0 ms)</li><li>org.example.AI_assistant.reservation.ReservationManagerTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.reservation.ReservationManagerTest]/[method:testProcessDepositGuest()] (0 ms)</li><li>org.example.AI_assistant.reservation.ReservationManagerTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.reservation.ReservationManagerTest]/[method:testProcessDepositStudent()] (0 ms)</li><li>org.example.AI_assistant.reservation.ReservationManagerTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.reservation.ReservationManagerTest]/[method:testFinalPaymentLateDepositForfeited()] (0 ms)</li><li>org.example.AI_assistant.reservation.ReservationManagerTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.reservation.ReservationManagerTest]/[method:testFinalPaymentFacultyOnTime()] (0 ms)</li><li>org.example.AI_assistant.reservation.ReservationManagerTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.reservation.ReservationManagerTest]/[method:testFinalPaymentResearcherLate()] (0 ms)</li><li>org.example.AI_assistant.reservation.ReservationManagerTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.reservation.ReservationManagerTest]/[method:testFinalPaymentGuestOnTime()] (0 ms)</li><li>org.example.AI_assistant.reservation.ReservationManagerTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.reservation.ReservationManagerTest]/[method:testFinalPaymentOnTimeDeductDeposit()] (0 ms)</li><li>org.example.AI_assistant.payment.PaymentTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.payment.PaymentTest]/[method:testMultiplePaymentsForSameReservation()] (0 ms)</li><li>org.example.AI_assistant.payment.PaymentTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.payment.PaymentTest]/[method:testSetTimestamp()] (0 ms)</li><li>org.example.AI_assistant.payment.PaymentTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.payment.PaymentTest]/[method:testTimestampAutoSet()] (0 ms)</li><li>org.example.AI_assistant.payment.PaymentTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.payment.PaymentTest]/[method:testForfeitedDefaultFalse()] (0 ms)</li><li>org.example.AI_assistant.payment.PaymentTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.payment.PaymentTest]/[method:testUnforfeitDeposit()] (0 ms)</li><li>org.example.AI_assistant.payment.PaymentTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.payment.PaymentTest]/[method:testForfeitDeposit()] (0 ms)</li><li>org.example.AI_assistant.payment.PaymentTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.payment.PaymentTest]/[method:testInstitutionalPayment()] (0 ms)</li><li>org.example.AI_assistant.payment.PaymentTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.payment.PaymentTest]/[method:testCreditPayment()] (0 ms)</li><li>org.example.AI_assistant.payment.PaymentTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.payment.PaymentTest]/[method:testGrantPayment()] (0 ms)</li><li>org.example.AI_assistant.payment.PaymentTest.[engine:junit-jupiter]/[class:org.example.AI_assistant.payment.PaymentTest]/[method:testDebitPayment()] (0 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='https://pitest.org'>PIT</a> 1.15.3
+
+</body>
+</html>
