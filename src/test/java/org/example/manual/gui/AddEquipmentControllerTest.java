@@ -1,16 +1,11 @@
 package org.example.manual.gui;
 
 import org.example.equipment.Equipment;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.DisplayName;
-
+import org.junit.jupiter.api.*;
 import java.util.ArrayList;
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-@DisplayName("Add Equipment Controller Tests")
 public class AddEquipmentControllerTest {
 
     private TestAddEquipmentController testController;
@@ -22,20 +17,16 @@ public class AddEquipmentControllerTest {
         testController = new TestAddEquipmentController(testEquipmentManager);
     }
 
-    // ────── INITIALIZATION TESTS ──────────
 
     @Test
-    @DisplayName("Should initialize unit count to 0")
     void testInitializeUnitCount() {
         testController.callInitialize();
 
         assertEquals("0", testController.getUnitCountLabel(), "Initial unit count should be 0");
     }
 
-    // ────── IMAGE PICKER TESTS ──────────
 
     @Test
-    @DisplayName("Should store image path when image is selected")
     void testHandlePickImageStoresPath() {
         String imagePath = "/path/to/image.jpg";
         testController.setSelectedImagePath(imagePath);
@@ -45,7 +36,6 @@ public class AddEquipmentControllerTest {
     }
 
     @Test
-    @DisplayName("Should recognize JPEG as previewable format")
     void testIsPreviewableJPEG() {
         assertTrue(testController.isPreviewable("jpg"), "JPG should be previewable");
         assertTrue(testController.isPreviewable("jpeg"), "JPEG should be previewable");
@@ -53,21 +43,18 @@ public class AddEquipmentControllerTest {
     }
 
     @Test
-    @DisplayName("Should recognize PNG as previewable format")
     void testIsPreviewablePNG() {
         assertTrue(testController.isPreviewable("png"), "PNG should be previewable");
         assertTrue(testController.isPreviewable("PNG"), "PNG uppercase should be previewable");
     }
 
     @Test
-    @DisplayName("Should not recognize HEIC as previewable format")
     void testIsNotPreviewableHEIC() {
         assertFalse(testController.isPreviewable("heic"), "HEIC should not be previewable");
         assertFalse(testController.isPreviewable("heif"), "HEIF should not be previewable");
     }
 
     @Test
-    @DisplayName("Should extract file extension correctly")
     void testGetExtensionCorrectly() {
         assertEquals("jpg", testController.getFileExtension("image.jpg"), "Should extract jpg extension");
         assertEquals("png", testController.getFileExtension("photo.PNG"), "Should extract and lowercase png");
@@ -75,21 +62,13 @@ public class AddEquipmentControllerTest {
     }
 
     @Test
-    @DisplayName("Should handle filename without extension")
-    void testGetExtensionNoExtension() {
-        assertEquals("", testController.getFileExtension("noextension"), "Should return empty for no extension");
-    }
+    void testGetExtensionNoExtension() { assertEquals("", testController.getFileExtension("noextension"), "Should return empty for no extension"); }
 
     @Test
-    @DisplayName("Should handle hidden files correctly")
-    void testGetExtensionHiddenFile() {
-        assertEquals("jpg", testController.getFileExtension(".hidden.jpg"), "Should extract extension from hidden file");
-    }
+    void testGetExtensionHiddenFile() { assertEquals("jpg", testController.getFileExtension(".hidden.jpg"), "Should extract extension from hidden file");}
 
-    // ────── UNIT COUNT TESTS ──────────
 
     @Test
-    @DisplayName("Should increment unit count")
     void testHandleIncrement() {
         testController.callInitialize();
         assertEquals("0", testController.getUnitCountLabel(), "Initial count should be 0");
@@ -102,7 +81,6 @@ public class AddEquipmentControllerTest {
     }
 
     @Test
-    @DisplayName("Should decrement unit count")
     void testHandleDecrement() {
         testController.callInitialize();
         testController.callHandleIncrement();
@@ -118,7 +96,6 @@ public class AddEquipmentControllerTest {
     }
 
     @Test
-    @DisplayName("Should not decrement below 0")
     void testHandleDecrementNeverNegative() {
         testController.callInitialize();
 
@@ -130,25 +107,18 @@ public class AddEquipmentControllerTest {
     }
 
     @Test
-    @DisplayName("Should handle multiple increments and decrements")
     void testHandleMultipleUnitOperations() {
         testController.callInitialize();
 
-        for (int i = 0; i < 5; i++) {
-            testController.callHandleIncrement();
-        }
+        for (int i = 0; i < 5; i++) { testController.callHandleIncrement(); }
         assertEquals("5", testController.getUnitCountLabel(), "Count should be 5");
 
-        for (int i = 0; i < 3; i++) {
-            testController.callHandleDecrement();
-        }
+        for (int i = 0; i < 3; i++) { testController.callHandleDecrement(); }
         assertEquals("2", testController.getUnitCountLabel(), "Count should be 2");
     }
 
-    // ────── TAG SELECTION TESTS ──────────
 
     @Test
-    @DisplayName("Should select chemistry tag")
     void testSelectChemistryTag() {
         testController.setTagChemistrySelected(true);
         List<String> tags = testController.callGetSelectedTags();
@@ -157,7 +127,6 @@ public class AddEquipmentControllerTest {
     }
 
     @Test
-    @DisplayName("Should select handheld tag")
     void testSelectHandheldTag() {
         testController.setTagHandheldSelected(true);
         List<String> tags = testController.callGetSelectedTags();
@@ -166,7 +135,6 @@ public class AddEquipmentControllerTest {
     }
 
     @Test
-    @DisplayName("Should select individual tag")
     void testSelectIndividualTag() {
         testController.setTagIndividualSelected(true);
         List<String> tags = testController.callGetSelectedTags();
@@ -175,7 +143,6 @@ public class AddEquipmentControllerTest {
     }
 
     @Test
-    @DisplayName("Should select physics tag")
     void testSelectPhysicsTag() {
         testController.setTagPhysicsSelected(true);
         List<String> tags = testController.callGetSelectedTags();
@@ -184,7 +151,6 @@ public class AddEquipmentControllerTest {
     }
 
     @Test
-    @DisplayName("Should select in-lab tag")
     void testSelectInLabTag() {
         testController.setTagInLabSelected(true);
         List<String> tags = testController.callGetSelectedTags();
@@ -193,7 +159,6 @@ public class AddEquipmentControllerTest {
     }
 
     @Test
-    @DisplayName("Should select partnered tag")
     void testSelectPartneredTag() {
         testController.setTagPartneredSelected(true);
         List<String> tags = testController.callGetSelectedTags();
@@ -202,7 +167,6 @@ public class AddEquipmentControllerTest {
     }
 
     @Test
-    @DisplayName("Should select multiple tags")
     void testSelectMultipleTags() {
         testController.setTagChemistrySelected(true);
         testController.setTagHandheldSelected(true);
@@ -217,7 +181,6 @@ public class AddEquipmentControllerTest {
     }
 
     @Test
-    @DisplayName("Should return empty list when no tags selected")
     void testNoTagsSelected() {
         List<String> tags = testController.callGetSelectedTags();
 
@@ -225,7 +188,6 @@ public class AddEquipmentControllerTest {
     }
 
     @Test
-    @DisplayName("Should deselect tags")
     void testDeselectTags() {
         testController.setTagChemistrySelected(true);
         testController.setTagPhysicsSelected(true);
@@ -241,10 +203,8 @@ public class AddEquipmentControllerTest {
         assertFalse(tags.contains("Chemistry"));
     }
 
-    // ────── ADD EQUIPMENT TESTS ──────────
 
     @Test
-    @DisplayName("Should add equipment with valid data")
     void testHandleAddEquipmentValid() {
         testController.setNameField("Microscope");
         testController.setDescriptionArea("Advanced Microscope");
@@ -260,7 +220,6 @@ public class AddEquipmentControllerTest {
     }
 
     @Test
-    @DisplayName("Should reject empty equipment name")
     void testHandleAddEmptyName() {
         testController.setNameField("");
         testController.setDescriptionArea("Description");
@@ -274,7 +233,6 @@ public class AddEquipmentControllerTest {
     }
 
     @Test
-    @DisplayName("Should reject whitespace-only equipment name")
     void testHandleAddWhitespaceOnlyName() {
         testController.setNameField("   ");
         testController.setDescriptionArea("Description");
@@ -287,7 +245,6 @@ public class AddEquipmentControllerTest {
     }
 
     @Test
-    @DisplayName("Should use equipment name as description if description is empty")
     void testHandleAddDescriptionDefaultsToName() {
         testController.setNameField("Spectrometer");
         testController.setDescriptionArea("");
@@ -300,7 +257,6 @@ public class AddEquipmentControllerTest {
     }
 
     @Test
-    @DisplayName("Should use default location if location is empty")
     void testHandleAddLocationDefaultsToTBD() {
         testController.setNameField("Equipment");
         testController.setDescriptionArea("Description");
@@ -313,7 +269,6 @@ public class AddEquipmentControllerTest {
     }
 
     @Test
-    @DisplayName("Should include selected tags in added equipment")
     void testHandleAddIncludesTags() {
         testController.setNameField("Equipment");
         testController.setDescriptionArea("Description");
@@ -330,7 +285,6 @@ public class AddEquipmentControllerTest {
     }
 
     @Test
-    @DisplayName("Should include product statistics in added equipment")
     void testHandleAddIncludesStatistics() {
         testController.setNameField("Equipment");
         testController.setDescriptionArea("Description");
@@ -344,7 +298,6 @@ public class AddEquipmentControllerTest {
     }
 
     @Test
-    @DisplayName("Should include unit count in added equipment")
     void testHandleAddIncludesUnitCount() {
         testController.setNameField("Equipment");
         testController.setDescriptionArea("Description");
@@ -360,7 +313,6 @@ public class AddEquipmentControllerTest {
     }
 
     @Test
-    @DisplayName("Should include image path in added equipment")
     void testHandleAddIncludesImagePath() {
         testController.setNameField("Equipment");
         testController.setDescriptionArea("Description");
@@ -374,7 +326,6 @@ public class AddEquipmentControllerTest {
     }
 
     @Test
-    @DisplayName("Should generate unique equipment ID")
     void testHandleAddGeneratesUniqueId() {
         testController.setNameField("Equipment 1");
         testController.setDescriptionArea("Description");
@@ -383,12 +334,8 @@ public class AddEquipmentControllerTest {
         testController.callHandleAdd();
         String equipmentId1 = testEquipmentManager.getLastAddedEquipment().getEquipmentId();
 
-        // Reset form and add delay to ensure unique timestamp
-        try {
-            Thread.sleep(10); // Small delay to ensure different timestamp
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
+        try { Thread.sleep(10); // Small delay for a different timestamp
+        } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
 
         testController.setNameField("Equipment 2");
         testController.setDescriptionArea("Description");
@@ -402,10 +349,8 @@ public class AddEquipmentControllerTest {
         assertTrue(equipmentId2.startsWith("EQ-"), "Equipment ID should start with EQ-");
     }
 
-    // ────── NAVIGATION TESTS ──────────
 
     @Test
-    @DisplayName("Should switch to Manager scene on successful add")
     void testHandleAddNavigatesToManager() {
         testController.setNameField("Equipment");
         testController.setDescriptionArea("Description");
@@ -418,7 +363,6 @@ public class AddEquipmentControllerTest {
     }
 
     @Test
-    @DisplayName("Should switch to Manager scene when back is clicked")
     void testHandleBackNavigatesToManager() {
         TestMainApp.resetSceneSwitch();
         testController.callHandleBack();
@@ -426,10 +370,8 @@ public class AddEquipmentControllerTest {
         assertEquals("Manager", TestMainApp.getLastSwitchedScene(), "Should switch to Manager scene");
     }
 
-    // ────── INTEGRATION TESTS ──────────
 
     @Test
-    @DisplayName("Should handle complete add equipment workflow")
     void testCompleteAddEquipmentWorkflow() {
         testController.callInitialize();
 
@@ -463,7 +405,6 @@ public class AddEquipmentControllerTest {
     }
 
     @Test
-    @DisplayName("Should trim whitespace from input fields")
     void testHandleAddTrimsWhitespace() {
         testController.setNameField("  Equipment Name  ");
         testController.setDescriptionArea("  Description  ");
@@ -480,7 +421,6 @@ public class AddEquipmentControllerTest {
     }
 
     @Test
-    @DisplayName("Should reset form after successful submission")
     void testFormResetAfterAdd() {
         testController.setNameField("Equipment");
         testController.setDescriptionArea("Description");
@@ -489,14 +429,11 @@ public class AddEquipmentControllerTest {
 
         testController.callHandleAdd();
 
-        // Verify alert was shown (indicating success)
         assertTrue(testController.wasAlertShown(), "Success alert should be shown");
     }
 }
 
-/**
- * TestAddEquipmentController wraps AddEquipmentController for testing without JavaFX
- */
+
 class TestAddEquipmentController {
     private String nameField = "";
     private String descriptionArea = "";
@@ -580,13 +517,9 @@ class TestAddEquipmentController {
         TestMainApp.switchScene("Manager");
     }
 
-    public void callHandleBack() {
-        TestMainApp.switchScene("Manager");
-    }
+    public void callHandleBack() { TestMainApp.switchScene("Manager"); }
 
-    public boolean isPreviewable(String ext) {
-        return PREVIEWABLE.contains(ext.toLowerCase());
-    }
+    public boolean isPreviewable(String ext) { return PREVIEWABLE.contains(ext.toLowerCase()); }
 
     public String getFileExtension(String fileName) {
         int dot = fileName.lastIndexOf('.');
@@ -599,14 +532,14 @@ class TestAddEquipmentController {
         lastAlertMessage = message;
     }
 
-    // Getters for verification
+    // Getters
     public String getUnitCountLabel() { return unitCountLabel; }
     public String getSelectedImagePath() { return selectedImagePath; }
     public boolean hasSelectedImagePath() { return !selectedImagePath.isEmpty(); }
     public boolean wasAlertShown() { return alertShown; }
     public String getLastAlertMessage() { return lastAlertMessage; }
 
-    // Setters for testing
+    // Setters
     public void setNameField(String name) { this.nameField = name; }
     public void setDescriptionArea(String description) { this.descriptionArea = description; }
     public void setLocationField(String location) { this.locationField = location; }
@@ -621,9 +554,6 @@ class TestAddEquipmentController {
     public void setTagPartneredSelected(boolean selected) { this.tagPartnered = selected; }
 }
 
-/**
- * TestEquipmentManager is a test double for EquipmentManager
- */
 class TestEquipmentManager {
     private boolean addEquipmentCalled = false;
     private Equipment lastAddedEquipment = null;

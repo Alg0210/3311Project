@@ -1,13 +1,9 @@
 package org.example.manual.equipment;
 
 import org.example.equipment.*;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.DisplayName;
-
+import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-@DisplayName("Equipment Action Tests")
 class EquipmentActionTest {
 
     private TestEquipmentManager testManager;
@@ -21,7 +17,6 @@ class EquipmentActionTest {
     }
 
     @Test
-    @DisplayName("Test ADD action executes correctly")
     void testAddActionExecute() {
         equipmentAction = new EquipmentAction(testManager, equipment, "ADD");
 
@@ -33,7 +28,6 @@ class EquipmentActionTest {
 
 
     @Test
-    @DisplayName("Test ENABLE action executes correctly")
     void testEnableActionExecute() {
         equipment.setStatus(EquipmentStatus.DISABLED);
         equipmentAction = new EquipmentAction(testManager, equipment, "ENABLE");
@@ -45,7 +39,6 @@ class EquipmentActionTest {
     }
 
     @Test
-    @DisplayName("Test DISABLE action executes correctly")
     void testDisableActionExecute() {
         equipment.setStatus(EquipmentStatus.AVAILABLE);
         equipmentAction = new EquipmentAction(testManager, equipment, "DISABLE");
@@ -57,7 +50,6 @@ class EquipmentActionTest {
     }
 
     @Test
-    @DisplayName("Test MAINTENANCE action executes correctly")
     void testMaintenanceActionExecute() {
         equipmentAction = new EquipmentAction(testManager, equipment, "MAINTENANCE");
 
@@ -68,14 +60,11 @@ class EquipmentActionTest {
     }
 
     @Test
-    @DisplayName("Test unknown action type prints to console")
     void testUnknownActionType() {
         equipmentAction = new EquipmentAction(testManager, equipment, "UNKNOWN");
 
-        // Execute should not throw exception for unknown action
         assertDoesNotThrow(() -> equipmentAction.execute());
 
-        // Manager methods should not be called for unknown action
         assertFalse(testManager.wasAddEquipmentCalled(), "addEquipment should not be called");
         assertFalse(testManager.wasEnableEquipmentCalled(), "enableEquipment should not be called");
         assertFalse(testManager.wasDisableEquipmentCalled(), "disableEquipment should not be called");
@@ -83,7 +72,6 @@ class EquipmentActionTest {
     }
 
     @Test
-    @DisplayName("Test case-insensitive action types")
     void testCaseInsensitiveActionTypes() {
         equipmentAction = new EquipmentAction(testManager, equipment, "add");
 
@@ -94,13 +82,12 @@ class EquipmentActionTest {
     }
 
     @Test
-    @DisplayName("Test undo restores previous status")
     void testUndoRestoresPreviousStatus() {
         equipment.setStatus(EquipmentStatus.AVAILABLE);
         equipmentAction = new EquipmentAction(testManager, equipment, "DISABLE");
 
         equipmentAction.execute();
-        equipment.setStatus(EquipmentStatus.DISABLED); // Simulate status change
+        equipment.setStatus(EquipmentStatus.DISABLED);
         equipmentAction.undo();
 
         assertTrue(testManager.wasUpdateEquipmentStatusCalled(), "updateEquipmentStatus should have been called");
@@ -108,25 +95,21 @@ class EquipmentActionTest {
     }
 
     @Test
-    @DisplayName("Test undo when previous status is null")
     void testUndoWithNullPreviousStatus() {
         equipmentAction = new EquipmentAction(testManager, equipment, "ADD");
-        // Don't call execute, so previousStatus remains null
 
         equipmentAction.undo();
 
-        // Should not throw exception and should not call update
         assertFalse(testManager.wasUpdateEquipmentStatusCalled(), "updateEquipmentStatus should not be called");
     }
 
     @Test
-    @DisplayName("Test undo from MAINTENANCE status")
     void testUndoFromMaintenanceStatus() {
         equipment.setStatus(EquipmentStatus.AVAILABLE);
         equipmentAction = new EquipmentAction(testManager, equipment, "MAINTENANCE");
 
         equipmentAction.execute();
-        equipment.setStatus(EquipmentStatus.MAINTENANCE); // Simulate status change
+        equipment.setStatus(EquipmentStatus.MAINTENANCE);
         equipmentAction.undo();
 
         assertTrue(testManager.wasUpdateEquipmentStatusCalled(), "updateEquipmentStatus should have been called");
@@ -134,7 +117,6 @@ class EquipmentActionTest {
     }
 
     @Test
-    @DisplayName("Test equipment reference is maintained")
     void testEquipmentReferenceIsMaintained() {
         equipment.setName("Advanced Microscope");
         equipmentAction = new EquipmentAction(testManager, equipment, "ADD");
@@ -145,16 +127,13 @@ class EquipmentActionTest {
     }
 
     @Test
-    @DisplayName("Test multiple consecutive actions")
     void testMultipleConsecutiveActions() {
         equipment.setStatus(EquipmentStatus.AVAILABLE);
 
-        // First action: DISABLE
         equipmentAction = new EquipmentAction(testManager, equipment, "DISABLE");
         equipmentAction.execute();
         equipment.setStatus(EquipmentStatus.DISABLED);
 
-        // Second action: ENABLE
         EquipmentAction enableAction = new EquipmentAction(testManager, equipment, "ENABLE");
         enableAction.execute();
 
@@ -163,7 +142,6 @@ class EquipmentActionTest {
     }
 
     @Test
-    @DisplayName("Test undo after multiple status changes")
     void testUndoAfterMultipleStatusChanges() {
         equipment.setStatus(EquipmentStatus.AVAILABLE);
         equipmentAction = new EquipmentAction(testManager, equipment, "DISABLE");
@@ -174,16 +152,10 @@ class EquipmentActionTest {
 
         equipmentAction.undo();
 
-        // Should restore to AVAILABLE (the status before execute was called)
         assertEquals(EquipmentStatus.AVAILABLE, equipment.getStatus());
     }
 }
 
-/**
- * TestEquipmentManager is a test double that simulates EquipmentManager behavior
- * without actually performing file I/O or database operations.
- * It tracks which methods were called and stores the parameters for verification.
- */
 class TestEquipmentManager extends EquipmentManager {
 
     private boolean addEquipmentCalled = false;
@@ -229,7 +201,7 @@ class TestEquipmentManager extends EquipmentManager {
         updateEquipmentStatusCalled = true;
     }
 
-    // Getter methods for verification
+    // Getters to verify
     public boolean wasAddEquipmentCalled() {
         return addEquipmentCalled;
     }
