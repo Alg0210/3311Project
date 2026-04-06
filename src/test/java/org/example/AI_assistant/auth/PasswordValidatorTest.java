@@ -2,39 +2,36 @@ package org.example.AI_assistant.auth;
 
 import org.example.auth.PasswordValidator;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PasswordValidatorTest {
-
     @Test
-    public void acceptsPasswordMeetingAllRequirements() {
-        assertTrue(PasswordValidator.isValid("Valid123!"));
+    void testValidPassword() {
+        assertTrue(PasswordValidator.isValid("Password1!"));
     }
 
     @Test
-    public void rejectsPasswordShorterThanEightCharacters() {
-        assertFalse(PasswordValidator.isValid("Aa1!abc"));
+    void testShortPassword() {
+        assertFalse(PasswordValidator.isValid("P1!a"));
     }
 
     @Test
-    public void rejectsPasswordWithoutUppercaseLetter() {
-        assertFalse(PasswordValidator.isValid("valid123!"));
+    void testNoUppercase() {
+        assertFalse(PasswordValidator.isValid("password1!"));
     }
 
     @Test
-    public void rejectsPasswordWithoutLowercaseLetter() {
-        assertFalse(PasswordValidator.isValid("VALID123!"));
+    void testNoLowercase() {
+        assertFalse(PasswordValidator.isValid("PASSWORD1!"));
     }
 
     @Test
-    public void rejectsPasswordWithoutDigit() {
-        assertFalse(PasswordValidator.isValid("Invalid!!"));
+    void testNoDigit() {
+        assertFalse(PasswordValidator.isValid("Password!"));
     }
 
     @Test
-    public void rejectsPasswordWithoutSymbol() {
-        assertFalse(PasswordValidator.isValid("Invalid123"));
+    void testNoSymbol() {
+        assertFalse(PasswordValidator.isValid("Password1"));
     }
 }

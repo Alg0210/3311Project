@@ -45,10 +45,6 @@ public class ReservationActionTest {
                     reservation.setStatus(ReservationStatus.EXTENDED);
                 }
             }
-            @Override
-            public void updateReservation(Reservation res) {
-                // stub for undo update
-            }
         };
 
         User user = new User("U1", "T", "E", "P", "STUDENT", "D", "ID") {
@@ -107,7 +103,7 @@ public class ReservationActionTest {
     void testUndoModify() {
         LocalDateTime originalEnd = reservation.getEndTime();
         action = new ReservationAction(manager, reservation, "MODIFY", LocalDateTime.now().plusHours(5));
-        action.undo(); // sets end time to itself
+        action.undo();
         assertEquals(originalEnd, reservation.getEndTime());
     }
 }

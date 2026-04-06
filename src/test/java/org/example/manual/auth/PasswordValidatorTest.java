@@ -55,13 +55,11 @@ public class PasswordValidatorTest {
 
     @Test
     public void testPasswordWithMultipleSymbolsReturnsTrue() {
-        // T(upper), 3(digit), s(lower), t(lower), @, #, $, % — exactly 8 chars
         assertTrue(PasswordValidator.isValid("T3st@#$%"));
     }
 
     @Test
     public void testSpaceCountsAsSymbol() {
-        // Space is not a letter or digit, so it counts as a symbol
         assertTrue(PasswordValidator.isValid("Test1 2!"));
     }
 }

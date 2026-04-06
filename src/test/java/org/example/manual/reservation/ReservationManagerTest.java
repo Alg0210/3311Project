@@ -197,7 +197,7 @@ public class ReservationManagerTest {
         Equipment eq = new Equipment("E1", "Desc", "Lab1");
         mockEqManager.eq = eq;
         
-        LocalDateTime start = LocalDateTime.now().plusDays(1); // active later
+        LocalDateTime start = LocalDateTime.now().plusDays(1);
         LocalDateTime end = start.plusHours(2);
         Reservation res = new Reservation("R1", user, eq, start, end, 10.0);
         res.setStatus(ReservationStatus.CONFIRMED);

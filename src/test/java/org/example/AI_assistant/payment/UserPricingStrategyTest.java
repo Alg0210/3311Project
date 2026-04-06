@@ -8,8 +8,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class UserPricingStrategyTest {
 
-    // ─── STUDENT PRICING (Req3: $10/hr) ─────────────────────────
-
     @Test
     void testStudentHourlyRate() {
         UserPricingStrategy strategy = new UserPricingStrategy("STUDENT");
@@ -40,8 +38,6 @@ public class UserPricingStrategyTest {
         assertEquals(50.0, strategy.calculateTotal(5));
     }
 
-    // ─── FACULTY PRICING (Req3: $15/hr) ─────────────────────────
-
     @Test
     void testFacultyHourlyRate() {
         UserPricingStrategy strategy = new UserPricingStrategy("FACULTY");
@@ -65,8 +61,6 @@ public class UserPricingStrategyTest {
         UserPricingStrategy strategy = new UserPricingStrategy("FACULTY");
         assertEquals(45.0, strategy.calculateTotal(3));
     }
-
-    // ─── RESEARCHER PRICING (Req3: $20/hr) ──────────────────────
 
     @Test
     void testResearcherHourlyRate() {
@@ -92,8 +86,6 @@ public class UserPricingStrategyTest {
         assertEquals(80.0, strategy.calculateTotal(4));
     }
 
-    // ─── GUEST PRICING (Req3: $30/hr) ───────────────────────────
-
     @Test
     void testGuestHourlyRate() {
         UserPricingStrategy strategy = new UserPricingStrategy("GUEST");
@@ -118,8 +110,6 @@ public class UserPricingStrategyTest {
         assertEquals(150.0, strategy.calculateTotal(5));
     }
 
-    // ─── UNKNOWN USER TYPE ──────────────────────────────────────
-
     @Test
     void testUnknownUserTypeHourlyRate() {
         UserPricingStrategy strategy = new UserPricingStrategy("UNKNOWN");
@@ -138,8 +128,6 @@ public class UserPricingStrategyTest {
         assertEquals(0.0, strategy.calculateTotal(5));
     }
 
-    // ─── CASE SENSITIVITY ───────────────────────────────────────
-
     @Test
     void testLowercaseStudentResolvesCorrectly() {
         UserPricingStrategy strategy = new UserPricingStrategy("student");
@@ -157,8 +145,6 @@ public class UserPricingStrategyTest {
         UserPricingStrategy strategy = new UserPricingStrategy("guest");
         assertEquals(30.0, strategy.getHourlyRate());
     }
-
-    // ─── EDGE CASES ──────────────────────────────────────────────
 
     @Test
     void testZeroHours() {
@@ -191,15 +177,11 @@ public class UserPricingStrategyTest {
         }
     }
 
-    // ─── INTERFACE COMPLIANCE ────────────────────────────────────
-
     @Test
     void testImplementsPricingStrategy() {
         UserPricingStrategy strategy = new UserPricingStrategy("STUDENT");
         assertInstanceOf(PricingStrategy.class, strategy);
     }
-
-    // ─── PRICING TIER ORDERING ──────────────────────────────────
 
     @Test
     void testStudentCheaperThanFaculty() {

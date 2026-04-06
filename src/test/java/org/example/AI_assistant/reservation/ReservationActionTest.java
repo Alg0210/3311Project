@@ -63,8 +63,6 @@ public class ReservationActionTest {
         reservation = new Reservation("R1", user, eq, start, end, 10.0);
     }
 
-    // ─── EXECUTE TESTS ──────────────────────────────────────────
-
     @Test
     void testExecuteCreate() {
         action = new ReservationAction(manager, reservation, "CREATE");
@@ -118,8 +116,6 @@ public class ReservationActionTest {
         assertEquals(ReservationStatus.CANCELLED, reservation.getStatus());
     }
 
-    // ─── UNDO TESTS ─────────────────────────────────────────────
-
     @Test
     void testUndoCreate() {
         action = new ReservationAction(manager, reservation, "CREATE");
@@ -153,8 +149,6 @@ public class ReservationActionTest {
         action.undo();
         assertEquals(originalEnd, reservation.getEndTime());
     }
-
-    // ─── COMMAND PATTERN BEHAVIOR ────────────────────────────────
 
     @Test
     void testCreateThenCancel() {

@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class AuthServiceTest {
 
-    private static final String USERS_FILE = "src/main/resources/data/users.csv";
+    private static final String userFile = "src/main/resources/data/users.csv";
 
     private byte[] usersBackup;
     private AuthService authService;
@@ -22,14 +22,14 @@ public class AuthServiceTest {
     @BeforeEach
     public void setUp() throws IOException {
         AuthService.logout();
-        usersBackup = Files.readAllBytes(Paths.get(USERS_FILE));
+        usersBackup = Files.readAllBytes(Paths.get(userFile));
         authService = new AuthService();
     }
 
     @AfterEach
     public void tearDown() throws IOException {
         AuthService.logout();
-        Files.write(Paths.get(USERS_FILE), usersBackup);
+        Files.write(Paths.get(userFile), usersBackup);
     }
 
     @Test
@@ -107,16 +107,12 @@ public class AuthServiceTest {
     public void testRegisterStudentPersistsToCSV() {
         boolean registered = authService.register("STUDENT", "Jack", "jack@authtest.com", "Test123!", "CS", "ID011");
         assertTrue(registered);
-        // Verify the user is retrievable via login (password is preserved in the
-        // decorator)
         User found = authService.login("jack@authtest.com", "Test123!");
         assertNotNull(found);
     }
 
     @Test
     public void testGetCurrentUserBeforeLoginReturnsNull() {
-        // logout() was already called in setUp, so currentUser is null
         assertNull(AuthService.getCurrentUser());
     }
 }
-

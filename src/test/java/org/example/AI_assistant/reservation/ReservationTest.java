@@ -33,8 +33,6 @@ public class ReservationTest {
         end = LocalDateTime.of(2026, 5, 1, 12, 0);
     }
 
-    // ─── INITIALIZATION ──────────────────────────────────────────
-
     @Test
     void testReservationInitialization() {
         Reservation res = new Reservation("R1", studentUser, equipment, start, end, 10.0);
@@ -74,8 +72,6 @@ public class ReservationTest {
         assertEquals(0.0, res.getDeposit());
     }
 
-    // ─── DURATION CALCULATION ────────────────────────────────────
-
     @Test
     void testGetDurationHoursTwoHours() {
         Reservation res = new Reservation("R1", studentUser, equipment, start, end, 10.0);
@@ -101,8 +97,6 @@ public class ReservationTest {
         Reservation res = new Reservation("R1", studentUser, equipment, start, start, 10.0);
         assertEquals(0, res.getDurationHours());
     }
-
-    // ─── TOTAL CALCULATION PER PRICING TIER ──────────────────────
 
     @Test
     void testCalculateTotalStudentRate() {
@@ -145,8 +139,6 @@ public class ReservationTest {
         // 10 hours * $10/hr = $100
         assertEquals(100.0, res.calculateTotal(10.0));
     }
-
-    // ─── ARRIVAL TIME CHECK (Req4: 20-minute window) ────────────
 
     @Test
     void testArrivedOnTimeExactStart() {
@@ -196,8 +188,6 @@ public class ReservationTest {
         assertTrue(res.arrivedOnTime(start.plusMinutes(19)));
     }
 
-    // ─── STATUS TRANSITIONS ─────────────────────────────────────
-
     @Test
     void testStatusTransitionPendingToConfirmed() {
         Reservation res = new Reservation("R1", studentUser, equipment, start, end, 10.0);
@@ -239,8 +229,6 @@ public class ReservationTest {
         }
     }
 
-    // ─── SETTERS ─────────────────────────────────────────────────
-
     @Test
     void testSetStartTime() {
         Reservation res = new Reservation("R1", studentUser, equipment, start, end, 10.0);
@@ -264,8 +252,6 @@ public class ReservationTest {
         res.setEndTime(start.plusHours(5));
         assertEquals(5, res.getDurationHours());
     }
-
-    // ─── EDGE CASES ──────────────────────────────────────────────
 
     @Test
     void testReservationSpanningMidnight() {
