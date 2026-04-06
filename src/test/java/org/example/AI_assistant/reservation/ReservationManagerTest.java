@@ -25,8 +25,6 @@ public class ReservationManagerTest {
     private MockRepository mockRepo;
     private MockEqManager mockEqManager;
 
-    // ─── MOCK CLASSES ────────────────────────────────────────────
-
     static class MockRepository extends CSVRepository {
         public List<Reservation> savedRes = new ArrayList<>();
         public List<String[]> allRows = new ArrayList<>();
@@ -96,8 +94,6 @@ public class ReservationManagerTest {
         eqField.set(manager, mockEqManager);
     }
 
-    // ─── HELPERS ─────────────────────────────────────────────────
-
     private User createStudent() {
         return new Student("U1", "Alice", "alice@uni.edu", "Pass1!", "CS", "STU-001");
     }
@@ -113,8 +109,6 @@ public class ReservationManagerTest {
     private User createGuest() {
         return new Guest("U4", "Dave", "dave@ext.com", "Pass4!", "", "GUEST-001");
     }
-
-    // ─── CREATE RESERVATION ──────────────────────────────────────
 
     @Test
     void testCreateReservationSuccess() {
@@ -221,8 +215,6 @@ public class ReservationManagerTest {
         manager.createReservation(res);
         assertEquals(1, mockRepo.savedRes.size());
     }
-
-    // ─── CONFLICT DETECTION (Overlapping Reservations) ───────────
 
     @Test
     void testOverlappingReservationRejected() {
@@ -363,8 +355,6 @@ public class ReservationManagerTest {
         assertNotNull(res2);
     }
 
-    // ─── CANCEL RESERVATION (Req8) ──────────────────────────────
-
     @Test
     void testCancelReservationBeforeStart() {
         User user = createStudent();
@@ -407,8 +397,6 @@ public class ReservationManagerTest {
         // should not throw
         manager.cancelReservation("NON-EXISTENT");
     }
-
-    // ─── MODIFY RESERVATION (Req8) ──────────────────────────────
 
     @Test
     void testModifyReservationBeforeStart() {
@@ -454,8 +442,6 @@ public class ReservationManagerTest {
         // should not throw
         manager.modifyReservation("NON-EXISTENT", LocalDateTime.now().plusHours(5));
     }
-
-    // ─── EXTEND RESERVATION (Req9) ──────────────────────────────
 
     @Test
     void testExtendReservationSuccess() {
@@ -509,8 +495,6 @@ public class ReservationManagerTest {
         manager.extendReservation("NON-EXISTENT", LocalDateTime.now().plusHours(5));
     }
 
-    // ─── UPDATE RESERVATION ─────────────────────────────────────
-
     @Test
     void testUpdateReservation() {
         User user = createStudent();
@@ -529,8 +513,6 @@ public class ReservationManagerTest {
         Reservation fetched = manager.getReservationById("R1");
         assertEquals(ReservationStatus.COMPLETED, fetched.getStatus());
     }
-
-    // ─── DEPOSIT PROCESSING (Req4) ──────────────────────────────
 
     @Test
     void testProcessDepositStudent() {
@@ -578,8 +560,6 @@ public class ReservationManagerTest {
         Payment p = manager.processDeposit(res, "CREDIT", "12345678");
         assertEquals(30.0, p.getAmount());
     }
-
-    // ─── FINAL PAYMENT (Req4 – on-time vs late) ─────────────────
 
     @Test
     void testFinalPaymentOnTimeDeductDeposit() {
@@ -647,8 +627,6 @@ public class ReservationManagerTest {
         assertEquals(30.0, p.getAmount());
     }
 
-    // ─── AVAILABILITY CHECK ──────────────────────────────────────
-
     @Test
     void testEquipmentAvailableWhenNoBookings() {
         assertTrue(manager.isEquipmentAvailable("E1",
@@ -697,8 +675,6 @@ public class ReservationManagerTest {
 
         assertTrue(manager.isEquipmentAvailable("E2", start, end));
     }
-
-    // ─── SENSOR OBSERVER (Req5) ─────────────────────────────────
 
     @Test
     void testUpdateMaintenanceCancelsConfirmedReservations() {
@@ -771,8 +747,6 @@ public class ReservationManagerTest {
         Reservation fetched = manager.getReservationById("R1");
         assertEquals(ReservationStatus.CANCELLED, fetched.getStatus());
     }
-
-    // ─── GET METHODS ─────────────────────────────────────────────
 
     @Test
     void testGetReservationByIdFound() {
